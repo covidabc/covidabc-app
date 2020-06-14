@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Covid ABC</string>
+    <string name="news_fragment_title">Notícias</string>
+    <string name="quiz_fragment_title">Quiz</string>
+    <string name="faq_fragment_title">Perguntas e Respostas</string>
+    <string name="event_fragment_title">Eventos</string>
+</resources>
