@@ -1,6 +1,7 @@
 package com.ufabc.covidabc.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Adapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -18,6 +19,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        setViews()
     }
 
     private fun setViews() {

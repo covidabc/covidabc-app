@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.ui.main.categories.EventFragment
+import com.ufabc.covidabc.ui.main.categories.FAQFragment
 import com.ufabc.covidabc.ui.main.categories.NewsFragment
 import com.ufabc.covidabc.ui.main.categories.QuizFragment
 
@@ -25,9 +26,9 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager)
 
     override fun getItem(position: Int): Fragment {
         return when(position) {
-            1 -> NewsFragment()
-            2 -> QuizFragment()
-            3 -> EventFragment()
+            0 -> NewsFragment()
+            1 -> QuizFragment()
+            2 -> FAQFragment()
             else -> EventFragment()
         }
     }
@@ -36,8 +37,5 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager)
         return context.resources.getString(TAB_TITLES[position])
     }
 
-    override fun getCount(): Int {
-        // Show 2 total pages.
-        return TAB_TITLES.size
-    }
+    override fun getCount(): Int = TAB_TITLES.size
 }
