@@ -37,6 +37,7 @@ class FAQAdapter(val faq: ArrayList<FAQ>, val faqFragment: FAQFragment) : Recycl
 
         holder.faqCard.setOnClickListener {
             val intent = Intent(it.context, FAQDescriptionActivity::class.java)
+            intent.putExtra(App.FAQ_EXTRA, faq[position])
             startActivity(it.context, intent, null)
         }
     }

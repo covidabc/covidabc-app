@@ -8,6 +8,8 @@ class App : Application() {
     companion object {
         lateinit var appContext: Context
             private set
+
+        const val FAQ_EXTRA = "faq_extra"
     }
 
     override fun onCreate() {

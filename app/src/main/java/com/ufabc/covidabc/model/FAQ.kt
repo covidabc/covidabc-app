@@ -1,6 +1,8 @@
 package com.ufabc.covidabc.model
 
-class FAQ {
+import java.io.Serializable
+
+class FAQ : Serializable {
 
     lateinit var question: String
     lateinit var answer: String
