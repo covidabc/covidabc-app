@@ -1,52 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/faq_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="@dimen/general_space">
+    android:paddingTop="@dimen/little_space"
+    android:paddingBottom="@dimen/little_space">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="MissingPrefix">
 
-        <RelativeLayout
-            android:id="@+id/question_info"
+        <TextView
+            android:id="@+id/question_text"
+            android:text="username here"
+            android:textColor="@android:color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:padding="@dimen/general_space">
+            android:padding="@dimen/little_space"
+            android:layout_toLeftOf="@id/next_icon"
+            android:layout_toStartOf="@id/next_icon" />
 
-            <TextView
-                android:id="@+id/question_text"
-                android:text="username here"
-                android:textColor="@android:color/black"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/general_space"/>
 
-        </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/answer_info"
+        <TextView
+            android:id="@+id/answer_text"
+            android:text="answer here"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@android:color/darker_gray"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:layout_below="@id/question_info">
+            android:layout_below="@id/question_text"
+            android:padding="@dimen/little_space"
+            android:layout_toLeftOf="@id/next_icon"
+            android:layout_toStartOf="@id/next_icon"/>
 
-            <TextView
-                android:id="@+id/answer_text"
-                android:text="answer here"
-                android:textColor="@android:color/black"
-                android:textStyle="bold"
-                android:textAllCaps="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/general_space"/>
-        </RelativeLayout>
+        <ImageView
+            android:id="@+id/next_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_next"
+            android:layout_alignTop="@id/question_text"
+            android:layout_alignBottom="@id/answer_text"
+            android:layout_alignParentRight="true">
+
+        </ImageView>
 
 
     </RelativeLayout>
 
-</androidx.cardview.widget.CardView>
+</RelativeLayout>
