@@ -7,4 +7,6 @@
     <dimen name="appbar_padding_top">8dp</dimen>
     <dimen name="general_space">12dp</dimen>
     <dimen name="little_space">8dp</dimen>
+    <dimen name="question_text_size">20sp</dimen>
+    <dimen name="answer_text_size">15sp</dimen>
 </resources>

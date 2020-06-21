@@ -14,7 +14,7 @@ import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.FAQ
 import com.ufabc.covidabc.ui.main.MainActivity
 
-class FAQAdapter(val faq: ArrayList<FAQ>, val faqFragment: FAQFragment) : RecyclerView.Adapter<FAQAdapter.ViewHolder>() {
+class FAQAdapter(val faq: ArrayList<FAQ>) : RecyclerView.Adapter<FAQAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val questionText : TextView = itemView.findViewById(R.id.question_text)
@@ -32,8 +32,8 @@ class FAQAdapter(val faq: ArrayList<FAQ>, val faqFragment: FAQFragment) : Recycl
     override fun getItemCount(): Int = faq.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.questionText.text = faq[position].question
-        holder.answerText.text = faq[position].answer
+        holder.questionText.text = faq[position].getQuestion()
+        holder.answerText.text = faq[position].getAnswer()
 
         holder.faqCard.setOnClickListener {
             val intent = Intent(it.context, FAQDescriptionActivity::class.java)

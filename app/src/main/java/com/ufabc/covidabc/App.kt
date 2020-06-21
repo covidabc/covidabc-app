@@ -12,6 +12,7 @@ class App : Application() {
         const val FAQ_EXTRA = "faq_extra"
     }
 
+
     override fun onCreate() {
         super.onCreate()
 

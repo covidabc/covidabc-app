@@ -19,6 +19,7 @@ class LoginActivity : AppCompatActivity() {
         setListeners()
     }
 
+
     private fun setViews() {
         loginButon = findViewById<Button>(R.id.login_button)
     }

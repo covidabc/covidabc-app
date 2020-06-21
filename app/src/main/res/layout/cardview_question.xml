@@ -22,8 +22,6 @@
             android:layout_toLeftOf="@id/next_icon"
             android:layout_toStartOf="@id/next_icon" />
 
-
-
         <TextView
             android:id="@+id/answer_text"
             android:text="answer here"

@@ -30,7 +30,7 @@ class FAQDescriptionActivity : AppCompatActivity() {
     }
 
     private fun populateFAQ() {
-        questionText.text = faq.question
-        answerText.text = faq.answer
+        questionText.text = faq.getQuestion()
+        answerText.text = faq.getAnswer()
     }
 }

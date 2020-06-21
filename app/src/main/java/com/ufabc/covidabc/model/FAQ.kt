@@ -4,8 +4,9 @@ import java.io.Serializable
 
 class FAQ : Serializable {
 
-    lateinit var question: String
-    lateinit var answer: String
+    private lateinit var question: String
+
+    private lateinit var answer: String
 
     constructor()
 
@@ -14,4 +15,7 @@ class FAQ : Serializable {
         this.answer = answer
     }
 
+    fun getQuestion() : String = question
+
+    fun getAnswer() : String = answer
 }
