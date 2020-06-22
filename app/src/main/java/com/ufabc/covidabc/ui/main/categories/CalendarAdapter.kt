@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ufabc.covidabc.App
@@ -34,8 +35,10 @@ class CalendarAdapter(private val dates: ArrayList<CalendarDate>): RecyclerView.
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.dateText.text = dates[position].date
 
-        holder.eventRecyclerView.layoutManager = LinearLayoutManager(App.appContext)
-        holder.eventRecyclerView.adapter = EventAdapter(dates[position].getCalendarEvents())
-
+        holder.eventRecyclerView.apply {
+            this.layoutManager = LinearLayoutManager(App.appContext)
+            this.adapter  = EventAdapter(dates[position].getCalendarEvents())
+            this.addItemDecoration(DividerItemDecoration(App.appContext, DividerItemDecoration.VERTICAL))
+        }
     }
 }

@@ -8,32 +8,27 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_green_dark">
 
-        <RelativeLayout
-            android:id="@+id/calendar_item"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/holo_green_dark">
+        <TextView
+            android:id="@+id/date_text"
+            android:text="Data"
+            android:padding="@dimen/general_space"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/date_text"
-                android:text="Data"
-                android:padding="@dimen/general_space"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-            </TextView>
-        </RelativeLayout>
+        </TextView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_event"
+            android:padding="@dimen/little_space"
+            android:background="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/calendar_item">
-
+            android:layout_below="@id/date_text">
         </androidx.recyclerview.widget.RecyclerView>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

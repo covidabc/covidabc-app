@@ -4,8 +4,8 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class CalendarDate {
-    lateinit var date : String
-    lateinit var events: ArrayList<CalendarEvent>
+    var date : String
+    var events: ArrayList<CalendarEvent>
 
     constructor(date: String) {
         this.date = date
