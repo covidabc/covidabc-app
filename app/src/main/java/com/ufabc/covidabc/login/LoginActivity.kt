@@ -1,11 +1,11 @@
-package com.ufabc.covidabc
+package com.ufabc.covidabc.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import com.ufabc.covidabc.ui.main.MainActivity
-import kotlinx.android.synthetic.main.activity_login.*
+import com.ufabc.covidabc.R
+import com.ufabc.covidabc.mainScreen.MainActivity
 
 class LoginActivity : AppCompatActivity() {
 

@@ -1,14 +1,12 @@
-package com.ufabc.covidabc.ui.main.categories
+package com.ufabc.covidabc.mainScreen.categories.Quiz
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.ufabc.covidabc.R
-import com.ufabc.covidabc.ui.QuizQuestionActivity
 import kotlinx.android.synthetic.main.fragment_quiz.*
 
 class QuizFragment : Fragment() {

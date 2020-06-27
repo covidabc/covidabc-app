@@ -1,4 +1,4 @@
-package com.ufabc.covidabc.ui.main.categories
+package com.ufabc.covidabc.mainScreen.categories.FAQ
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -6,13 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.FAQ
-import com.ufabc.covidabc.ui.main.MainActivity
 
 class FAQAdapter(val faq: ArrayList<FAQ>) : RecyclerView.Adapter<FAQAdapter.ViewHolder>() {
 
@@ -26,7 +24,9 @@ class FAQAdapter(val faq: ArrayList<FAQ>) : RecyclerView.Adapter<FAQAdapter.View
         val view : View = LayoutInflater.from(parent.context)
             .inflate(R.layout.cardview_question, parent, false)
 
-        return ViewHolder(view)
+        return ViewHolder(
+            view
+        )
     }
 
     override fun getItemCount(): Int = faq.size

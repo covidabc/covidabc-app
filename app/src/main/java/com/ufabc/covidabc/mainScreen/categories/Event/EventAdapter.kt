@@ -1,14 +1,11 @@
-package com.ufabc.covidabc.ui.main.categories
+package com.ufabc.covidabc.mainScreen.categories.Event
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
-import com.ufabc.covidabc.model.CalendarDate
 import com.ufabc.covidabc.model.CalendarEvent
 
 class EventAdapter(private val events: ArrayList<CalendarEvent>): RecyclerView.Adapter<EventAdapter.ViewHolder>() {
@@ -21,7 +18,9 @@ class EventAdapter(private val events: ArrayList<CalendarEvent>): RecyclerView.A
         val view : View = LayoutInflater.from(parent.context)
             .inflate(R.layout.cardview_event, parent, false)
 
-        return ViewHolder(view)
+        return ViewHolder(
+            view
+        )
     }
 
     override fun getItemCount(): Int = events.size

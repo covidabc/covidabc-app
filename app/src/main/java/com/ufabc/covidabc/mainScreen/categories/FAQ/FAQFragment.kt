@@ -1,7 +1,6 @@
-package com.ufabc.covidabc.ui.main.categories
+package com.ufabc.covidabc.mainScreen.categories.FAQ
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.FAQ
-import kotlinx.android.synthetic.main.fragment_faq.*
 
 class FAQFragment : Fragment() {
 
@@ -45,7 +43,8 @@ class FAQFragment : Fragment() {
         view?.findViewById<RecyclerView>(R.id.recycler_view).apply {
             val recyclerView = this
             recyclerView!!.layoutManager = LinearLayoutManager(App.appContext)
-            recyclerView.adapter = FAQAdapter(faq)
+            recyclerView.adapter =
+                FAQAdapter(faq)
             recyclerView.addItemDecoration(DividerItemDecoration(recyclerView?.context, DividerItemDecoration.VERTICAL))
         }
     }

@@ -1,18 +1,16 @@
-package com.ufabc.covidabc.ui.main.categories
+package com.ufabc.covidabc.mainScreen.categories.Event
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.CalendarDate
 import com.ufabc.covidabc.model.CalendarEvent
-import java.util.*
 import kotlin.collections.ArrayList
 
 class EventFragment : Fragment() {
@@ -49,7 +47,8 @@ class EventFragment : Fragment() {
         view?.findViewById<RecyclerView>(R.id.recycler_view_calendar).apply {
             val recyclerView = this
             recyclerView!!.layoutManager = LinearLayoutManager(App.appContext)
-            recyclerView.adapter = CalendarAdapter(dates)
+            recyclerView.adapter =
+                CalendarAdapter(dates)
         }
     }
 }

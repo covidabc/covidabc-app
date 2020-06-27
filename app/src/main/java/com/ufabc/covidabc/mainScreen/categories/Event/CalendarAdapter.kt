@@ -1,20 +1,15 @@
-package com.ufabc.covidabc.ui.main.categories
+package com.ufabc.covidabc.mainScreen.categories.Event
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.CalendarDate
-import com.ufabc.covidabc.model.CalendarEvent
-import com.ufabc.covidabc.model.FAQ
 
 class CalendarAdapter(private val dates: ArrayList<CalendarDate>): RecyclerView.Adapter<CalendarAdapter.ViewHolder>() {
 
@@ -27,7 +22,9 @@ class CalendarAdapter(private val dates: ArrayList<CalendarDate>): RecyclerView.
         val view : View = LayoutInflater.from(parent.context)
             .inflate(R.layout.cardview_calendar, parent, false)
 
-        return ViewHolder(view)
+        return ViewHolder(
+            view
+        )
     }
 
     override fun getItemCount(): Int = dates.size
@@ -37,7 +34,8 @@ class CalendarAdapter(private val dates: ArrayList<CalendarDate>): RecyclerView.
 
         holder.eventRecyclerView.apply {
             this.layoutManager = LinearLayoutManager(App.appContext)
-            this.adapter  = EventAdapter(dates[position].getCalendarEvents())
+            this.adapter  =
+                EventAdapter(dates[position].getCalendarEvents())
             this.addItemDecoration(DividerItemDecoration(App.appContext, DividerItemDecoration.VERTICAL))
         }
     }

@@ -1,14 +1,14 @@
-package com.ufabc.covidabc.ui.main
+package com.ufabc.covidabc.mainScreen
 
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.ufabc.covidabc.R
-import com.ufabc.covidabc.ui.main.categories.EventFragment
-import com.ufabc.covidabc.ui.main.categories.FAQFragment
-import com.ufabc.covidabc.ui.main.categories.NewsFragment
-import com.ufabc.covidabc.ui.main.categories.QuizFragment
+import com.ufabc.covidabc.mainScreen.categories.Event.EventFragment
+import com.ufabc.covidabc.mainScreen.categories.FAQ.FAQFragment
+import com.ufabc.covidabc.mainScreen.categories.News.NewsFragment
+import com.ufabc.covidabc.mainScreen.categories.Quiz.QuizFragment
 
 private val TAB_TITLES = arrayOf(
     R.string.news_fragment_title,
