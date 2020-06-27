@@ -11,11 +11,12 @@ import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.CalendarDate
 import com.ufabc.covidabc.model.CalendarEvent
+import java.util.*
 import kotlin.collections.ArrayList
 
 class EventFragment : Fragment() {
 
-    lateinit var dates : ArrayList<CalendarDate>
+    lateinit var events : ArrayList<CalendarEvent>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,26 +30,30 @@ class EventFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setEvents()
-        populateCalendar()
+        populateEvents()
     }
 
-    fun setEvents() {
-        dates = arrayListOf()
-        dates.add(CalendarDate("Junho"))
-        dates.add(CalendarDate("Agosto"))
+    private fun setEvents() {
+        events = arrayListOf()
 
         for (i in 1..5) {
-            dates[0].addEvent(CalendarEvent("Doação de comida $i"))
-            dates[1].addEvent(CalendarEvent("Doação de comida $i"))
+            val eventName = "Doação de comida $i"
+            val eventDescription = "Vamos doar comida no Bairo X. Apareça lá"
+            val eventDate = Calendar.getInstance().apply {
+                this.set(Calendar.YEAR, 1999);
+                this.set(Calendar.MONTH, 7);
+                this.set(Calendar.DAY_OF_MONTH, 26);
+            }
+            val eventPlace = "Avenida dos Estados"
+            events.add(CalendarEvent(eventName, eventDescription, eventDate, eventPlace))
         }
     }
 
-    private fun populateCalendar() {
+    private fun populateEvents() {
         view?.findViewById<RecyclerView>(R.id.recycler_view_calendar).apply {
             val recyclerView = this
             recyclerView!!.layoutManager = LinearLayoutManager(App.appContext)
-            recyclerView.adapter =
-                CalendarAdapter(dates)
+            recyclerView.adapter = EventAdapter(events)
         }
     }
 }

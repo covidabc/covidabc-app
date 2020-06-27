@@ -6,4 +6,8 @@
     <string name="event_fragment_title">Eventos</string>
     <string name="quiz_intro">Descubra o quanto você sabe sobre o Covid-19</string>
     <string name="quiz_enter">Iniciar</string>
+    <string name="event_description">Event Description</string>
+    <string name="event_place">Event Place</string>
+    <string name="event_type">Event Type</string>
+    <string name="event_date">Event Date</string>
 </resources>

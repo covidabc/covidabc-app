@@ -1,15 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/faq_card"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:paddingBottom="@dimen/little_space">
+
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="MissingPrefix">
+
+    <LinearLayout
+        android:id="@+id/event_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/event_type"
+            android:text="@string/event_type"
+            android:gravity="center"
+            android:layout_weight="0.5"
+            android:textColor="@android:color/black"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/little_space">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/event_date"
+            android:text="@string/event_date"
+            android:gravity="center"
+            android:textColor="@android:color/black"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/little_space">
+
+        </TextView>
+
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/event_description"
+        android:id="@+id/event_place"
+        android:text="@string/event_place"
         android:textColor="@android:color/black"
         android:layout_width="match_parent"
         android:padding="@dimen/little_space"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/event_header">
 
     </TextView>
+
+    <TextView
+        android:id="@+id/event_description"
+        android:text="@string/event_description"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@android:color/darker_gray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/event_place"
+        android:padding="@dimen/little_space"
+        android:layout_toLeftOf="@id/next_icon"
+        android:layout_toStartOf="@id/next_icon"/>
+
+    <ImageView
+        android:id="@+id/next_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_next"
+        android:layout_alignTop="@id/event_place"
+        android:layout_alignBottom="@id/event_description"
+        android:layout_alignParentRight="true">
+
+    </ImageView>
+
+
+</RelativeLayout>
 
 </RelativeLayout>
