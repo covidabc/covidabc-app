@@ -4,4 +4,6 @@
     <string name="quiz_fragment_title">Quiz</string>
     <string name="faq_fragment_title">Perguntas e Respostas</string>
     <string name="event_fragment_title">Eventos</string>
+    <string name="quiz_intro">Descubra o quanto você sabe sobre o Covid-19</string>
+    <string name="quiz_enter">Iniciar</string>
 </resources>

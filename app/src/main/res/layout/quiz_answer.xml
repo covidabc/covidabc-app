@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageAnswer"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/like"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textAnswer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/imageAnswer"
+            android:text="Resposta: Verdadeiro/Falso" />
+
+        <TextView
+            android:id="@+id/explanation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageAnswer"
+            android:text="Explicação" />
+
+        <Button
+            android:id="@+id/nextQuestion_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/explanation"
+            android:text="Próxima" />
+
+        <Button
+            android:id="@+id/Exit_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/explanation"
+            android:layout_toRightOf="@id/nextQuestion_btn"
+            android:text="Sair"
+            android:layout_toEndOf="@id/nextQuestion_btn" />
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
