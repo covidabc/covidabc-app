@@ -21,7 +21,7 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mainScreen.categories.Event.CreateEventActivity"></activity>
+        <activity android:name=".mainScreen.categories.Event.CreateEventActivity" />
         <activity android:name=".mainScreen.categories.FAQ.FAQDescriptionActivity" />
         <activity android:name=".login.LoginActivity">
             <intent-filter>
