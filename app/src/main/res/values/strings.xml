@@ -10,4 +10,5 @@
     <string name="event_place">Event Place</string>
     <string name="event_type">Event Type</string>
     <string name="event_date">Event Date</string>
+    <string name="create_event">Criar Evento</string>
 </resources>

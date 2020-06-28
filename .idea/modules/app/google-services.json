@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "921823068540",
+    "firebase_url": "https://covid-fake-news.firebaseio.com",
+    "project_id": "covid-fake-news",
+    "storage_bucket": "covid-fake-news.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:921823068540:android:3556d47d98840e2034a4f9",
+        "android_client_info": {
+          "package_name": "com.ufabc.covidabc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "921823068540-hmk4t799fs1fen0ffoocu9aavr04defj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ufabc.covidabc",
+            "certificate_hash": "9ef7a742db0c6e3e1dcdedf1a9c9036d6632baf7"
+          }
+        },
+        {
+          "client_id": "921823068540-ib8eb11rsihkfqi49vic4rt5cnlfkpg0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUUWD_mzVWTVVWpxPfEDrUi-1b4a5sHpo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "921823068540-ib8eb11rsihkfqi49vic4rt5cnlfkpg0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
