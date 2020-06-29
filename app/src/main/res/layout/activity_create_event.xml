@@ -8,7 +8,8 @@
 
 
     <EditText
-        android:id="@+id/event_name_edit_text"
+        android:id="@+id/event_title_edit_text"
+        android:hint="@string/event_title_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/general_space"
@@ -18,16 +19,18 @@
 
     <EditText
         android:id="@+id/event_place_edit_text"
+        android:hint="@string/event_place_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/general_space"
         android:inputType="text"
         android:importantForAutofill="no"
-        android:layout_below="@id/event_name_edit_text"
+        android:layout_below="@id/event_title_edit_text"
         tools:ignore="LabelFor" />
 
     <EditText
         android:id="@+id/event_description_edit_text"
+        android:hint="@string/event_description_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/general_space"
@@ -46,11 +49,18 @@
         android:layout_below="@id/event_description_edit_text"
         tools:ignore="LabelFor" />
 
+    <Spinner
+        android:id="@+id/event_type_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/event_type_edit_text">
+    </Spinner>
+
     <Button
         android:id="@+id/create_event_button"
         android:text="@string/create_event"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/event_type_edit_text"
+        android:layout_below="@id/event_type_spinner"
         android:layout_gravity="center_vertical"/>
 </RelativeLayout>
