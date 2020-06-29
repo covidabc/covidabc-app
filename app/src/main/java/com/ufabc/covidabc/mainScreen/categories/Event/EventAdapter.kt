@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.CalendarEvent
-import java.time.DayOfWeek
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -36,8 +35,11 @@ class EventAdapter(private val events: ArrayList<CalendarEvent>): RecyclerView.A
         }
     }
 
-    private fun getParsedDateText(date: Calendar): String {
-        return "${getParsedDayOfTheWeek(date)}, ${date.get(Calendar.DAY_OF_MONTH)}/${date.get(Calendar.MONTH)}"
+    private fun getParsedDateText(date: Date): String {
+        val calendar = Calendar.getInstance()
+        calendar.time = date
+
+        return "${getParsedDayOfTheWeek(calendar)}, ${calendar.get(Calendar.DAY_OF_MONTH)}/${calendar.get(Calendar.MONTH)}"
     }
 
     private fun getParsedDayOfTheWeek(date: Calendar) : String {

@@ -39,11 +39,7 @@ class CreateEventActivity : AppCompatActivity() {
     }
 
     private fun createEvent() {
-        val eventDate = Calendar.getInstance().apply {
-            this.set(Calendar.YEAR, 1999);
-            this.set(Calendar.MONTH, 7);
-            this.set(Calendar.DAY_OF_MONTH, 26);
-        }
+        val eventDate = Date(System.currentTimeMillis())
 
         val newEvent = CalendarEvent(eventNameEditText.text.toString(), eventDescriptionEditText.text.toString(), eventDate, eventPlaceEditText.text.toString())
         CalendarEventDAO.addEvent(newEvent)

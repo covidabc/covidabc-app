@@ -3,31 +3,32 @@ package com.ufabc.covidabc.model
 import java.util.*
 
 class CalendarEvent {
-    private lateinit var eventName: String
-    private lateinit var description : String
-    private lateinit var place: String
-    private lateinit var eventDate: Calendar
+    enum class EventType(private val value: String) {
+        DONATION("Donation"),
+        DEMO("Demo"),
+        COLLECTION("Collection");
 
-    constructor() {
-        val eventDate = Calendar.getInstance().apply {
-            this.set(Calendar.YEAR, 1999);
-            this.set(Calendar.MONTH, 7);
-            this.set(Calendar.DAY_OF_MONTH, 26);
-        }
-
-        this.eventDate = eventDate
+        override fun toString() = value
     }
 
-    constructor(eventName: String, description: String, eventDate: Calendar, place: String) {
-        this.eventName = eventName
+    private lateinit var postType: EventType
+    private lateinit var title: String
+    private lateinit var description : String
+    private lateinit var place: String
+    private lateinit var date: Date
+
+    constructor()
+
+    constructor(title: String, description: String, date: Date, place: String) {
+        this.title = title
         this.description = description
-        this.eventDate = eventDate
+        this.date = date
         this.place = place
     }
 
-    fun getEventName() = this.eventName
+    fun getTitle() = this.title
     fun getDescription() = this.description
     fun getPlace() = this.place
-    fun getDate() = this.eventDate
+    fun getDate() = this.date
     
 }
