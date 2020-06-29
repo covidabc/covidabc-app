@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,8 @@ import com.ufabc.covidabc.R
 import com.ufabc.covidabc.mainScreen.MainActivity
 import com.ufabc.covidabc.model.CalendarDate
 import com.ufabc.covidabc.model.CalendarEvent
+import com.ufabc.covidabc.model.CalendarEventDAO
+import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -37,7 +40,7 @@ class EventFragment : Fragment() {
         setListeners()
 
         setEvents()
-        populateEvents()
+        //populateEvents()
     }
 
     private fun setViews(view: View) {
@@ -51,19 +54,17 @@ class EventFragment : Fragment() {
     }
 
     private fun setEvents() {
-        events = arrayListOf()
-
-        for (i in 1..5) {
-            val eventName = "Doação de comida $i"
-            val eventDescription = "Vamos doar comida no Bairo X. Apareça lá"
-            val eventDate = Calendar.getInstance().apply {
-                this.set(Calendar.YEAR, 1999);
-                this.set(Calendar.MONTH, 7);
-                this.set(Calendar.DAY_OF_MONTH, 26);
+        CalendarEventDAO.getAllEvents(object: FirestoreDatabaseOperationListener<ArrayList<CalendarEvent>> {
+            override fun onSuccess(result: ArrayList<CalendarEvent>) {
+                events = result
+                populateEvents()
             }
-            val eventPlace = "Avenida dos Estados"
-            events.add(CalendarEvent(eventName, eventDescription, eventDate, eventPlace))
-        }
+
+            override fun onFailure() {
+                Toast.makeText(App.appContext, R.string.get_events_failure, Toast.LENGTH_LONG).show()
+            }
+
+        })
     }
 
     private fun populateEvents() {
