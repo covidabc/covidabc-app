@@ -1,85 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:id="@+id/faq_card"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:paddingBottom="@dimen/little_space">
-
-<RelativeLayout
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:ignore="MissingPrefix">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="@dimen/general_space">
 
-    <LinearLayout
-        android:id="@+id/event_header"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/darker_gray"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        tools:ignore="MissingPrefix">
 
-        <TextView
-            android:id="@+id/event_type"
-            android:text="@string/event_type"
-            android:gravity="center"
-            android:layout_weight="0.5"
-            android:textColor="@android:color/black"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/event_header"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/little_space">
+            android:background="@android:color/darker_gray"
+            android:orientation="horizontal">
 
-        </TextView>
+            <TextView
+                android:id="@+id/event_date"
+                android:text="@string/event_date"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/little_space">
+            </TextView>
 
-        <TextView
-            android:id="@+id/event_date"
-            android:text="@string/event_date"
-            android:gravity="center"
-            android:textColor="@android:color/black"
-            android:layout_weight="0.5"
-            android:layout_width="0dp"
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/event_body"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/little_space">
+            android:layout_below="@id/event_header">
 
-        </TextView>
+            <ImageView
+                android:id="@+id/event_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_event"
+                android:paddingLeft="@dimen/little_space"
+                android:layout_alignTop="@id/event_title"
+                android:layout_alignBottom="@id/event_title"
+                android:paddingStart="@dimen/little_space"
+                tools:ignore="RtlSymmetry" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/event_title"
+                android:text="@string/event_title"
+                android:textColor="@android:color/black"
+                android:layout_width="match_parent"
+                android:padding="@dimen/little_space"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/event_icon"
+                android:layout_toEndOf="@id/event_icon">
+            </TextView>
 
-    <TextView
-        android:id="@+id/event_place"
-        android:text="@string/event_place"
-        android:textColor="@android:color/black"
-        android:layout_width="match_parent"
-        android:padding="@dimen/little_space"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/event_header">
+            <ImageView
+                android:id="@+id/place_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_place"
+                android:paddingLeft="@dimen/little_space"
+                android:layout_alignTop="@id/event_place"
+                android:layout_alignBottom="@id/event_place"
+                android:paddingStart="@dimen/little_space"
+                tools:ignore="RtlSymmetry" />
 
-    </TextView>
+            <TextView
+                android:id="@+id/event_place"
+                android:text="@string/event_place"
+                android:textColor="@android:color/black"
+                android:layout_width="match_parent"
+                android:padding="@dimen/little_space"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/event_title"
+                android:layout_toRightOf="@id/place_icon"
+                android:layout_toEndOf="@id/place_icon">
+            </TextView>
 
-    <TextView
-        android:id="@+id/event_description"
-        android:text="@string/event_description"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="@android:color/darker_gray"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/event_place"
-        android:padding="@dimen/little_space"
-        android:layout_toLeftOf="@id/next_icon"
-        android:layout_toStartOf="@id/next_icon"/>
+            <ImageView
+                android:id="@+id/description_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_description"
+                android:paddingLeft="@dimen/little_space"
+                android:layout_alignTop="@id/event_description"
+                android:layout_alignBottom="@id/event_description"
+                android:paddingStart="@dimen/little_space"
+                tools:ignore="RtlSymmetry" />
 
-    <ImageView
-        android:id="@+id/next_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_next"
-        android:layout_alignTop="@id/event_place"
-        android:layout_alignBottom="@id/event_description"
-        android:layout_alignParentRight="true">
+            <TextView
+                android:id="@+id/event_description"
+                android:text="@string/event_description"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@android:color/darker_gray"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/event_place"
+                android:padding="@dimen/little_space"
+                android:layout_toLeftOf="@id/next_icon"
+                android:layout_toStartOf="@id/next_icon"
+                android:layout_toRightOf="@id/description_icon"
+                android:layout_toEndOf="@id/description_icon" />
 
-    </ImageView>
+            <ImageView
+                android:id="@+id/next_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_next"
+                android:layout_alignTop="@id/event_title"
+                android:layout_alignBottom="@id/event_description"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"/>
+        </RelativeLayout>
 
+    </RelativeLayout>
 
-</RelativeLayout>
-
-</RelativeLayout>
+</androidx.cardview.widget.CardView>
