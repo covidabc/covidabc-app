@@ -13,6 +13,7 @@ import kotlin.collections.ArrayList
 class EventAdapter(private val events: ArrayList<CalendarEvent>): RecyclerView.Adapter<EventAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var eventType : TextView = itemView.findViewById(R.id.event_type)
         var eventDescription: TextView = itemView.findViewById(R.id.event_description)
         var eventDate: TextView = itemView.findViewById(R.id.event_date)
         var eventPlace: TextView = itemView.findViewById(R.id.event_place)
@@ -29,6 +30,7 @@ class EventAdapter(private val events: ArrayList<CalendarEvent>): RecyclerView.A
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         events[position].apply {
+            holder.eventType.text = this.getEventType().toString()
             holder.eventDescription.text = this.getDescription()
             holder.eventDate.text = getParsedDateText(this.getDate())
             holder.eventPlace.text = this.getPlace()

@@ -39,21 +39,11 @@
         android:layout_below="@id/event_place_edit_text"
         tools:ignore="LabelFor" />
 
-    <EditText
-        android:id="@+id/event_type_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/general_space"
-        android:inputType="text"
-        android:importantForAutofill="no"
-        android:layout_below="@id/event_description_edit_text"
-        tools:ignore="LabelFor" />
-
     <Spinner
         android:id="@+id/event_type_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/event_type_edit_text">
+        android:layout_below="@id/event_description_edit_text">
     </Spinner>
 
     <Button

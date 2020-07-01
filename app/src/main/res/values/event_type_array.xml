@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string-array name="event_type_array">
-        <item>Arrecadação</item>
-        <item>Doação</item>
-        <item>Manifestação</item>
-    </string-array>
-</resources>
