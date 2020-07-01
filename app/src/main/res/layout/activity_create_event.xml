@@ -39,18 +39,35 @@
         android:layout_below="@id/event_place_edit_text"
         tools:ignore="LabelFor" />
 
-    <Spinner
-        android:id="@+id/event_type_spinner"
+    <EditText
+        android:id="@+id/event_date_edit_text"
+        android:hint="@string/event_date_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/event_description_edit_text">
-    </Spinner>
+        android:padding="@dimen/general_space"
+        android:inputType="date"
+        android:importantForAutofill="no"
+        android:layout_below="@id/event_description_edit_text"
+        tools:ignore="LabelFor" />
 
-    <Button
-        android:id="@+id/create_event_button"
-        android:text="@string/create_event"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/event_type_spinner"
-        android:layout_gravity="center_vertical"/>
+        android:layout_below="@id/event_date_edit_text">
+
+        <Spinner
+            android:id="@+id/event_type_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5">
+        </Spinner>
+
+        <Button
+            android:id="@+id/create_event_button"
+            android:text="@string/create_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3" />
+    </LinearLayout>
+
 </RelativeLayout>

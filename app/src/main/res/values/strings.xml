@@ -15,4 +15,6 @@
     <string name="event_title_hint">Digite o nome do seu evento</string>
     <string name="event_place_hint">Digite o lugar do seu evento</string>
     <string name="event_description_hint">Descreva seu evento</string>
+    <string name="date_button_text">Selecionar data</string>
+    <string name="event_date_hint">Digite a data do evento</string>
 </resources>
