@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
-import com.ufabc.covidabc.model.FAQ
+import com.ufabc.covidabc.model.*
 
 class FAQFragment : Fragment() {
 
@@ -28,15 +29,19 @@ class FAQFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setFAQ()
-        populateFAQ()
     }
 
     private fun setFAQ() {
-        faq = arrayListOf()
+        FAQDAO.getAllEvents(object: FirestoreDatabaseOperationListener<ArrayList<FAQ>> {
+            override fun onSuccess(result: ArrayList<FAQ>) {
+                faq = result
+                populateFAQ()
+            }
 
-        for (i in 0..20) {
-            faq.add(FAQ("pergunta $i", "resposta $i"))
-        }
+            override fun onFailure() {
+                Toast.makeText(App.appContext, R.string.get_faq_failure, Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
     private fun populateFAQ() {

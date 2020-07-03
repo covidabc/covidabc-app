@@ -12,7 +12,6 @@ object CalendarEventDAO {
     fun addEvent(event: CalendarEvent) {
         FirebaseFirestore.getInstance().collection(EVENT_COLLECTION).add(event)
         // TODO: Add onSuccess and onFailure callback
-
     }
 
     fun getAllEvents(callback: FirestoreDatabaseOperationListener<ArrayList<CalendarEvent>>) {
@@ -31,5 +30,4 @@ object CalendarEventDAO {
         }
         return events
     }
-
 }

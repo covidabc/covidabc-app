@@ -12,6 +12,7 @@
     <string name="event_date">Event Date</string>
     <string name="create_event">Criar Evento</string>
     <string name="get_events_failure">Erro ao encontrar eventos</string>
+    <string name="get_faq_failure">Erro ao encontrar perguntas e respostas</string>
     <string name="event_title_hint">Digite o nome do seu evento</string>
     <string name="event_place_hint">Digite o lugar do seu evento</string>
     <string name="event_description_hint">Descreva seu evento</string>
