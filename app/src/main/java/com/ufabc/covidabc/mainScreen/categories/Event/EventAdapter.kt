@@ -1,5 +1,6 @@
 package com.ufabc.covidabc.mainScreen.categories.Event
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
+import com.ufabc.covidabc.mainScreen.categories.FAQ.FAQDescriptionActivity
 import com.ufabc.covidabc.model.CalendarEvent
 import java.util.*
 import kotlin.collections.ArrayList
@@ -18,6 +20,7 @@ class EventAdapter(private val events: ArrayList<CalendarEvent>): RecyclerView.A
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var eventHeader : LinearLayout = itemView.findViewById(R.id.event_header)
+        var eventBody : RelativeLayout = itemView.findViewById(R.id.event_body)
         var eventTitle : TextView = itemView.findViewById(R.id.event_title)
         var eventDescription: TextView = itemView.findViewById(R.id.event_description)
         var eventDate: TextView = itemView.findViewById(R.id.event_date)
@@ -38,27 +41,14 @@ class EventAdapter(private val events: ArrayList<CalendarEvent>): RecyclerView.A
             holder.eventHeader.setBackgroundColor(getHeaderColor(this.getEventType()))
             holder.eventTitle.text = this.getTitle()
             holder.eventDescription.text = this.getDescription()
-            holder.eventDate.text = getParsedDateText(this.getDate())
+            holder.eventDate.text = this.getFormatedDate()
             holder.eventPlace.text = this.getPlace()
-        }
-    }
 
-    private fun getParsedDateText(date: Date): String {
-        val calendar = Calendar.getInstance()
-        calendar.time = date
-
-        return "${getParsedDayOfTheWeek(calendar)}, ${calendar.get(Calendar.DAY_OF_MONTH)}/${calendar.get(Calendar.MONTH)}"
-    }
-
-    private fun getParsedDayOfTheWeek(date: Calendar) : String {
-        return when (date.get(Calendar.DAY_OF_WEEK)) {
-            Calendar.MONDAY -> "SEG"
-            Calendar.TUESDAY -> "TER"
-            Calendar.WEDNESDAY -> "QUA"
-            Calendar.THURSDAY -> "QUI"
-            Calendar.FRIDAY -> "SEX"
-            Calendar.SATURDAY -> "SAB"
-            else -> "DOM"
+            holder.eventBody.setOnClickListener {
+                val intent = Intent(it.context, EventDescriptionActivity::class.java)
+                intent.putExtra(App.EVENT_EXTRA, this)
+                ContextCompat.startActivity(it.context, intent, null)
+            }
         }
     }
 

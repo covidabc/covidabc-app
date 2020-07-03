@@ -1,8 +1,9 @@
 package com.ufabc.covidabc.model
 
+import java.io.Serializable
 import java.util.*
 
-class CalendarEvent {
+class CalendarEvent : Serializable {
     enum class EventType(private val value: String) {
         DONATION("Doação"),
         DEMO("Manifestação"),
@@ -32,5 +33,23 @@ class CalendarEvent {
     fun getDescription() = this.description
     fun getPlace() = this.place
     fun getDate() = this.date
-    
+
+    fun getFormatedDate() : String{
+        val calendar = Calendar.getInstance()
+        calendar.time = date
+
+        return "${getParsedDayOfTheWeek(calendar)}, ${calendar.get(Calendar.DAY_OF_MONTH)}/${calendar.get(Calendar.MONTH)}"
+    }
+
+    private fun getParsedDayOfTheWeek(date: Calendar) : String {
+        return when (date.get(Calendar.DAY_OF_WEEK)) {
+            Calendar.MONDAY -> "SEG"
+            Calendar.TUESDAY -> "TER"
+            Calendar.WEDNESDAY -> "QUA"
+            Calendar.THURSDAY -> "QUI"
+            Calendar.FRIDAY -> "SEX"
+            Calendar.SATURDAY -> "SAB"
+            else -> "DOM"
+        }
+    }
 }
