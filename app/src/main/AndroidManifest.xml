@@ -21,9 +21,12 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mainScreen.categories.Event.EventDescriptionActivity" />
-        <activity android:name=".mainScreen.categories.Event.CreateEventActivity" />
-        <activity android:name=".mainScreen.categories.FAQ.FAQDescriptionActivity" />
+        <activity
+            android:name=".mainScreen.MainScreenActivity"
+            android:label="@string/title_activity_main_screen" />
+        <activity android:name=".mainScreen.categories.event.EventDescriptionActivity" />
+        <activity android:name=".mainScreen.categories.event.CreateEventActivity" />
+        <activity android:name=".mainScreen.categories.faq.FAQDescriptionActivity" />
         <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,12 +34,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".mainScreen.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".mainScreen.categories.Quiz.QuizQuestionActivity" />
-        <activity android:name=".mainScreen.categories.Quiz.QuizAnswerActivity" />
+        <activity android:name=".mainScreen.categories.quiz.QuizQuestionActivity" />
+        <activity android:name=".mainScreen.categories.quiz.QuizAnswerActivity" />
 
         <provider
             android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"

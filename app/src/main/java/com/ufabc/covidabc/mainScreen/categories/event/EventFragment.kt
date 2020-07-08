@@ -1,4 +1,4 @@
-package com.ufabc.covidabc.mainScreen.categories.Event
+package com.ufabc.covidabc.mainScreen.categories.event
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,12 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
-import com.ufabc.covidabc.mainScreen.MainActivity
-import com.ufabc.covidabc.model.CalendarDate
 import com.ufabc.covidabc.model.CalendarEvent
 import com.ufabc.covidabc.model.CalendarEventDAO
 import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
-import java.util.*
 import kotlin.collections.ArrayList
 
 class EventFragment : Fragment() {

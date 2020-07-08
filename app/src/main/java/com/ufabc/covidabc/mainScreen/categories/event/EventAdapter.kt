@@ -1,4 +1,4 @@
-package com.ufabc.covidabc.mainScreen.categories.Event
+package com.ufabc.covidabc.mainScreen.categories.event
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -11,9 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
-import com.ufabc.covidabc.mainScreen.categories.FAQ.FAQDescriptionActivity
 import com.ufabc.covidabc.model.CalendarEvent
-import java.util.*
 import kotlin.collections.ArrayList
 
 class EventAdapter(private val events: ArrayList<CalendarEvent>): RecyclerView.Adapter<EventAdapter.ViewHolder>() {

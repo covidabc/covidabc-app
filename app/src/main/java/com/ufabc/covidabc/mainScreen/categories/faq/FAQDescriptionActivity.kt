@@ -1,4 +1,4 @@
-package com.ufabc.covidabc.mainScreen.categories.FAQ
+package com.ufabc.covidabc.mainScreen.categories.faq
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

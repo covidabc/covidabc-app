@@ -1,4 +1,4 @@
-package com.ufabc.covidabc.mainScreen.categories.Event
+package com.ufabc.covidabc.mainScreen.categories.event
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,7 +6,6 @@ import android.widget.TextView
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.CalendarEvent
-import com.ufabc.covidabc.model.FAQ
 
 class EventDescriptionActivity : AppCompatActivity() {
 

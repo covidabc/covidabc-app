@@ -19,4 +19,10 @@
     <string name="date_button_text">Selecionar data</string>
     <string name="event_date_hint">Digite a data do evento</string>
     <string name="event_title">Event Title</string>
+    <string name="title_activity_main_screen">MainActivity</string>
+    <string name="title_home">Início</string>
+    <string name="title_event">Eventos</string>
+    <string name="title_faq">Perguntas frequentes</string>
+    <string name="title_news">Noticias</string>
+    <string name="title_quiz">Quiz</string>
 </resources>

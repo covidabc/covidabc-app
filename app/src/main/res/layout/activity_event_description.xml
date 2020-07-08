@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mainScreen.categories.Event.EventDescriptionActivity"
+    tools:context=".mainScreen.categories.event.EventDescriptionActivity"
     android:padding="@dimen/general_space">
 
     <TextView

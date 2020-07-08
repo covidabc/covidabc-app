@@ -1,4 +1,4 @@
-package com.ufabc.covidabc.mainScreen.categories.Quiz
+package com.ufabc.covidabc.mainScreen.categories.quiz
 
 import android.content.Intent
 import android.os.Bundle

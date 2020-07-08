@@ -1,15 +1,12 @@
-package com.ufabc.covidabc.mainScreen.categories.Event
+package com.ufabc.covidabc.mainScreen.categories.event
 
 import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.*
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.CalendarEvent
 import com.ufabc.covidabc.model.CalendarEventDAO
-import java.text.SimpleDateFormat
 import java.util.*
 
 class CreateEventActivity : AppCompatActivity() {

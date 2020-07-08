@@ -1,4 +1,4 @@
-package com.ufabc.covidabc.mainScreen.categories.FAQ
+package com.ufabc.covidabc.mainScreen.categories.faq
 
 import android.content.Intent
 import android.view.LayoutInflater

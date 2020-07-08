@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import com.ufabc.covidabc.R
-import com.ufabc.covidabc.mainScreen.MainActivity
+import com.ufabc.covidabc.mainScreen.MainScreenActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun goToFeed() {
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, MainScreenActivity::class.java))
         finish()
     }
 }

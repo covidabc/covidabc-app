@@ -1,4 +1,4 @@
-package com.ufabc.covidabc.mainScreen.categories.Quiz
+package com.ufabc.covidabc.mainScreen.categories.quiz
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.ufabc.covidabc.R
 import kotlinx.android.synthetic.main.quiz_answer.*
-import kotlinx.android.synthetic.main.quiz_question.*
 
 class QuizAnswerActivity : AppCompatActivity() {
 
