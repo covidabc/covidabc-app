@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/imageAnswer"
             android:text="Resposta: Verdadeiro/Falso"
-            android:textAlignment="center"
+            android:layout_centerHorizontal="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textColor="@android:color/black"
             android:textStyle="bold"
@@ -54,19 +54,16 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/explanation"
             android:layout_marginTop="306dp"
-            android:ButtonAlignment="center"
+            android:layout_centerHorizontal="true"
             android:text="Próxima" />
 
         <Button
             android:id="@+id/Exit_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="58dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@id/explanation"
-            android:layout_marginStart="-249dp"
-            android:layout_marginLeft="-249dp"
-            android:layout_marginTop="415dp"
-            android:layout_toEndOf="@id/nextQuestion_btn"
-            android:layout_toRightOf="@id/nextQuestion_btn"
+            android:layout_marginTop="350dp"
+            android:layout_centerHorizontal="true"
             android:text="Sair" />
     </RelativeLayout>
 

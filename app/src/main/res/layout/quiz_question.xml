@@ -36,7 +36,7 @@
             android:layout_height="200dp"
             android:layout_below="@id/quiz_questionText"
             android:layout_toLeftOf="@id/yesButton"
-            android:ImageAlignment="center"
+            android:layout_centerHorizontal="true"
             android:onClick="verificaQuestao"
             android:src="@drawable/like"
             tools:srcCompat="@tools:sample/avatars" />

@@ -6,4 +6,23 @@
     <string name="event_fragment_title">Eventos</string>
     <string name="quiz_intro">Descubra o quanto você sabe sobre o Covid-19</string>
     <string name="quiz_enter">Iniciar</string>
+    <string name="event_description">Event Description</string>
+    <string name="event_place">Event Place</string>
+    <string name="event_type">Event Type</string>
+    <string name="event_date">Event Date</string>
+    <string name="create_event">Criar Evento</string>
+    <string name="get_events_failure">Erro ao encontrar eventos</string>
+    <string name="get_faq_failure">Erro ao encontrar perguntas e respostas</string>
+    <string name="event_title_hint">Digite o nome do seu evento</string>
+    <string name="event_place_hint">Digite o lugar do seu evento</string>
+    <string name="event_description_hint">Descreva seu evento</string>
+    <string name="date_button_text">Selecionar data</string>
+    <string name="event_date_hint">Digite a data do evento</string>
+    <string name="event_title">Event Title</string>
+    <string name="title_activity_main_screen">MainActivity</string>
+    <string name="title_home">Início</string>
+    <string name="title_event">Eventos</string>
+    <string name="title_faq">Perguntas frequentes</string>
+    <string name="title_news">Noticias</string>
+    <string name="title_quiz">Quiz</string>
 </resources>

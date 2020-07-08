@@ -10,6 +10,7 @@ class App : Application() {
             private set
 
         const val FAQ_EXTRA = "faq_extra"
+        const val EVENT_EXTRA = "event_extra"
     }
 
 
