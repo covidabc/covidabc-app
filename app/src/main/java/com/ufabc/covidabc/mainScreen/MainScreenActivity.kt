@@ -57,8 +57,5 @@ class MainScreenActivity : AppCompatActivity() {
                 else -> super.onOptionsItemSelected(it)
             }
         }
-
-
     }
-
 }

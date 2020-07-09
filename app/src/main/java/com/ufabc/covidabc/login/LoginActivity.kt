@@ -9,7 +9,9 @@ import com.ufabc.covidabc.mainScreen.MainScreenActivity
 
 class LoginActivity : AppCompatActivity() {
 
-    lateinit var loginButon: Button
+    lateinit var loginButon : Button
+    lateinit var registerButton : Button
+    lateinit var forgotPasswordButton : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,17 +23,22 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun setViews() {
-        loginButon = findViewById<Button>(R.id.login_button)
+        loginButon = findViewById(R.id.login_button)
+        registerButton = findViewById(R.id.registerButton)
+        forgotPasswordButton = findViewById(R.id.forgotPassButton)
     }
 
     private fun setListeners() {
         loginButon.setOnClickListener() {
-            goToFeed()
+            // TODO
         }
-    }
 
-    private fun goToFeed() {
-        startActivity(Intent(this, MainScreenActivity::class.java))
-        finish()
+        registerButton.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
+
+        forgotPasswordButton.setOnClickListener {
+            startActivity(Intent(this, ForgotPasswordActivity::class.java))
+        }
     }
 }
