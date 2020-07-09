@@ -23,17 +23,17 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".mainScreen.MainScreenActivity"
-            android:label="@string/title_activity_main_screen" />
-        <activity android:name=".mainScreen.categories.event.EventDescriptionActivity" />
-        <activity android:name=".mainScreen.categories.event.CreateEventActivity" />
-        <activity android:name=".mainScreen.categories.faq.FAQDescriptionActivity" />
-        <activity android:name=".login.LoginActivity">
+            android:label="@string/title_activity_main_screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".mainScreen.categories.event.EventDescriptionActivity" />
+        <activity android:name=".mainScreen.categories.event.CreateEventActivity" />
+        <activity android:name=".mainScreen.categories.faq.FAQDescriptionActivity" />
+        <activity android:name=".login.LoginActivity"/>
         <activity android:name=".mainScreen.categories.quiz.QuizQuestionActivity" />
         <activity android:name=".mainScreen.categories.quiz.QuizAnswerActivity" />
 
