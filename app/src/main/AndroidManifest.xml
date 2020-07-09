@@ -21,6 +21,8 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".login.ForgotPasswordActivity"></activity>
+        <activity android:name=".login.RegisterActivity" />
         <activity
             android:name=".mainScreen.MainScreenActivity"
             android:label="@string/title_activity_main_screen">
@@ -33,7 +35,7 @@
         <activity android:name=".mainScreen.categories.event.EventDescriptionActivity" />
         <activity android:name=".mainScreen.categories.event.CreateEventActivity" />
         <activity android:name=".mainScreen.categories.faq.FAQDescriptionActivity" />
-        <activity android:name=".login.LoginActivity"/>
+        <activity android:name=".login.LoginActivity" />
         <activity android:name=".mainScreen.categories.quiz.QuizQuestionActivity" />
         <activity android:name=".mainScreen.categories.quiz.QuizAnswerActivity" />
 

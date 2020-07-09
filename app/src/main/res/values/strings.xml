@@ -27,4 +27,11 @@
     <string name="title_quiz">Quiz</string>
     <string name="title_login">Entrar</string>
     <string name="action_settings">Configuraçoes</string>
+    <string name="hint_email">Digite seu e-mail</string>
+    <string name="hint_password">Digite sua senha</string>
+    <string name="text_login">Entrar como Brigadista</string>
+    <string name="text_forgot_password">Esqueci minha senha</string>
+    <string name="text_register_user">Registrar</string>
+    <string name="text_email">E-mail</string>
+    <string name="text_password">Senha</string>
 </resources>
