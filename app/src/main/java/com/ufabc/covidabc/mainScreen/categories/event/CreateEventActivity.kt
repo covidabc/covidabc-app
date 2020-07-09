@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import androidx.core.widget.addTextChangedListener
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.CalendarEvent
 import com.ufabc.covidabc.model.CalendarEventDAO
@@ -44,7 +45,48 @@ class CreateEventActivity : AppCompatActivity() {
 
     private fun setListeners() {
         createEventButton.setOnClickListener {
-            createEvent()
+            if(eventTitleEditText.text.isEmpty() || eventPlaceEditText.text.isEmpty() || eventDescriptionEditText.text.isEmpty() || eventDateEditText.text.isEmpty()){
+                val text = "Preencha os campos pendentes!"
+                val duration = Toast.LENGTH_SHORT
+
+                val toast = Toast.makeText(applicationContext, text, duration)
+                toast.show()
+
+                if(eventTitleEditText.text.isEmpty()){
+                    eventTitleEditText.setError("campo pendente");
+                    eventTitleEditText.setBackgroundResource(R.drawable.edittext_error);
+                }
+                if(eventPlaceEditText.text.isEmpty()){
+                    eventPlaceEditText.setError("campo pendente");
+                    eventPlaceEditText.setBackgroundResource(R.drawable.edittext_error);
+                }
+                if(eventDescriptionEditText.text.isEmpty()){
+                    eventDescriptionEditText.setError("campo pendente");
+                    eventDescriptionEditText.setBackgroundResource(R.drawable.edittext_error);
+                }
+                if(eventDateEditText.text.isEmpty()){
+                    eventDateEditText.setError("campo pendente");
+                    eventDateEditText.setBackgroundResource(R.drawable.edittext_error);
+                }
+            }
+
+            else {
+                createEvent()
+            }
+
+            eventTitleEditText.addTextChangedListener(){
+                eventTitleEditText.setBackgroundResource(R.drawable.edittext_normal);
+            }
+            eventPlaceEditText.addTextChangedListener(){
+                eventPlaceEditText.setBackgroundResource(R.drawable.edittext_normal);
+            }
+            eventDescriptionEditText.addTextChangedListener(){
+                eventDescriptionEditText.setBackgroundResource(R.drawable.edittext_normal);
+            }
+            eventDateEditText.addTextChangedListener(){
+                eventDateEditText.setBackgroundResource(R.drawable.edittext_normal);
+            }
+
         }
 
         eventDateEditText.setOnClickListener {
@@ -61,6 +103,9 @@ class CreateEventActivity : AppCompatActivity() {
                 cal.get(Calendar.MONTH),
                 cal.get(Calendar.DAY_OF_MONTH)
             ).show()
+
+            eventDateEditText.addTextChangedListener()
+
         }
     }
 
