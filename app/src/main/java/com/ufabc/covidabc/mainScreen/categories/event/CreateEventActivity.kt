@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import androidx.core.widget.addTextChangedListener
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.CalendarEvent
 import com.ufabc.covidabc.model.CalendarEventDAO
@@ -42,9 +43,34 @@ class CreateEventActivity : AppCompatActivity() {
         )
     }
 
+    private fun isAnyEditTextEmpty() : Boolean =
+        eventTitleEditText.text.isEmpty() || eventPlaceEditText.text.isEmpty() || eventDescriptionEditText.text.isEmpty() || eventDateEditText.text.isEmpty()
+
     private fun setListeners() {
         createEventButton.setOnClickListener {
-            createEvent()
+            if(isAnyEditTextEmpty()){
+                setEditTextErrors()
+                Toast.makeText(applicationContext, R.string.fill_in_fields, Toast.LENGTH_SHORT).show()
+            }
+            else {
+                createEvent()
+            }
+        }
+
+        eventTitleEditText.addTextChangedListener(){
+            eventTitleEditText.setBackgroundResource(R.drawable.edit_text_normal);
+        }
+
+        eventPlaceEditText.addTextChangedListener(){
+            eventPlaceEditText.setBackgroundResource(R.drawable.edit_text_normal);
+        }
+
+        eventDescriptionEditText.addTextChangedListener(){
+            eventDescriptionEditText.setBackgroundResource(R.drawable.edit_text_normal);
+        }
+
+        eventDateEditText.addTextChangedListener(){
+            eventDateEditText.setBackgroundResource(R.drawable.edit_text_normal);
         }
 
         eventDateEditText.setOnClickListener {
@@ -61,6 +87,31 @@ class CreateEventActivity : AppCompatActivity() {
                 cal.get(Calendar.MONTH),
                 cal.get(Calendar.DAY_OF_MONTH)
             ).show()
+
+            eventDateEditText.addTextChangedListener()
+
+        }
+    }
+
+    private fun setEditTextErrors() {
+        if(eventTitleEditText.text.isEmpty()){
+            eventTitleEditText.error = R.string.required.toString()
+            eventTitleEditText.setBackgroundResource(R.drawable.edit_text_error)
+        }
+
+        if(eventPlaceEditText.text.isEmpty()){
+            eventPlaceEditText.error = R.string.required.toString()
+            eventPlaceEditText.setBackgroundResource(R.drawable.edit_text_error)
+        }
+
+        if(eventDescriptionEditText.text.isEmpty()){
+            eventDescriptionEditText.error = R.string.required.toString()
+            eventDescriptionEditText.setBackgroundResource(R.drawable.edit_text_error)
+        }
+
+        if(eventDateEditText.text.isEmpty()){
+            eventDateEditText.error = R.string.required.toString()
+            eventDateEditText.setBackgroundResource(R.drawable.edit_text_error)
         }
     }
 

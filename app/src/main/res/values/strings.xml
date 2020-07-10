@@ -47,4 +47,6 @@
     <string name="thank_you_register">Obrigado por registrar-se como brigadista!</string>
     <string name="an_error_occured">Um erro ocorreu!</string>
     <string name="check_your_email">De uma olhadinha no seu e-mail</string>
+    <string name="required">Campo pendente</string>
+    <string name="fill_in_fields">Por favor, preenchas os campos pendentes</string>
 </resources>
