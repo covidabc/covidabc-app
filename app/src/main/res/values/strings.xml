@@ -41,4 +41,10 @@
     <string name="text_name">Nome</string>
     <string name="text_email_again">E-mail novamente</string>
     <string name="text_confirm_password">Senha novamente</string>
+    <string name="fill_credentials">Por favor, preencha todos os campos</string>
+    <string name="wrong_credentials">Falha no login :(</string>
+    <string name="verify_email">Por favor, verifique seu e-mail</string>
+    <string name="thank_you_register">Obrigado por registrar-se como brigadista!</string>
+    <string name="an_error_occured">Um erro ocorreu!</string>
+    <string name="check_your_email">De uma olhadinha no seu e-mail</string>
 </resources>
