@@ -43,50 +43,34 @@ class CreateEventActivity : AppCompatActivity() {
         )
     }
 
+    private fun isAnyEditTextEmpty() : Boolean =
+        eventTitleEditText.text.isEmpty() || eventPlaceEditText.text.isEmpty() || eventDescriptionEditText.text.isEmpty() || eventDateEditText.text.isEmpty()
+
     private fun setListeners() {
         createEventButton.setOnClickListener {
-            if(eventTitleEditText.text.isEmpty() || eventPlaceEditText.text.isEmpty() || eventDescriptionEditText.text.isEmpty() || eventDateEditText.text.isEmpty()){
-                val text = "Preencha os campos pendentes!"
-                val duration = Toast.LENGTH_SHORT
-
-                val toast = Toast.makeText(applicationContext, text, duration)
-                toast.show()
-
-                if(eventTitleEditText.text.isEmpty()){
-                    eventTitleEditText.setError("campo pendente");
-                    eventTitleEditText.setBackgroundResource(R.drawable.edittext_error);
-                }
-                if(eventPlaceEditText.text.isEmpty()){
-                    eventPlaceEditText.setError("campo pendente");
-                    eventPlaceEditText.setBackgroundResource(R.drawable.edittext_error);
-                }
-                if(eventDescriptionEditText.text.isEmpty()){
-                    eventDescriptionEditText.setError("campo pendente");
-                    eventDescriptionEditText.setBackgroundResource(R.drawable.edittext_error);
-                }
-                if(eventDateEditText.text.isEmpty()){
-                    eventDateEditText.setError("campo pendente");
-                    eventDateEditText.setBackgroundResource(R.drawable.edittext_error);
-                }
+            if(isAnyEditTextEmpty()){
+                setEditTextErrors()
+                Toast.makeText(applicationContext, R.string.fill_in_fields, Toast.LENGTH_SHORT).show()
             }
-
             else {
                 createEvent()
             }
+        }
 
-            eventTitleEditText.addTextChangedListener(){
-                eventTitleEditText.setBackgroundResource(R.drawable.edittext_normal);
-            }
-            eventPlaceEditText.addTextChangedListener(){
-                eventPlaceEditText.setBackgroundResource(R.drawable.edittext_normal);
-            }
-            eventDescriptionEditText.addTextChangedListener(){
-                eventDescriptionEditText.setBackgroundResource(R.drawable.edittext_normal);
-            }
-            eventDateEditText.addTextChangedListener(){
-                eventDateEditText.setBackgroundResource(R.drawable.edittext_normal);
-            }
+        eventTitleEditText.addTextChangedListener(){
+            eventTitleEditText.setBackgroundResource(R.drawable.edit_text_normal);
+        }
 
+        eventPlaceEditText.addTextChangedListener(){
+            eventPlaceEditText.setBackgroundResource(R.drawable.edit_text_normal);
+        }
+
+        eventDescriptionEditText.addTextChangedListener(){
+            eventDescriptionEditText.setBackgroundResource(R.drawable.edit_text_normal);
+        }
+
+        eventDateEditText.addTextChangedListener(){
+            eventDateEditText.setBackgroundResource(R.drawable.edit_text_normal);
         }
 
         eventDateEditText.setOnClickListener {
@@ -106,6 +90,28 @@ class CreateEventActivity : AppCompatActivity() {
 
             eventDateEditText.addTextChangedListener()
 
+        }
+    }
+
+    private fun setEditTextErrors() {
+        if(eventTitleEditText.text.isEmpty()){
+            eventTitleEditText.error = R.string.required.toString()
+            eventTitleEditText.setBackgroundResource(R.drawable.edit_text_error)
+        }
+
+        if(eventPlaceEditText.text.isEmpty()){
+            eventPlaceEditText.error = R.string.required.toString()
+            eventPlaceEditText.setBackgroundResource(R.drawable.edit_text_error)
+        }
+
+        if(eventDescriptionEditText.text.isEmpty()){
+            eventDescriptionEditText.error = R.string.required.toString()
+            eventDescriptionEditText.setBackgroundResource(R.drawable.edit_text_error)
+        }
+
+        if(eventDateEditText.text.isEmpty()){
+            eventDateEditText.error = R.string.required.toString()
+            eventDateEditText.setBackgroundResource(R.drawable.edit_text_error)
         }
     }
 
