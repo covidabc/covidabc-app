@@ -3,13 +3,25 @@ package com.ufabc.covidabc.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.mainScreen.MainScreenActivity
 
 class LoginActivity : AppCompatActivity() {
 
-    lateinit var loginButon: Button
+    private lateinit var loginButon : Button
+    private lateinit var registerButton : Button
+    private lateinit var forgotPasswordButton : Button
+    private lateinit var emailEditText : EditText
+    private lateinit var passwordEditText : EditText
+
+    private val mAuth : FirebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,17 +33,51 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun setViews() {
-        loginButon = findViewById<Button>(R.id.login_button)
+        loginButon = findViewById(R.id.login_button)
+        registerButton = findViewById(R.id.registerButton)
+        forgotPasswordButton = findViewById(R.id.forgotPassButton)
+        emailEditText = findViewById(R.id.email_edit_text)
+        passwordEditText = findViewById(R.id.password_edit_text)
     }
 
     private fun setListeners() {
         loginButon.setOnClickListener() {
-            goToFeed()
+            login()
+        }
+
+        registerButton.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
+
+        forgotPasswordButton.setOnClickListener {
+            startActivity(Intent(this, ForgotPasswordActivity::class.java))
         }
     }
 
-    private fun goToFeed() {
-        startActivity(Intent(this, MainScreenActivity::class.java))
-        finish()
+    private fun login() {
+        val email = emailEditText.text.toString()
+        val password = passwordEditText.text.toString()
+
+        if (email.isNotEmpty() && password.isNotEmpty()) {
+            mAuth.signInWithEmailAndPassword(email, password).
+            addOnCompleteListener(this, OnCompleteListener { task ->
+                if (task.isSuccessful && mAuth.currentUser != null) {
+                    goToFeed(mAuth.currentUser)
+                } else {
+                    Toast.makeText(this, R.string.wrong_credentials, Toast.LENGTH_LONG).show()
+                }
+            })
+
+        } else {
+            Toast.makeText(this, R.string.fill_credentials, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun goToFeed(currentUser: FirebaseUser?) {
+        if (currentUser!!.isEmailVerified) {
+            finish()
+        } else {
+            Toast.makeText(this, R.string.verify_email, Toast.LENGTH_LONG).show()
+        }
     }
 }
