@@ -14,7 +14,6 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var registerButton: Button
     private lateinit var emailEditText: EditText
-    private lateinit var confirmEmailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var confirmPasswordEditText: EditText
 
@@ -31,7 +30,6 @@ class RegisterActivity : AppCompatActivity() {
     private fun setViews() {
         registerButton = findViewById(R.id.register_button)
         emailEditText = findViewById(R.id.email_edit_text)
-        confirmEmailEditText = findViewById(R.id.confirm_email_edit_text)
         passwordEditText = findViewById(R.id.password_edit_text)
         confirmPasswordEditText = findViewById(R.id.confirm_password_edit_text)
     }

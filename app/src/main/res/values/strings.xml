@@ -50,5 +50,6 @@
     <string name="required">Campo pendente</string>
     <string name="fill_in_fields">Por favor, preenchas os campos pendentes</string>
     <string name="covid_abc">Covid ABC</string>
-    <string name="text_login_presentation">Entre como brigadista e nos ajude no combate ao Covid e fake news!</string>
+    <string name="text_login_presentation">Entre como brigadista e nos ajude no combate contra o Covid-19 e fake news!</string>
+    <string name="text_pin">Frase secreta</string>
 </resources>
