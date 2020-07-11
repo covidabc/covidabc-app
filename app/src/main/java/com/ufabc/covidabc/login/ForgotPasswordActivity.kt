@@ -8,11 +8,12 @@ import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.ufabc.covidabc.R
+import androidx.core.widget.addTextChangedListener
 
 class ForgotPasswordActivity : AppCompatActivity() {
 
-    private lateinit var emailEditText : EditText
-    private lateinit var sendEmailButton : Button
+    private lateinit var emailEditText: EditText
+    private lateinit var sendEmailButton: Button
 
     private val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
@@ -33,6 +34,10 @@ class ForgotPasswordActivity : AppCompatActivity() {
         sendEmailButton.setOnClickListener {
             forgotPassword()
         }
+
+        emailEditText.addTextChangedListener(){
+            emailEditText.setBackgroundResource(R.drawable.edit_text_normal);
+        }
     }
 
     private fun forgotPassword() {
@@ -40,7 +45,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
             changePasswordAndReturn()
     }
 
-    private fun isEmailValid() : Boolean {
+    private fun isEmailValid(): Boolean {
         // TODO : verificar email valido
         return true
     }
@@ -48,11 +53,23 @@ class ForgotPasswordActivity : AppCompatActivity() {
     private fun changePasswordAndReturn() {
         val email = emailEditText.text.toString()
 
-        mAuth.sendPasswordResetEmail(email).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                Toast.makeText(this, R.string.check_your_email, Toast.LENGTH_LONG).show()
-                startActivity(Intent(this, LoginActivity::class.java))
+        if (emailEditText.text.isEmpty()) {
+            setEditTextErrors()
+            Toast.makeText(applicationContext, R.string.fill_in_fields, Toast.LENGTH_SHORT).show()
+        } else {
+
+            mAuth.sendPasswordResetEmail(email).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, R.string.check_your_email, Toast.LENGTH_LONG).show()
+                    startActivity(Intent(this, LoginActivity::class.java))
+                }
             }
         }
     }
+
+    private fun setEditTextErrors() {
+        emailEditText.error = R.string.required.toString()
+        emailEditText.setBackgroundResource(R.drawable.edit_text_error)
+    }
+
 }

@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -52,6 +53,14 @@ class LoginActivity : AppCompatActivity() {
         forgotPasswordButton.setOnClickListener {
             startActivity(Intent(this, ForgotPasswordActivity::class.java))
         }
+
+        emailEditText.addTextChangedListener(){
+            emailEditText.setBackgroundResource(R.drawable.edit_text_normal);
+        }
+
+        passwordEditText.addTextChangedListener(){
+            passwordEditText.setBackgroundResource(R.drawable.edit_text_normal);
+        }
     }
 
     private fun login() {
@@ -69,7 +78,8 @@ class LoginActivity : AppCompatActivity() {
             })
 
         } else {
-            Toast.makeText(this, R.string.fill_credentials, Toast.LENGTH_LONG).show()
+            setEditTextErrors()
+            Toast.makeText(this, R.string.fill_in_fields, Toast.LENGTH_LONG).show()
         }
     }
 
@@ -77,7 +87,21 @@ class LoginActivity : AppCompatActivity() {
         if (currentUser!!.isEmailVerified) {
             finish()
         } else {
-            Toast.makeText(this, R.string.verify_email, Toast.LENGTH_LONG).show()
+
         }
+    }
+
+    private fun setEditTextErrors() {
+
+        if(emailEditText.text.isEmpty()){
+            emailEditText.error = R.string.required.toString()
+            emailEditText.setBackgroundResource(R.drawable.edit_text_error)
+        }
+
+        if(passwordEditText.text.isEmpty()){
+            passwordEditText.error = R.string.required.toString()
+            passwordEditText.setBackgroundResource(R.drawable.edit_text_error)
+        }
+
     }
 }
