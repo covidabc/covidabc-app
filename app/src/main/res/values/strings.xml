@@ -29,7 +29,7 @@
     <string name="action_settings">Configuraçoes</string>
     <string name="hint_email">Digite seu e-mail</string>
     <string name="hint_password">Digite sua senha</string>
-    <string name="text_login">Entrar como Brigadista</string>
+    <string name="text_login">Entrar</string>
     <string name="text_forgot_password">Esqueci minha senha</string>
     <string name="text_register_user">Registrar</string>
     <string name="text_email">E-mail</string>
@@ -49,4 +49,6 @@
     <string name="check_your_email">De uma olhadinha no seu e-mail</string>
     <string name="required">Campo pendente</string>
     <string name="fill_in_fields">Por favor, preenchas os campos pendentes</string>
+    <string name="covid_abc">Covid ABC</string>
+    <string name="text_login_presentation">Entre como brigadista e nos ajude no combate ao Covid e fake news!</string>
 </resources>

@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.LoginActivity">
+    tools:context=".login.LoginActivity"
+    android:orientation="vertical"
+    android:weightSum="4"
+    android:background="@android:color/black">
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/covid_abc_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:src="@drawable/icon_covidabc_login"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:maxWidth="250dp"
+        android:contentDescription="@string/covid_abc"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="2"/>
+
+    <RelativeLayout
+        android:id="@+id/login_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp">
+        android:layout_marginRight="40dp"
+        android:layout_weight="2">
 
         <LinearLayout
             android:id="@+id/linlay1"
@@ -19,6 +35,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/general_space"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fontFamily="sans-serif-light"
+                android:text="@string/text_login_presentation"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:paddingBottom="@dimen/big_space"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -31,7 +58,7 @@
                     app:fontFamily="sans-serif-light"
                     android:text="@string/text_email"
                     android:textAllCaps="true"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/color1_saphire_blue"
                     android:textSize="15sp"
                     android:textStyle="bold"
                     android:shadowRadius="1.6"/>
@@ -41,10 +68,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
+                    android:background="@drawable/edit_text_shape"
                     app:fontFamily="sans-serif-light"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/color1_saphire_blue"
                     android:textSize="15sp"
                     android:inputType="textEmailAddress"/>
             </LinearLayout>
@@ -61,7 +89,7 @@
                     app:fontFamily="sans-serif-light"
                     android:text="@string/text_password"
                     android:textAllCaps="true"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/color3_keppel"
                     android:textSize="15sp"
                     android:textStyle="bold"
                     android:shadowRadius="1.6"/>
@@ -71,6 +99,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
+                    android:background="@drawable/edit_text_shape"
                     app:fontFamily="sans-serif-light"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
@@ -88,6 +117,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_login"
+            android:background="@drawable/button_shape"
             android:layout_below="@id/linlay1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"/>
@@ -135,4 +165,4 @@
 
     </RelativeLayout>
 
-</RelativeLayout>
+</LinearLayout>
