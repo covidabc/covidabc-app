@@ -19,4 +19,6 @@
     <string name="date_button_text">Selecionar data</string>
     <string name="event_date_hint">Digite a data do evento</string>
     <string name="event_title">Event Title</string>
+    <string name="news_title">News Title</string>
+    <string name="news_auxiliary_title">News Auxiliary Title</string>
 </resources>
