@@ -51,7 +51,7 @@
                 app:fontFamily="sans-serif-light"
                 android:padding="@dimen/general_space"
                 android:textSize="@dimen/text_default_size"
-                android:background="@drawable/edit_text_shape"
+                android:background="@drawable/edit_text_normal"
                 android:inputType="textPersonName"/>
         </LinearLayout>
 
@@ -80,7 +80,7 @@
                 app:fontFamily="sans-serif-light"
                 android:padding="@dimen/general_space"
                 android:textSize="@dimen/text_default_size"
-                android:background="@drawable/edit_text_shape"
+                android:background="@drawable/edit_text_normal"
                 android:inputType="textEmailAddress"/>
         </LinearLayout>
 
@@ -111,7 +111,7 @@
                 app:fontFamily="sans-serif-light"
                 android:padding="@dimen/general_space"
                 android:textSize="@dimen/text_default_size"
-                android:background="@drawable/edit_text_shape"
+                android:background="@drawable/edit_text_normal"
                 android:inputType="textPassword"/>
         </LinearLayout>
 
@@ -140,7 +140,7 @@
                 app:fontFamily="sans-serif-light"
                 android:padding="@dimen/general_space"
                 android:textSize="@dimen/text_default_size"
-                android:background="@drawable/edit_text_shape"
+                android:background="@drawable/edit_text_normal"
                 android:inputType="textPassword">
             </EditText>
 
@@ -171,7 +171,7 @@
                 app:fontFamily="sans-serif-light"
                 android:padding="@dimen/general_space"
                 android:textSize="@dimen/text_default_size"
-                android:background="@drawable/edit_text_shape"
+                android:background="@drawable/edit_text_normal"
                 android:inputType="textPassword">
             </EditText>
 

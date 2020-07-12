@@ -32,7 +32,7 @@ class FAQFragment : Fragment() {
     }
 
     private fun setFAQ() {
-        FAQDAO.getAllEvents(object: FirestoreDatabaseOperationListener<ArrayList<FAQ>> {
+        FAQDAO.getAllFAQs(object: FirestoreDatabaseOperationListener<ArrayList<FAQ>> {
             override fun onSuccess(result: ArrayList<FAQ>) {
                 faq = result
                 populateFAQ()

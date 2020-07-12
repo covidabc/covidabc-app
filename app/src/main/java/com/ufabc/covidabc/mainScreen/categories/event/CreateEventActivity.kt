@@ -95,22 +95,22 @@ class CreateEventActivity : AppCompatActivity() {
 
     private fun setEditTextErrors() {
         if(eventTitleEditText.text.isEmpty()){
-            eventTitleEditText.error = R.string.required.toString()
+            eventTitleEditText.error = getString(R.string.required)
             eventTitleEditText.setBackgroundResource(R.drawable.edit_text_error)
         }
 
         if(eventPlaceEditText.text.isEmpty()){
-            eventPlaceEditText.error = R.string.required.toString()
+            eventPlaceEditText.error = getString(R.string.required)
             eventPlaceEditText.setBackgroundResource(R.drawable.edit_text_error)
         }
 
         if(eventDescriptionEditText.text.isEmpty()){
-            eventDescriptionEditText.error = R.string.required.toString()
+            eventDescriptionEditText.error = getString(R.string.required)
             eventDescriptionEditText.setBackgroundResource(R.drawable.edit_text_error)
         }
 
         if(eventDateEditText.text.isEmpty()){
-            eventDateEditText.error = R.string.required.toString()
+            eventDateEditText.error = getString(R.string.required)
             eventDateEditText.setBackgroundResource(R.drawable.edit_text_error)
         }
     }
