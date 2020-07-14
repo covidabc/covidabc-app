@@ -12,10 +12,10 @@ object FAQDAO {
         // TODO: Add onSuccess and onFailure callback
     }
 
-    fun getAllEvents(callback: FirestoreDatabaseOperationListener<ArrayList<FAQ>>) {
+    fun getAllFAQs(callback: FirestoreDatabaseOperationListener<ArrayList<FAQ>>) {
         FirebaseFirestore.getInstance().collection(FAQDAO.FAQ_COLLECTION).get()
             .addOnSuccessListener { result -> callback.onSuccess(documentsToFAQ(result)) }
-            .addOnSuccessListener { callback.onFailure() }
+            .addOnFailureListener { callback.onFailure() }
     }
 
     private fun documentsToFAQ(qSnapshot: QuerySnapshot): ArrayList<FAQ> {

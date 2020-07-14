@@ -37,7 +37,7 @@ class MainScreenActivity : AppCompatActivity() {
                 R.id.navigation_quiz,
                 R.id.navigation_home,
                 R.id.navigation_event,
-                R.id.navigation_quiz
+                R.id.navigation_faq
             )
         )
         mainToolbar = findViewById(R.id.main_screen_toolbar)

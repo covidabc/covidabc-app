@@ -29,7 +29,7 @@
     <string name="action_settings">Configuraçoes</string>
     <string name="hint_email">Digite seu e-mail</string>
     <string name="hint_password">Digite sua senha</string>
-    <string name="text_login">Entrar como Brigadista</string>
+    <string name="text_login">Entrar</string>
     <string name="text_forgot_password">Esqueci minha senha</string>
     <string name="text_register_user">Registrar</string>
     <string name="text_email">E-mail</string>
@@ -42,11 +42,21 @@
     <string name="text_email_again">E-mail novamente</string>
     <string name="text_confirm_password">Senha novamente</string>
     <string name="fill_credentials">Por favor, preencha todos os campos</string>
-    <string name="wrong_credentials">Falha no login :(</string>
+    <string name="wrong_credentials">Usuario ou senha incorretos</string>
     <string name="verify_email">Por favor, verifique seu e-mail</string>
     <string name="thank_you_register">Obrigado por registrar-se como brigadista!</string>
     <string name="an_error_occured">Um erro ocorreu!</string>
     <string name="check_your_email">De uma olhadinha no seu e-mail</string>
     <string name="required">Campo pendente</string>
     <string name="fill_in_fields">Por favor, preenchas os campos pendentes</string>
+    <string name="covid_abc">Covid ABC</string>
+    <string name="text_login_presentation">Entre como brigadista e nos ajude no combate contra o Covid-19 e fake news!</string>
+    <string name="text_pin">Frase secreta</string>
+    <string name="invalid_email">Email invalido</string>
+    <string name="error_send_email">Este e-mail nao esta cadastrado</string>
+    <string name="wrong_pin">Chave secreta errada</string>
+    <string name="welcome">Bem-vindo, brigadista!</string>
+    <string name="different_passwords">As senhas diferem</string>
+    <string name="event_day">Day</string>
+    <string name="event_month">Mon</string>
 </resources>

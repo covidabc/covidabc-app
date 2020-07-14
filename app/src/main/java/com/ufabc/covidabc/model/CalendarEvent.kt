@@ -34,11 +34,42 @@ class CalendarEvent : Serializable {
     fun getPlace() = this.place
     fun getDate() = this.date
 
-    fun getFormatedDate() : String{
+    fun getFormatedDate() : String {
         val calendar = Calendar.getInstance()
         calendar.time = date
 
         return "${getParsedDayOfTheWeek(calendar)}, ${calendar.get(Calendar.DAY_OF_MONTH)}/${calendar.get(Calendar.MONTH)}"
+    }
+
+    fun getDay() : String {
+        val calendar = Calendar.getInstance()
+        calendar.time = date
+
+        return calendar.get(Calendar.DAY_OF_MONTH).toString()
+    }
+
+    fun getMonth() : String {
+        val calendar = Calendar.getInstance()
+        calendar.time = date
+
+        return getParsedMonth(calendar)
+    }
+
+    private fun getParsedMonth(date: Calendar) : String {
+        return when (date.get(Calendar.DAY_OF_WEEK)) {
+            Calendar.JANUARY -> "JAN"
+            Calendar.FEBRUARY -> "FEB"
+            Calendar.MARCH -> "MAR"
+            Calendar.APRIL -> "ABR"
+            Calendar.MAY -> "MAI"
+            Calendar.JUNE -> "JUN"
+            Calendar.JULY -> "JUL"
+            Calendar.AUGUST -> "AGO"
+            Calendar.SEPTEMBER -> "SET"
+            Calendar.OCTOBER -> "OUT"
+            Calendar.NOVEMBER -> "NOV"
+            else -> "DEZ"
+        }
     }
 
     private fun getParsedDayOfTheWeek(date: Calendar) : String {

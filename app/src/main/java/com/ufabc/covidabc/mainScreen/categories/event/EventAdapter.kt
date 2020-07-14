@@ -17,11 +17,11 @@ import kotlin.collections.ArrayList
 class EventAdapter(private val events: ArrayList<CalendarEvent>): RecyclerView.Adapter<EventAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var eventHeader : LinearLayout = itemView.findViewById(R.id.event_header)
         var eventBody : RelativeLayout = itemView.findViewById(R.id.event_body)
         var eventTitle : TextView = itemView.findViewById(R.id.event_title)
         var eventDescription: TextView = itemView.findViewById(R.id.event_description)
-        var eventDate: TextView = itemView.findViewById(R.id.event_date)
+        var eventDay: TextView = itemView.findViewById(R.id.event_day)
+        var eventMonth: TextView = itemView.findViewById(R.id.event_month)
         var eventPlace: TextView = itemView.findViewById(R.id.event_place)
     }
 
@@ -36,10 +36,10 @@ class EventAdapter(private val events: ArrayList<CalendarEvent>): RecyclerView.A
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         events[position].apply {
-            holder.eventHeader.setBackgroundColor(getHeaderColor(this.getEventType()))
             holder.eventTitle.text = this.getTitle()
             holder.eventDescription.text = this.getDescription()
-            holder.eventDate.text = this.getFormatedDate()
+            holder.eventDay.text = this.getDay()
+            holder.eventMonth.text = this.getMonth()
             holder.eventPlace.text = this.getPlace()
 
             holder.eventBody.setOnClickListener {

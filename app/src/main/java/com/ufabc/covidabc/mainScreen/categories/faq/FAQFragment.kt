@@ -32,7 +32,7 @@ class FAQFragment : Fragment() {
     }
 
     private fun setFAQ() {
-        FAQDAO.getAllEvents(object: FirestoreDatabaseOperationListener<ArrayList<FAQ>> {
+        FAQDAO.getAllFAQs(object: FirestoreDatabaseOperationListener<ArrayList<FAQ>> {
             override fun onSuccess(result: ArrayList<FAQ>) {
                 faq = result
                 populateFAQ()
@@ -49,7 +49,6 @@ class FAQFragment : Fragment() {
             val recyclerView = this
             recyclerView!!.layoutManager = LinearLayoutManager(App.appContext)
             recyclerView.adapter = FAQAdapter(faq)
-            recyclerView.addItemDecoration(DividerItemDecoration(recyclerView?.context, DividerItemDecoration.VERTICAL))
         }
     }
 }

@@ -3,6 +3,7 @@ package com.ufabc.covidabc.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -37,8 +38,8 @@ class LoginActivity : AppCompatActivity() {
         loginButon = findViewById(R.id.login_button)
         registerButton = findViewById(R.id.registerButton)
         forgotPasswordButton = findViewById(R.id.forgotPassButton)
-        emailEditText = findViewById(R.id.email_edit_text)
-        passwordEditText = findViewById(R.id.password_edit_text)
+        emailEditText = findViewById(R.id.login_email_edit_text)
+        passwordEditText = findViewById(R.id.login_password_edit_text)
     }
 
     private fun setListeners() {
@@ -55,11 +56,11 @@ class LoginActivity : AppCompatActivity() {
         }
 
         emailEditText.addTextChangedListener(){
-            emailEditText.setBackgroundResource(R.drawable.edit_text_normal);
+            emailEditText.setBackgroundResource(R.drawable.edit_text_normal)
         }
 
         passwordEditText.addTextChangedListener(){
-            passwordEditText.setBackgroundResource(R.drawable.edit_text_normal);
+            passwordEditText.setBackgroundResource(R.drawable.edit_text_normal)
         }
     }
 
@@ -67,15 +68,15 @@ class LoginActivity : AppCompatActivity() {
         val email = emailEditText.text.toString()
         val password = passwordEditText.text.toString()
 
-        if (email.isNotEmpty() && password.isNotEmpty()) {
-            mAuth.signInWithEmailAndPassword(email, password).
-            addOnCompleteListener(this, OnCompleteListener { task ->
-                if (task.isSuccessful && mAuth.currentUser != null) {
-                    goToFeed(mAuth.currentUser)
-                } else {
-                    Toast.makeText(this, R.string.wrong_credentials, Toast.LENGTH_LONG).show()
+        if (isEmailValid() && password.isNotEmpty()) {
+            mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        goToFeed()
+                    } else {
+                        Toast.makeText(this, R.string.wrong_credentials, Toast.LENGTH_LONG).show()
+                    }
                 }
-            })
 
         } else {
             setEditTextErrors()
@@ -83,23 +84,34 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun goToFeed(currentUser: FirebaseUser?) {
-        if (currentUser!!.isEmailVerified) {
+    private fun goToFeed() {
+        val currentUser = mAuth.currentUser!!
+
+        if (currentUser.isEmailVerified) {
+            Toast.makeText(this, R.string.welcome, Toast.LENGTH_LONG).show()
             finish()
         } else {
-
+            Toast.makeText(this, R.string.verify_email, Toast.LENGTH_LONG).show()
         }
     }
 
-    private fun setEditTextErrors() {
+    private fun isEmailValid(): Boolean {
+        val email = emailEditText.text
+        return email.isNotEmpty() && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
 
-        if(emailEditText.text.isEmpty()){
-            emailEditText.error = R.string.required.toString()
+    private fun setEditTextErrors() {
+        if (emailEditText.text.isEmpty()){
+            emailEditText.error = getString(R.string.required)
+            emailEditText.setBackgroundResource(R.drawable.edit_text_error)
+        }
+        else if (!isEmailValid()) {
+            emailEditText.error = getString(R.string.invalid_email)
             emailEditText.setBackgroundResource(R.drawable.edit_text_error)
         }
 
-        if(passwordEditText.text.isEmpty()){
-            passwordEditText.error = R.string.required.toString()
+        if (passwordEditText.text.isEmpty()){
+            passwordEditText.error = getString(R.string.required)
             passwordEditText.setBackgroundResource(R.drawable.edit_text_error)
         }
 

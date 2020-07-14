@@ -6,8 +6,11 @@ import android.widget.TextView
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.FAQ
+import io.noties.markwon.Markwon
 
 class FAQDescriptionActivity : AppCompatActivity() {
+
+    private val markwon : Markwon = Markwon.create(App.appContext)
 
     lateinit var questionText: TextView
     lateinit var answerText: TextView
@@ -31,6 +34,8 @@ class FAQDescriptionActivity : AppCompatActivity() {
 
     private fun populateFAQ() {
         questionText.text = faq.getQuestion()
-        answerText.text = faq.getAnswer()
+
+        val answer = faq.getAnswer().replace( "\\n", "\n" );
+        markwon.setMarkdown(answerText, answer)
     }
 }
