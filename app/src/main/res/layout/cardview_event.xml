@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="@dimen/general_space">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/general_space"
+    app:cardCornerRadius="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,20 +14,35 @@
 
         <LinearLayout
             android:id="@+id/event_header"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/huge_space"
             android:layout_height="wrap_content"
-            android:background="@android:color/darker_gray"
-            android:orientation="horizontal">
+            android:background="@color/color1_saphire_blue"
+            android:orientation="vertical"
+            android:layout_alignTop="@id/event_body"
+            android:layout_alignBottom="@id/event_body">
 
             <TextView
-                android:id="@+id/event_date"
-                android:text="@string/event_date"
+                android:id="@+id/event_day"
+                android:text="@string/event_day"
+                app:fontFamily="sans-serif-light"
                 android:gravity="center"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
                 android:layout_weight="0.5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/little_space">
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/event_month"
+                android:text="@string/event_month"
+                app:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:layout_weight="0.5"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
             </TextView>
 
         </LinearLayout>
@@ -35,7 +51,7 @@
             android:id="@+id/event_body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/event_header">
+            android:layout_toRightOf="@id/event_header">
 
             <ImageView
                 android:id="@+id/event_icon"
@@ -51,6 +67,7 @@
             <TextView
                 android:id="@+id/event_title"
                 android:text="@string/event_title"
+                app:fontFamily="sans-serif-light"
                 android:textColor="@android:color/black"
                 android:layout_width="match_parent"
                 android:padding="@dimen/little_space"
@@ -73,6 +90,7 @@
             <TextView
                 android:id="@+id/event_place"
                 android:text="@string/event_place"
+                app:fontFamily="sans-serif-light"
                 android:textColor="@android:color/black"
                 android:layout_width="match_parent"
                 android:padding="@dimen/little_space"
@@ -96,9 +114,10 @@
             <TextView
                 android:id="@+id/event_description"
                 android:text="@string/event_description"
+                app:fontFamily="sans-serif-light"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@android:color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/event_place"

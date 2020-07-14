@@ -13,5 +13,7 @@
     <dimen name="text_default_size">15sp</dimen>
     <dimen name="huge_space">50dp</dimen>
     <dimen name="default_space">20dp</dimen>
-    <dimen name="text_big_size">30sp</dimen>
+    <dimen name="text_big_size">25sp</dimen>
+    <dimen name="text_answer_size">17sp</dimen>
+    <dimen name="question_question_size">25sp</dimen>
 </resources>

@@ -5,22 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".mainScreen.categories.faq.FAQDescriptionActivity"
-    android:padding="@dimen/general_space">
+    android:padding="@dimen/big_space">
 
     <TextView
         android:id="@+id/question_text"
         android:text="Question here"
-        android:textSize="@dimen/question_text_size"
-        android:textColor="@android:color/black"
+        app:fontFamily="sans-serif-light"
+        android:textStyle="bold"
+        android:textSize="@dimen/question_question_size"
+        android:textColor="@color/color1_saphire_blue"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/default_space">
 
     </TextView>
 
     <TextView
         android:id="@+id/answer_text"
         android:text="Answer here"
-        android:textSize="@dimen/answer_text_size"
+        app:fontFamily="sans-serif-light"
+        android:textSize="@dimen/text_answer_size"
+        android:textColor="@android:color/black"
         android:paddingTop="@dimen/general_space"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

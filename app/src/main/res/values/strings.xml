@@ -57,4 +57,6 @@
     <string name="wrong_pin">Chave secreta errada</string>
     <string name="welcome">Bem-vindo, brigadista!</string>
     <string name="different_passwords">As senhas diferem</string>
+    <string name="event_day">Day</string>
+    <string name="event_month">Mon</string>
 </resources>

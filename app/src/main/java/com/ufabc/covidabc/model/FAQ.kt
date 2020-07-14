@@ -17,5 +17,5 @@ class FAQ : Serializable {
 
     fun getQuestion() : String = question
 
-    fun getAnswer() : String = answer
+    fun getAnswer() : String = answer.replace( "\\n", "\n" );
 }

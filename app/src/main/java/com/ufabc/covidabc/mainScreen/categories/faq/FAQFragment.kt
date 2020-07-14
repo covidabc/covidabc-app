@@ -49,7 +49,6 @@ class FAQFragment : Fragment() {
             val recyclerView = this
             recyclerView!!.layoutManager = LinearLayoutManager(App.appContext)
             recyclerView.adapter = FAQAdapter(faq)
-            recyclerView.addItemDecoration(DividerItemDecoration(recyclerView?.context, DividerItemDecoration.VERTICAL))
         }
     }
 }
