@@ -13,7 +13,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textViewTitulo"
+                android:id="@+id/textViewNews"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -22,7 +22,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textViewNewsAux"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -30,7 +30,7 @@
                 android:textSize="20sp" />
 
             <ImageView
-                android:id="@+id/NewsImageView"
+                android:id="@+id/newsImageView"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="centerInside"
