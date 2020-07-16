@@ -1,50 +1,89 @@
 package com.ufabc.covidabc.mainScreen.categories.quiz
 
-import android.content.Intent
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.ufabc.covidabc.R
-import kotlinx.android.synthetic.main.quiz_question.*
+import com.ufabc.covidabc.model.Quiz
 import kotlin.random.Random
 
 class QuizQuestionActivity : AppCompatActivity() {
 
-    val pergunta = arrayOf("Pergunta 1", "Pergunta 2", "Pergunta 3", "Pergunta 4", "Pergunta 5")
-    val explicacao = arrayOf("Explicação 1", "Explicação 2", "Explicação 3", "Explicação 4", "Explicação 5")
-    val respostaCorreta = arrayOf(1,0,1,1,0)
+    private lateinit var questionTextView : TextView
+    private lateinit var yes_button : Button
+    private lateinit var no_button : Button
+    private lateinit var next_question_button : Button
+
+    private lateinit var quizzes : ArrayList <Quiz>
+    private lateinit var currQuiz : Quiz
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.quiz_question)
 
-        val i = Random.nextInt(0,4)
-        quiz_questionText.setText(pergunta[i])
+        setQuiz()
+        setViews()
+        setListeners()
+        chooseRandomQuiz()
+    }
 
-        yesButton.setOnClickListener {
-            val intent = Intent(it.context, QuizAnswerActivity::class.java)
-            intent.putExtra("escolha", 1)
-            intent.putExtra("respostaCorreta", respostaCorreta[i])
-            intent.putExtra("explicacao", explicacao[i])
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_TASK_ON_HOME
-            // start your next activity
-            startActivity(intent)
-            this.finish()
+    private fun setViews() {
+        questionTextView = findViewById(R.id.quiz_question_text_view)
+        yes_button = findViewById(R.id.yes_button)
+        no_button = findViewById(R.id.no_button)
+        next_question_button = findViewById(R.id.next_question_button)
+    }
+
+    private fun setListeners() {
+        yes_button.setOnClickListener {
+            checkAnswer(true)
         }
 
-        noButton.setOnClickListener {
-            val intent = Intent(it.context, QuizAnswerActivity::class.java)
-            intent.putExtra("escolha", 0)
-            intent.putExtra("respostaCorreta", respostaCorreta[i])
-            intent.putExtra("explicacao", explicacao[i])
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_TASK_ON_HOME
-            // start your next activity
-            startActivity(intent)
-            this.finish()
+        no_button.setOnClickListener {
+            checkAnswer(false)
+        }
+
+        next_question_button.setOnClickListener {
+            chooseRandomQuiz()
         }
     }
 
+    private fun checkAnswer(userAnswer : Boolean) {
 
+        val alertDialogBuilder = AlertDialog.Builder(this)
 
+        if (userAnswer == currQuiz.getIsRight()) {
+            alertDialogBuilder.setTitle("Você acertou!")
+        }
+        else {
+            alertDialogBuilder.setTitle("Você errou!")
+        }
 
+        alertDialogBuilder.setMessage(currQuiz.getExplanation())
+        alertDialogBuilder.setNeutralButton("Continuar",
+            DialogInterface.OnClickListener { dialog, id ->
+                // FIRE ZE MISSILES!
+            })
+
+        alertDialogBuilder.show()
+    }
+
+    private fun setQuiz() {
+        quizzes = arrayListOf()
+
+        for (i in 0..10) {
+            quizzes.add(Quiz("pergunta $i", "resposta $i", i % 2 == 0))
+        }
+    }
+
+    private fun chooseRandomQuiz() {
+        val index = Random.nextInt(0, quizzes.size)
+
+        currQuiz = quizzes[index]
+        questionTextView.text = currQuiz.getQuestion()
+    }
 }
 
