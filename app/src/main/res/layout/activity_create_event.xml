@@ -4,69 +4,144 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mainScreen.categories.event.CreateEventActivity">
+    tools:context=".mainScreen.categories.event.CreateEventActivity"
+    android:padding="@dimen/big_space"
+    android:background="@drawable/login_gradient">
+
+    <TextView
+        android:id="@+id/event_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_create_event"
+        app:fontFamily="sans-serif-light"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_default_size"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/big_space"/>
 
     <EditText
         android:id="@+id/event_title_edit_text"
         android:hint="@string/event_title_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/event_text_view"
         android:padding="@dimen/general_space"
         android:inputType="text"
-        android:importantForAutofill="no"
-        tools:ignore="LabelFor" />
+        app:fontFamily="sans-serif-light"
+        android:textColor="@color/color1_saphire_blue"
+        android:textSize="@dimen/text_default_size"
+        android:background="@drawable/edit_text_normal"
+        android:layout_marginBottom="@dimen/default_space"/>
 
     <EditText
         android:id="@+id/event_place_edit_text"
         android:hint="@string/event_place_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/event_title_edit_text"
         android:padding="@dimen/general_space"
         android:inputType="text"
-        android:importantForAutofill="no"
-        android:layout_below="@id/event_title_edit_text"
-        tools:ignore="LabelFor" />
+        app:fontFamily="sans-serif-light"
+        android:textColor="@color/color1_saphire_blue"
+        android:textSize="@dimen/text_default_size"
+        android:background="@drawable/edit_text_normal"
+        android:layout_marginBottom="@dimen/default_space"/>
 
     <EditText
         android:id="@+id/event_description_edit_text"
         android:hint="@string/event_description_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/event_place_edit_text"
         android:padding="@dimen/general_space"
         android:inputType="text"
-        android:importantForAutofill="no"
-        android:layout_below="@id/event_place_edit_text"
-        tools:ignore="LabelFor" />
-
-    <EditText
-        android:id="@+id/event_date_edit_text"
-        android:hint="@string/event_date_hint"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/general_space"
-        android:inputType="date"
-        android:importantForAutofill="no"
-        android:layout_below="@id/event_description_edit_text"
-        tools:ignore="LabelFor" />
+        app:fontFamily="sans-serif-light"
+        android:textColor="@color/color1_saphire_blue"
+        android:textSize="@dimen/text_default_size"
+        android:background="@drawable/edit_text_normal"
+        android:layout_marginBottom="@dimen/default_space"/>
 
     <LinearLayout
+        android:id="@+id/event_date_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/event_date_edit_text">
-
-        <Spinner
-            android:id="@+id/event_type_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5">
-        </Spinner>
+        android:layout_below="@id/event_description_edit_text"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/default_space"
+        android:weightSum="10">
 
         <Button
-            android:id="@+id/create_event_button"
-            android:text="@string/create_event"
-            android:layout_width="wrap_content"
+            android:id="@+id/pick_date_button"
+            android:text="@string/text_pick_date"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.3" />
+            android:layout_weight="4"
+            app:fontFamily="sans-serif-light"
+            android:textSize="@dimen/text_default_size"
+            android:textAllCaps="false"
+            android:layout_marginRight="@dimen/little_space"
+            android:background="@drawable/button_shape"
+            android:layout_marginEnd="@dimen/little_space" />
+
+        <TextView
+            android:id="@+id/event_date_edit_text"
+            android:hint="@string/no_event_date_selected"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            app:fontFamily="sans-serif-light"
+            android:textColor="@color/color1_saphire_blue"
+            android:textSize="@dimen/text_default_size"
+            android:background="@drawable/edit_text_normal"
+            android:padding="@dimen/default_space" />
     </LinearLayout>
 
+    <RelativeLayout
+        android:id="@+id/spinner_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/little_space"
+        android:background="@drawable/spinner_border"
+        android:orientation="horizontal"
+        android:layout_below="@id/event_date_layout">
+
+        <Spinner
+            android:prompt="@string/text_create_event"
+            android:id="@+id/event_type_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            app:fontFamily="sans-serif-light"
+            android:textColor="@color/color1_saphire_blue"
+            android:textSize="@dimen/text_default_size"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:layout_marginLeft="5dp"
+            android:spinnerMode="dropdown"
+            android:layout_marginStart="5dp">
+        </Spinner>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_down" />
+
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/create_event_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinner_layout"
+        android:padding="@dimen/general_space"
+        android:text="@string/text_create_event_button"
+        android:background="@drawable/button_shape"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/huge_space"/>
 </RelativeLayout>

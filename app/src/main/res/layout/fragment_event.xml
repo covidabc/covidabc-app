@@ -22,8 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:backgroundTint="@color/color1_saphire_blue"
+        app:backgroundTint="@color/color1_saphire_blue"
         android:src="@drawable/ic_add"
-        tools:targetApi="lollipop" />
+        android:visibility="invisible"/>
 
 </FrameLayout>

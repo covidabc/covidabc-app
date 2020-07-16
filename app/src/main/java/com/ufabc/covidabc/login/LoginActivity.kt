@@ -72,7 +72,7 @@ class LoginActivity : AppCompatActivity() {
             mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        goToFeed()
+                        goBackToMainScreen()
                     } else {
                         Toast.makeText(this, R.string.wrong_credentials, Toast.LENGTH_LONG).show()
                     }
@@ -84,7 +84,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun goToFeed() {
+    private fun goBackToMainScreen() {
         val currentUser = mAuth.currentUser!!
 
         if (currentUser.isEmailVerified) {

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".mainScreen.categories.faq.FAQDescriptionActivity"
-    android:padding="@dimen/big_space">
+    android:padding="@dimen/general_space">
 
     <TextView
         android:id="@+id/question_text"

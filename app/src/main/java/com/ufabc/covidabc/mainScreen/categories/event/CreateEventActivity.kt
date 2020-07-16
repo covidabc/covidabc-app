@@ -3,6 +3,7 @@ package com.ufabc.covidabc.mainScreen.categories.event
 import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.core.widget.addTextChangedListener
 import com.ufabc.covidabc.R
@@ -14,9 +15,10 @@ class CreateEventActivity : AppCompatActivity() {
     private lateinit var eventTitleEditText : EditText
     private lateinit var eventPlaceEditText : EditText
     private lateinit var eventDescriptionEditText : EditText
-    private lateinit var eventDateEditText : EditText
+    private lateinit var eventDateEditText : TextView
     private lateinit var eventTypeSpinner : Spinner
     private lateinit var createEventButton : Button
+    private lateinit var pickDateButton : Button
     private lateinit var eventDate : Date
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +35,7 @@ class CreateEventActivity : AppCompatActivity() {
         eventDescriptionEditText = findViewById(R.id.event_description_edit_text)
         eventDateEditText = findViewById(R.id.event_date_edit_text)
         createEventButton = findViewById(R.id.create_event_button)
+        pickDateButton = findViewById(R.id.pick_date_button)
         eventTypeSpinner = findViewById(R.id.event_type_spinner)
 
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -57,27 +60,24 @@ class CreateEventActivity : AppCompatActivity() {
             }
         }
 
-        eventTitleEditText.addTextChangedListener(){
+        eventTitleEditText.addTextChangedListener {
             eventTitleEditText.setBackgroundResource(R.drawable.edit_text_normal);
         }
 
-        eventPlaceEditText.addTextChangedListener(){
+        eventPlaceEditText.addTextChangedListener {
             eventPlaceEditText.setBackgroundResource(R.drawable.edit_text_normal);
         }
 
-        eventDescriptionEditText.addTextChangedListener(){
+        eventDescriptionEditText.addTextChangedListener {
             eventDescriptionEditText.setBackgroundResource(R.drawable.edit_text_normal);
         }
 
-        eventDateEditText.addTextChangedListener(){
-            eventDateEditText.setBackgroundResource(R.drawable.edit_text_normal);
-        }
-
-        eventDateEditText.setOnClickListener {
+        pickDateButton.setOnClickListener{
             val cal = Calendar.getInstance()
-            val dateSetListener = DatePickerDialog.OnDateSetListener{ _, year, month, day ->
+            val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, day ->
                 eventDate = Date(year, month, day)
-                eventDateEditText.setText("$day/$month/$year")
+                eventDateEditText.text = "$day/$month/$year"
+                eventDateEditText.setBackgroundResource(R.drawable.edit_text_normal);
             }
 
             DatePickerDialog(
@@ -87,9 +87,6 @@ class CreateEventActivity : AppCompatActivity() {
                 cal.get(Calendar.MONTH),
                 cal.get(Calendar.DAY_OF_MONTH)
             ).show()
-
-            eventDateEditText.addTextChangedListener()
-
         }
     }
 

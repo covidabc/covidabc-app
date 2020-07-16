@@ -59,4 +59,8 @@
     <string name="different_passwords">As senhas diferem</string>
     <string name="event_day">Day</string>
     <string name="event_month">Mon</string>
+    <string name="text_create_event">Por favor, preencha os campos abaixo para compartilhar um evento!</string>
+    <string name="text_create_event_button">Criar evento</string>
+    <string name="no_event_date_selected">Data nao selecionada</string>
+    <string name="text_pick_date">Escolher data</string>
 </resources>

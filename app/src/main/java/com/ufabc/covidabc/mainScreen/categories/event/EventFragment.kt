@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.FirebaseAuth
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.CalendarEvent
@@ -21,6 +22,8 @@ class EventFragment : Fragment() {
 
     private lateinit var events : ArrayList<CalendarEvent>
     private lateinit var createEventFAB : FloatingActionButton
+
+    private val mAuth : FirebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,11 +40,20 @@ class EventFragment : Fragment() {
         setListeners()
 
         setEvents()
-        //populateEvents()
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        createEventFAB.visibility = if (isUserLoggedIn()) View.VISIBLE else View.INVISIBLE
+    }
+
+    private fun isUserLoggedIn() : Boolean = mAuth.currentUser != null
 
     private fun setViews(view: View) {
         createEventFAB = view.findViewById(R.id.fab_event_post)
+
+        createEventFAB.visibility = if (isUserLoggedIn()) View.VISIBLE else View.INVISIBLE
     }
 
     private fun setListeners() {
