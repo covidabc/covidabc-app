@@ -5,9 +5,15 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
-import com.ufabc.covidabc.model.Quiz
+import com.ufabc.covidabc.mainScreen.categories.faq.FAQAdapter
+import com.ufabc.covidabc.model.*
+import kotlinx.android.synthetic.main.quiz_question.*
 import kotlin.random.Random
 
 class QuizQuestionActivity : AppCompatActivity() {
@@ -19,6 +25,7 @@ class QuizQuestionActivity : AppCompatActivity() {
 
     private lateinit var quizzes : ArrayList <Quiz>
     private lateinit var currQuiz : Quiz
+    private lateinit var quiz : ArrayList<Quiz>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +36,19 @@ class QuizQuestionActivity : AppCompatActivity() {
         setListeners()
         chooseRandomQuiz()
     }
+
+    private fun setQuiz() {
+        QuizDAO.getAllquiz(object: FirestoreDatabaseOperationListener<ArrayList<Quiz>> {
+            override fun onSuccess(result: ArrayList<Quiz>) {
+                quiz = result
+            }
+
+            override fun onFailure() {
+                Toast.makeText(App.appContext, R.string.get_faq_failure, Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+
 
     private fun setViews() {
         questionTextView = findViewById(R.id.quiz_question_text_view)
@@ -69,14 +89,6 @@ class QuizQuestionActivity : AppCompatActivity() {
             })
 
         alertDialogBuilder.show()
-    }
-
-    private fun setQuiz() {
-        quizzes = arrayListOf()
-
-        for (i in 0..10) {
-            quizzes.add(Quiz("pergunta $i", "resposta $i", i % 2 == 0))
-        }
     }
 
     private fun chooseRandomQuiz() {

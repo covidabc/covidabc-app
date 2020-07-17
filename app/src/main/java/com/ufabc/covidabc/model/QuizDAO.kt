@@ -12,18 +12,14 @@ object QuizDAO {
             // TODO: Add onSuccess and onFailure callback
         }
 
-        fun getAllFAQs(callback: FirestoreDatabaseOperationListener<ArrayList<Quiz>>) {
+        fun getAllquiz(callback: FirestoreDatabaseOperationListener<ArrayList<Quiz>>) {
             FirebaseFirestore.getInstance().collection(QuizDAO.quiz_COLLECTION).get()
                 .addOnSuccessListener { result -> callback.onSuccess(
                     com.ufabc.covidabc.model.QuizDAO.documentstoquiz(result)) }
                 .addOnFailureListener { callback.onFailure() }
         }
 
-    private fun documentstoquiz(result: QuerySnapshot?): java.util.ArrayList<Quiz> {
-        TODO("Not yet implemented")
-    }
-
-    private fun documentsToquiz(qSnapshot: QuerySnapshot): ArrayList<Quiz> {
+    private fun documentstoquiz(qSnapshot: QuerySnapshot): ArrayList<Quiz> {
             val quiz = arrayListOf<Quiz>()
 
             for (document in qSnapshot.documents) {
