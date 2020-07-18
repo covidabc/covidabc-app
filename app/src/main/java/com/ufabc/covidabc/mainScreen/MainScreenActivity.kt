@@ -11,14 +11,19 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.auth.FirebaseAuth
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.login.LoginActivity
+import com.ufabc.covidabc.login.MyAccountActivity
 import com.ufabc.covidabc.mainScreen.categories.event.EventDescriptionActivity
 
 class MainScreenActivity : AppCompatActivity() {
 
     private lateinit var mainToolbar : Toolbar
+
+    private val mAuth : FirebaseAuth = FirebaseAuth.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_screen)
@@ -49,7 +54,11 @@ class MainScreenActivity : AppCompatActivity() {
         mainToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_login -> {
-                    val intent = Intent(this, LoginActivity::class.java)
+                    val intent = when(isUserLoggedIn()) {
+                        false -> Intent(this, LoginActivity::class.java)
+                        true -> Intent(this, MyAccountActivity::class.java)
+                    }
+
                     startActivity(intent)
                     true
                 }
@@ -58,4 +67,6 @@ class MainScreenActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun isUserLoggedIn() : Boolean = mAuth.currentUser != null
 }
