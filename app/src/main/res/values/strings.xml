@@ -59,4 +59,10 @@
     <string name="different_passwords">As senhas diferem</string>
     <string name="event_day">Day</string>
     <string name="event_month">Mon</string>
+    <string name="text_question">question here</string>
+    <string name="text_true">Verdadeiro</string>
+    <string name="text_false">Falso</string>
+    <string name="next_question">Proxima pergunta</string>
+    <string name="text_dialog_title">dialog title</string>
+    <string name="text_dialog_message">dialog message</string>
 </resources>

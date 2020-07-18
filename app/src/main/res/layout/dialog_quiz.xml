@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="10dp"
+    android:background="@drawable/dialog_background">
+    <ImageView
+        android:src="@drawable/covid_abc_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/login_gradient"
+        android:contentDescription="@string/app_name"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:padding="@dimen/general_space"/>
+
+    <TextView
+        android:id="@+id/dialog_title"
+        android:text="@string/text_dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:fontFamily="sans-serif-light"
+        android:textSize="@dimen/question_text_size"
+        android:textStyle="bold"
+        android:textColor="@color/color1_saphire_blue"
+        android:textAllCaps="true"
+        android:gravity="center"
+        android:padding="@dimen/general_space">
+    </TextView>
+
+    <TextView
+        android:id="@+id/dialog_message"
+        android:text="@string/text_dialog_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="@dimen/general_space"
+        app:fontFamily="sans-serif-light"
+        android:textSize="@dimen/text_default_size"
+        android:textStyle="bold"
+        android:textColor="@color/color1_saphire_blue"
+        android:textAllCaps="false"
+        android:gravity="center"
+        android:padding="@dimen/general_space">
+
+    </TextView>
+
+</LinearLayout>

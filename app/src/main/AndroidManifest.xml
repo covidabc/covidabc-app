@@ -35,7 +35,6 @@
         <activity android:name=".mainScreen.categories.faq.FAQDescriptionActivity" />
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".mainScreen.categories.quiz.QuizQuestionActivity" />
-        <activity android:name=".mainScreen.categories.quiz.QuizAnswerActivity" />
 
         <provider
             android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"

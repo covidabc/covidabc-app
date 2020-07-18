@@ -1,6 +1,7 @@
 package com.ufabc.covidabc.mainScreen.categories.quiz
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.Button
@@ -13,6 +14,7 @@ import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.mainScreen.categories.faq.FAQAdapter
 import com.ufabc.covidabc.model.*
+import kotlinx.android.synthetic.main.dialog_quiz.*
 import kotlinx.android.synthetic.main.quiz_question.*
 import kotlin.random.Random
 
@@ -25,7 +27,6 @@ class QuizQuestionActivity : AppCompatActivity() {
 
     private lateinit var quizzes : ArrayList <Quiz>
     private lateinit var currQuiz : Quiz
-    private lateinit var quiz : ArrayList<Quiz>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,13 +35,13 @@ class QuizQuestionActivity : AppCompatActivity() {
         setQuiz()
         setViews()
         setListeners()
-        chooseRandomQuiz()
     }
 
     private fun setQuiz() {
         QuizDAO.getAllquiz(object: FirestoreDatabaseOperationListener<ArrayList<Quiz>> {
             override fun onSuccess(result: ArrayList<Quiz>) {
-                quiz = result
+                quizzes = result
+                chooseRandomQuiz()
             }
 
             override fun onFailure() {
@@ -73,22 +74,22 @@ class QuizQuestionActivity : AppCompatActivity() {
 
     private fun checkAnswer(userAnswer : Boolean) {
 
-        val alertDialogBuilder = AlertDialog.Builder(this)
+        val alertDialog = Dialog(this)
+
+        alertDialog.setContentView(R.layout.dialog_quiz)
+
 
         if (userAnswer == currQuiz.getIsRight()) {
-            alertDialogBuilder.setTitle("Você acertou!")
+            alertDialog.dialog_title.text = "Você acertou!"
         }
         else {
-            alertDialogBuilder.setTitle("Você errou!")
+            alertDialog.dialog_title.text = "Você errou!"
         }
 
-        alertDialogBuilder.setMessage(currQuiz.getExplanation())
-        alertDialogBuilder.setNeutralButton("Continuar",
-            DialogInterface.OnClickListener { dialog, id ->
-                // FIRE ZE MISSILES!
-            })
+        alertDialog.dialog_message.text = currQuiz.getExplanation()
 
-        alertDialogBuilder.show()
+
+        alertDialog.show()
     }
 
     private fun chooseRandomQuiz() {
