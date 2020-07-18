@@ -63,4 +63,10 @@
     <string name="text_create_event_button">Criar evento</string>
     <string name="no_event_date_selected">Data nao selecionada</string>
     <string name="text_pick_date">Escolher data</string>
+    <string name="text_question">question here</string>
+    <string name="text_true">Verdadeiro</string>
+    <string name="text_false">Falso</string>
+    <string name="next_question">Proxima pergunta</string>
+    <string name="text_dialog_title">dialog title</string>
+    <string name="text_dialog_message">dialog message</string>
 </resources>

@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_green_light">
+    android:background="@drawable/login_gradient"
+    android:weightSum="5">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:id="@+id/quiz_image"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_centerVertical="true"
+            android:layout_marginTop="170dp"
             android:src="@drawable/brain"
             tools:srcCompat="@tools:sample/avatars" />
 
@@ -24,7 +24,12 @@
             android:id="@+id/quiz_introText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:fontFamily="sans-serif-light"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:layout_below="@+id/quiz_image"
+            android:layout_marginTop="20dp"
             android:gravity="center_horizontal"
             android:text="@string/quiz_intro"
             android:textAlignment="center" />
@@ -34,8 +39,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/quiz_introText"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/button_shape"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:layout_centerHorizontal="true"
             android:text="@string/quiz_enter"
             android:onClick="iniciarQuiz"/>
+
+
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

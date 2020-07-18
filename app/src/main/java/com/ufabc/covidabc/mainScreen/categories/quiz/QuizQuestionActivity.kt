@@ -1,50 +1,102 @@
 package com.ufabc.covidabc.mainScreen.categories.quiz
 
-import android.content.Intent
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
+import com.ufabc.covidabc.mainScreen.categories.faq.FAQAdapter
+import com.ufabc.covidabc.model.*
+import kotlinx.android.synthetic.main.dialog_quiz.*
 import kotlinx.android.synthetic.main.quiz_question.*
 import kotlin.random.Random
 
 class QuizQuestionActivity : AppCompatActivity() {
 
-    val pergunta = arrayOf("Pergunta 1", "Pergunta 2", "Pergunta 3", "Pergunta 4", "Pergunta 5")
-    val explicacao = arrayOf("Explicação 1", "Explicação 2", "Explicação 3", "Explicação 4", "Explicação 5")
-    val respostaCorreta = arrayOf(1,0,1,1,0)
+    private lateinit var questionTextView : TextView
+    private lateinit var yes_button : Button
+    private lateinit var no_button : Button
+    private lateinit var next_question_button : Button
+
+    private lateinit var quizzes : ArrayList <Quiz>
+    private lateinit var currQuiz : Quiz
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.quiz_question)
 
-        val i = Random.nextInt(0,4)
-        quiz_questionText.setText(pergunta[i])
+        setQuiz()
+        setViews()
+        setListeners()
+    }
 
-        yesButton.setOnClickListener {
-            val intent = Intent(it.context, QuizAnswerActivity::class.java)
-            intent.putExtra("escolha", 1)
-            intent.putExtra("respostaCorreta", respostaCorreta[i])
-            intent.putExtra("explicacao", explicacao[i])
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_TASK_ON_HOME
-            // start your next activity
-            startActivity(intent)
-            this.finish()
-        }
+    private fun setQuiz() {
+        QuizDAO.getAllquiz(object: FirestoreDatabaseOperationListener<ArrayList<Quiz>> {
+            override fun onSuccess(result: ArrayList<Quiz>) {
+                quizzes = result
+                chooseRandomQuiz()
+            }
 
-        noButton.setOnClickListener {
-            val intent = Intent(it.context, QuizAnswerActivity::class.java)
-            intent.putExtra("escolha", 0)
-            intent.putExtra("respostaCorreta", respostaCorreta[i])
-            intent.putExtra("explicacao", explicacao[i])
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_TASK_ON_HOME
-            // start your next activity
-            startActivity(intent)
-            this.finish()
-        }
+            override fun onFailure() {
+                Toast.makeText(App.appContext, R.string.get_faq_failure, Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
 
+    private fun setViews() {
+        questionTextView = findViewById(R.id.quiz_question_text_view)
+        yes_button = findViewById(R.id.yes_button)
+        no_button = findViewById(R.id.no_button)
+        next_question_button = findViewById(R.id.next_question_button)
+    }
+
+    private fun setListeners() {
+        yes_button.setOnClickListener {
+            checkAnswer(true)
+        }
+
+        no_button.setOnClickListener {
+            checkAnswer(false)
+        }
+
+        next_question_button.setOnClickListener {
+            chooseRandomQuiz()
+        }
+    }
+
+    private fun checkAnswer(userAnswer : Boolean) {
+
+        val alertDialog = Dialog(this)
+
+        alertDialog.setContentView(R.layout.dialog_quiz)
 
 
+        if (userAnswer == currQuiz.getIsRight()) {
+            alertDialog.dialog_title.text = "Você acertou!"
+        }
+        else {
+            alertDialog.dialog_title.text = "Você errou!"
+        }
+
+        alertDialog.dialog_message.text = currQuiz.getExplanation()
+
+
+        alertDialog.show()
+    }
+
+    private fun chooseRandomQuiz() {
+        val index = Random.nextInt(0, quizzes.size)
+
+        currQuiz = quizzes[index]
+        questionTextView.text = currQuiz.getQuestion()
+    }
 }
 
