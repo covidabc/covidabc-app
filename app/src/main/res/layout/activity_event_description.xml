@@ -4,44 +4,100 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mainScreen.categories.Event.EventDescriptionActivity"
+    tools:context=".mainScreen.categories.event.EventDescriptionActivity"
     android:padding="@dimen/general_space">
 
     <TextView
         android:id="@+id/event_title_text_view"
-        android:text="@string/event_title"
-        android:textSize="@dimen/question_text_size"
-        android:textColor="@android:color/black"
+        android:text="Title here"
+        app:fontFamily="sans-serif-light"
+        android:textStyle="bold"
+        android:textSize="@dimen/question_question_size"
+        android:textColor="@color/color1_saphire_blue"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/default_space">
 
     </TextView>
+
+    <ImageView
+        android:id="@+id/place_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_place"
+        android:paddingLeft="@dimen/little_space"
+        android:layout_alignTop="@id/event_place_text_view"
+        android:layout_alignBottom="@id/event_place_text_view"
+        android:paddingStart="@dimen/little_space"
+        tools:ignore="RtlSymmetry" />
 
     <TextView
         android:id="@+id/event_place_text_view"
         android:text="@string/event_place"
         android:textSize="@dimen/answer_text_size"
         android:paddingTop="@dimen/general_space"
+        android:paddingBottom="@dimen/general_space"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/event_title_text_view">
+        android:layout_below="@id/event_title_text_view"
+        android:layout_toRightOf="@id/place_icon"
+        android:layout_toEndOf="@id/place_icon"
+        android:paddingLeft="@dimen/little_space"
+        android:paddingStart="@dimen/little_space"
+        tools:ignore="RtlSymmetry">
     </TextView>
+
+    <ImageView
+        android:id="@+id/event_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_event"
+        android:paddingLeft="@dimen/little_space"
+        android:layout_alignTop="@id/event_date_text_view"
+        android:layout_alignBottom="@id/event_date_text_view"
+        android:paddingStart="@dimen/little_space"
+        tools:ignore="RtlSymmetry" />
 
     <TextView
         android:id="@+id/event_date_text_view"
+        android:text="@string/event_date"
+        android:textSize="@dimen/answer_text_size"
+        android:paddingTop="@dimen/general_space"
+        android:paddingBottom="@dimen/general_space"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/event_place_text_view"
-        android:paddingTop="@dimen/general_space"
-        android:text="@string/event_date"
-        android:textSize="@dimen/answer_text_size"></TextView>
+        android:layout_toRightOf="@id/event_icon"
+        android:layout_toEndOf="@id/event_icon"
+        android:paddingLeft="@dimen/little_space"
+        android:paddingStart="@dimen/little_space"
+        tools:ignore="RtlSymmetry">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/description_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_description"
+        android:paddingLeft="@dimen/little_space"
+        android:layout_alignTop="@id/event_description_text_view"
+        android:layout_alignBottom="@id/event_description_text_view"
+        android:paddingStart="@dimen/little_space"
+        tools:ignore="RtlSymmetry" />
 
     <TextView
         android:id="@+id/event_description_text_view"
+        android:text="@string/event_description"
+        android:textSize="@dimen/answer_text_size"
+        android:paddingTop="@dimen/general_space"
+        android:paddingBottom="@dimen/general_space"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/event_date_text_view"
-        android:paddingTop="@dimen/general_space"
-        android:text="@string/event_description"
-        android:textSize="@dimen/answer_text_size"></TextView>
+        android:layout_toRightOf="@id/description_icon"
+        android:layout_toEndOf="@id/description_icon"
+        android:paddingLeft="@dimen/little_space"
+        android:paddingStart="@dimen/little_space"
+        tools:ignore="RtlSymmetry">
+    </TextView>
 </RelativeLayout>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_gradient"
+    android:padding="@dimen/big_space">
+
+    <TextView
+        android:id="@id/register_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fontFamily="sans-serif-light"
+        android:text="@string/text_register"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_default_size"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:id="@+id/linear_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/register_text_view"
+        android:layout_marginTop="@dimen/little_space"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/big_space"
+            android:layout_marginBottom="@dimen/little_space"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fontFamily="sans-serif-light"
+                android:text="@string/text_name"
+                android:textAllCaps="true"
+                android:textSize="@dimen/text_default_size"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"/>
+
+            <EditText
+                android:id="@+id/name_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="@dimen/little_space"
+                app:fontFamily="sans-serif-light"
+                android:padding="@dimen/general_space"
+                android:textSize="@dimen/text_default_size"
+                android:background="@drawable/edit_text_normal"
+                android:inputType="textPersonName"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_space"
+            android:layout_marginBottom="@dimen/little_space"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fontFamily="sans-serif-light"
+                android:text="@string/text_email"
+                android:textAllCaps="true"
+                android:textSize="@dimen/text_default_size"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"/>
+
+            <EditText
+                android:id="@+id/email_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="@dimen/little_space"
+                app:fontFamily="sans-serif-light"
+                android:padding="@dimen/general_space"
+                android:textSize="@dimen/text_default_size"
+                android:background="@drawable/edit_text_normal"
+                android:inputType="textEmailAddress"/>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_space"
+            android:layout_marginBottom="@dimen/little_space"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fontFamily="sans-serif-light"
+                android:text="@string/text_password"
+                android:textAllCaps="true"
+                android:textSize="@dimen/text_default_size"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"/>
+
+            <EditText
+                android:id="@+id/password_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="@dimen/little_space"
+                app:fontFamily="sans-serif-light"
+                android:padding="@dimen/general_space"
+                android:textSize="@dimen/text_default_size"
+                android:background="@drawable/edit_text_normal"
+                android:inputType="textPassword"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_space"
+            android:layout_marginBottom="@dimen/little_space"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fontFamily="sans-serif-light"
+                android:text="@string/text_confirm_password"
+                android:textAllCaps="true"
+                android:textSize="@dimen/text_default_size"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"/>
+
+            <EditText
+                android:id="@+id/confirm_password_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="@dimen/little_space"
+                app:fontFamily="sans-serif-light"
+                android:padding="@dimen/general_space"
+                android:textSize="@dimen/text_default_size"
+                android:background="@drawable/edit_text_normal"
+                android:inputType="textPassword">
+            </EditText>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_space"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fontFamily="sans-serif-light"
+                android:text="@string/text_pin"
+                android:textAllCaps="true"
+                android:textSize="@dimen/text_default_size"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"/>
+
+            <EditText
+                android:id="@+id/pin_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="@dimen/little_space"
+                app:fontFamily="sans-serif-light"
+                android:padding="@dimen/general_space"
+                android:textSize="@dimen/text_default_size"
+                android:background="@drawable/edit_text_normal"
+                android:inputType="textPassword">
+            </EditText>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_layout1"
+        android:padding="@dimen/general_space"
+        android:text="@string/text_register_user"
+        android:background="@drawable/button_shape"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/huge_space"/>
+
+</RelativeLayout>

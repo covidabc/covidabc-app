@@ -1,16 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.LoginActivity">
+    tools:context=".login.LoginActivity"
+    android:orientation="vertical"
+    android:background="@drawable/login_gradient"
+    android:weightSum="4">
 
-    <Button
-        android:id="@+id/login_button"
+    <ImageView
+        android:id="@+id/covid_abc_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Entre"
-        tools:layout_editor_absoluteX="119dp"
-        tools:layout_editor_absoluteY="503dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:src="@drawable/icon_covidabc_login"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:maxWidth="250dp"
+        android:contentDescription="@string/covid_abc"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="2"/>
+
+    <RelativeLayout
+        android:id="@+id/login_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/big_space"
+        android:layout_weight="2">
+
+        <LinearLayout
+            android:id="@+id/linear_layout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/general_space"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fontFamily="sans-serif-light"
+                android:text="@string/text_login_presentation"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_default_size"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:paddingBottom="@dimen/huge_space"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:fontFamily="sans-serif-light"
+                    android:text="@string/text_email"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_default_size"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:id="@+id/login_email_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/little_space"
+                    android:background="@drawable/edit_text_normal"
+                    app:fontFamily="sans-serif-light"
+                    android:padding="@dimen/general_space"
+                    android:textColor="@color/color1_saphire_blue"
+                    android:textSize="@dimen/text_default_size"
+                    android:inputType="textEmailAddress"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:fontFamily="sans-serif-light"
+                    android:text="@string/text_password"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_default_size"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:id="@+id/login_password_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/little_space"
+                    android:background="@drawable/edit_text_normal"
+                    app:fontFamily="sans-serif-light"
+                    android:padding="@dimen/general_space"
+                    android:textColor="@color/color1_saphire_blue"
+                    android:textSize="@dimen/text_default_size"
+                    android:inputType="textPassword">
+                </EditText>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_login"
+            android:background="@drawable/button_shape"
+            android:layout_below="@id/linear_layout1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/huge_space"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rellay2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:fontFamily="sans-serif"
+            android:text="@string/text_register_user"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"/>
+
+        <Button
+            android:id="@+id/forgotPassButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:background="@android:color/transparent"
+            app:fontFamily="sans-serif"
+            android:text="@string/text_forgot_password"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,60 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_green_light">
+    tools:context=".mainScreen.categories.quiz.QuizQuestionActivity"
+    android:padding="@dimen/big_space"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:baselineAligned="false">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="0.7"
+        android:layout_marginBottom="@dimen/default_space">
 
         <TextView
-            android:id="@+id/quiz_questionText"
-            android:layout_width="match_parent"
+            android:id="@+id/quiz_question_text_view"
+            android:text="@string/text_question"
+            app:fontFamily="sans-serif-light"
+            android:textColor="@color/color1_saphire_blue"
+            android:textSize="25sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:lineSpacingExtra="@dimen/general_space"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="Coronavírus é contagioso?"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="@android:color/black"
+            tools:ignore="MissingConstraints" />
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:orientation="vertical"
+        android:baselineAligned="false">
+
+        <Button
+            android:id="@+id/yes_button"
+            android:layout_width="301dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center"
+            android:background="@drawable/button_shape"
+            android:text="@string/text_true"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/question_text_size"
             android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginBottom="@dimen/general_space"/>
 
-        <ImageView
-            android:id="@+id/yesButton"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_below="@id/quiz_questionText"
-            android:layout_toLeftOf="@id/yesButton"
-            android:layout_centerHorizontal="true"
-            android:onClick="verificaQuestao"
-            android:src="@drawable/like"
-            tools:srcCompat="@tools:sample/avatars" />
+        <Button
+            android:id="@+id/no_button"
+            android:layout_width="301dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center"
+            android:background="@drawable/button_shape"
+            android:text="@string/text_false"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/question_text_size"
+            android:textStyle="bold"/>
 
-        <ImageView
-            android:id="@+id/noButton"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_below="@id/quiz_questionText"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginStart="-4dp"
-            android:layout_marginLeft="-4dp"
-            android:layout_marginTop="238dp"
-            android:onClick="verificaQuestao"
-            android:src="@drawable/dislike"
-            tools:srcCompat="@tools:sample/avatars" />
+    </LinearLayout>
 
-    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1">
+        <Button
+            android:id="@+id/next_question_button"
+            android:layout_width="173dp"
+            android:layout_height="42dp"
+            android:layout_gravity="bottom"
+            android:text="@string/next_question"
+            android:background="@drawable/button_shape"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_default_size"
+            android:textStyle="bold"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

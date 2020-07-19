@@ -17,7 +17,7 @@ object CalendarEventDAO {
     fun getAllEvents(callback: FirestoreDatabaseOperationListener<ArrayList<CalendarEvent>>) {
         FirebaseFirestore.getInstance().collection(EVENT_COLLECTION).get()
             .addOnSuccessListener { result -> callback.onSuccess(documentsToCalendarEvents(result)) }
-            .addOnSuccessListener { callback.onFailure() }
+            .addOnFailureListener { callback.onFailure() }
     }
 
     private fun documentsToCalendarEvents(qSnapshot: QuerySnapshot): ArrayList<CalendarEvent> {

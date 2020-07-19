@@ -1,37 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/faq_card"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/little_space"
-    android:paddingBottom="@dimen/little_space">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/faq_card"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="@dimen/little_space"
+    app:cardCornerRadius="10dp">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:ignore="MissingPrefix">
+        tools:ignore="MissingPrefix"
+        android:background="@color/color1_saphire_blue">
 
         <TextView
             android:id="@+id/question_text"
             android:text="username here"
-            android:textColor="@android:color/black"
+            app:fontFamily="sans-serif-light"
+            android:textColor="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/little_space"
+            android:paddingTop="@dimen/general_space"
+            android:paddingBottom="@dimen/little_space"
+            android:paddingLeft="@dimen/general_space"
+            android:paddingRight="@dimen/general_space"
             android:layout_toLeftOf="@id/next_icon"
-            android:layout_toStartOf="@id/next_icon" />
+            android:layout_toStartOf="@id/next_icon"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/answer_text"
             android:text="answer here"
+            app:fontFamily="sans-serif-light"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/question_text"
-            android:padding="@dimen/little_space"
+            android:paddingTop="@dimen/little_space"
+            android:paddingBottom="@dimen/general_space"
+            android:paddingLeft="@dimen/general_space"
+            android:paddingRight="@dimen/general_space"
             android:layout_toLeftOf="@id/next_icon"
             android:layout_toStartOf="@id/next_icon"/>
 
@@ -49,4 +61,4 @@
 
     </RelativeLayout>
 
-</RelativeLayout>
+</androidx.cardview.widget.CardView>

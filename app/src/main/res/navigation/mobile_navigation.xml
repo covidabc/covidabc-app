@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_news"
+        android:name="com.ufabc.covidabc.mainScreen.categories.news.NewsFragment"
+        android:label="@string/title_news"
+        tools:layout="@layout/fragment_news" />
+
+    <fragment
+        android:id="@+id/navigation_quiz"
+        android:name="com.ufabc.covidabc.mainScreen.categories.quiz.QuizFragment"
+        android:label="@string/title_quiz"
+        tools:layout="@layout/fragment_quiz" />
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.ufabc.covidabc.mainScreen.categories.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_event"
+        android:name="com.ufabc.covidabc.mainScreen.categories.event.EventFragment"
+        android:label="@string/title_event"
+        tools:layout="@layout/fragment_event" />
+
+    <fragment
+        android:id="@+id/navigation_faq"
+        android:name="com.ufabc.covidabc.mainScreen.categories.faq.FAQFragment"
+        android:label="@string/title_faq"
+        tools:layout="@layout/fragment_faq" />
+
+</navigation>
