@@ -19,13 +19,13 @@ class MainActivity : AppCompatActivity() {
         setViews()
     }
 
-    private fun setViews() {
-        sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
-
-        viewPager = findViewById(R.id.view_pager)
-        viewPager.adapter = sectionsPagerAdapter
-
-        tabs = findViewById(R.id.tabs)
-        tabs.setupWithViewPager(viewPager)
-    }
+        private fun setViews() {
+            sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
+    
+            viewPager = findViewById(R.id.view_pager)
+            viewPager.adapter = sectionsPagerAdapter
+    
+            tabs = findViewById(R.id.tabs)
+            tabs.setupWithViewPager(viewPager)
+        }
 }
