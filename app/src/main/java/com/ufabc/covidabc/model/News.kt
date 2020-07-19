@@ -8,19 +8,19 @@ class News: Serializable {
 
     private lateinit var titulo: String
     private lateinit var tituloAuxiliar: String
-    private lateinit var imagem: ImageView
+    private lateinit var imagemURI: String
 
     constructor()
 
-    constructor(titulo: String, tituloAuxiliar: String, imagem: ImageView) {
+    constructor(titulo: String, tituloAuxiliar: String, imagemURI: String) {
         this.titulo = titulo
         this.tituloAuxiliar = tituloAuxiliar
-        this.imagem = imagem
+        this.imagemURI = imagemURI
     }
 
 
     fun getTitulo() = this.titulo
     fun getTituloAuxiliar() = this.tituloAuxiliar
-    fun getImagem() = this.imagem
+    fun getImagemURI() = this.imagemURI
 
 }
