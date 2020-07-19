@@ -1,4 +1,4 @@
-package com.ufabc.covidabc.mainScreen.categories.News
+package com.ufabc.covidabc.mainScreen.categories.news
 
 import android.os.Bundle
 import android.widget.TextView
