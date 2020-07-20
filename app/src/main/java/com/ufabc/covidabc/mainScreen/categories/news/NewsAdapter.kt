@@ -38,10 +38,7 @@ class NewsAdapter(private val news: ArrayList<News>): RecyclerView.Adapter<NewsA
         news[position].apply {
             holder.newsTitle.text = this.getTitulo()
             holder.newsTitleAux.text = this.getTituloAuxiliar()
-            //holder.newsImage.setImageURI(Uri.parse(getImagemURI()))
-            //holder.newsImage.setImageURI(Uri.parse(getImagemURI()))
-            //var newsImage: ImageView = Picasso().load(Uri.parse(getImagemURI())).into(new);
-            //var newsImg: ImageView;
+
             Picasso.get().load(Uri.parse(getImagemURI())).into(holder.newsImage);
 
             holder.newsBody.setOnClickListener {
