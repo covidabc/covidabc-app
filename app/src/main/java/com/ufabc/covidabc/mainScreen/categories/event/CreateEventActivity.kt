@@ -3,12 +3,11 @@ package com.ufabc.covidabc.mainScreen.categories.event
 import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.*
 import androidx.core.widget.addTextChangedListener
 import com.ufabc.covidabc.R
-import com.ufabc.covidabc.model.CalendarEvent
-import com.ufabc.covidabc.model.CalendarEventDAO
+import com.ufabc.covidabc.model.event.CalendarEvent
+import com.ufabc.covidabc.model.event.CalendarEventDAO
 import java.util.*
 
 class CreateEventActivity : AppCompatActivity() {

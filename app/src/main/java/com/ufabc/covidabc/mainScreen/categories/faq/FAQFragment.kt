@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
-import com.ufabc.covidabc.model.FAQ
-import com.ufabc.covidabc.model.FAQDAO
+import com.ufabc.covidabc.model.faq.FAQ
+import com.ufabc.covidabc.model.faq.FAQDAO
 import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
 
 

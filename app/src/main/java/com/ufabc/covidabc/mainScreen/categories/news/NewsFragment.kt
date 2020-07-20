@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
-import com.ufabc.covidabc.model.News
+import com.ufabc.covidabc.model.news.News
 
 class NewsFragment : Fragment() {
 
@@ -33,7 +33,13 @@ class NewsFragment : Fragment() {
     private fun setNews() {
         newsArray = arrayListOf<News>()
         for (i in 0..10) {
-            newsArray.add(News("titulo $i", "subtitulo $i", "https://pfarma.com.br/images/noticias/coronavirus-covid-19.jpg"))
+            newsArray.add(
+                News(
+                    "titulo $i",
+                    "subtitulo $i",
+                    "https://pfarma.com.br/images/noticias/coronavirus-covid-19.jpg"
+                )
+            )
         }
     }
 

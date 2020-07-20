@@ -1,4 +1,4 @@
-package com.ufabc.covidabc.model
+package com.ufabc.covidabc.model.event
 
 import java.io.Serializable
 import java.util.*

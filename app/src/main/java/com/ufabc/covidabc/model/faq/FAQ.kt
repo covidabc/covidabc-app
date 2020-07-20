@@ -1,4 +1,4 @@
-package com.ufabc.covidabc.model
+package com.ufabc.covidabc.model.faq
 
 import java.io.Serializable
 

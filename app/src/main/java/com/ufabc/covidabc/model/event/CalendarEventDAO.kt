@@ -1,9 +1,8 @@
-package com.ufabc.covidabc.model
+package com.ufabc.covidabc.model.event
 
-import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
-import java.lang.RuntimeException
+import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
 
 object CalendarEventDAO {
 
@@ -17,18 +16,22 @@ object CalendarEventDAO {
     }
 
     fun refreshFAQ(callback: FirestoreDatabaseOperationListener<Boolean>) {
-        FirebaseFirestore.getInstance().collection(this.EVENT_COLLECTION).get()
+        FirebaseFirestore.getInstance().collection(EVENT_COLLECTION).get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    this.eventArray = documentsToCalendarEvents(task.result!!)
+                    eventArray =
+                        documentsToCalendarEvents(
+                            task.result!!
+                        )
                 }
 
-                this.isAlreadyFetched = true
+                isAlreadyFetched = true
                 callback.onCompleted(task.isSuccessful)
             }
     }
 
-    fun getEventArray() : ArrayList<CalendarEvent> = this.eventArray
+    fun getEventArray() : ArrayList<CalendarEvent> =
+        eventArray
 
     private fun documentsToCalendarEvents(qSnapshot: QuerySnapshot): ArrayList<CalendarEvent> {
         val events = arrayListOf<CalendarEvent>()
@@ -41,5 +44,6 @@ object CalendarEventDAO {
         return events
     }
 
-    fun isAlreadyFetched() : Boolean = this.isAlreadyFetched
+    fun isAlreadyFetched() : Boolean =
+        isAlreadyFetched
 }

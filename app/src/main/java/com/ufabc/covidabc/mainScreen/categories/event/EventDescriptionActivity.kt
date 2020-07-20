@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.TextView
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
-import com.ufabc.covidabc.model.CalendarEvent
+import com.ufabc.covidabc.model.event.CalendarEvent
 
 class EventDescriptionActivity : AppCompatActivity() {
 

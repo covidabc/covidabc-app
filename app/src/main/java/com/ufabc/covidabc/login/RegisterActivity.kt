@@ -2,18 +2,15 @@ package com.ufabc.covidabc.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.ufabc.covidabc.R
-import com.ufabc.covidabc.model.FAQDAO
 
 class RegisterActivity : AppCompatActivity() {
 

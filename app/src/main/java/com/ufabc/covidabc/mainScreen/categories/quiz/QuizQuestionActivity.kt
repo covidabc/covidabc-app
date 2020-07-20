@@ -1,21 +1,14 @@
 package com.ufabc.covidabc.mainScreen.categories.quiz
 
-import android.app.AlertDialog
 import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
-import com.ufabc.covidabc.mainScreen.categories.faq.FAQAdapter
-import com.ufabc.covidabc.model.*
+import com.ufabc.covidabc.model.quiz.Quiz
+import com.ufabc.covidabc.model.quiz.QuizDAO
 import kotlinx.android.synthetic.main.dialog_quiz.*
-import kotlinx.android.synthetic.main.quiz_question.*
 import kotlin.random.Random
 
 class QuizQuestionActivity : AppCompatActivity() {

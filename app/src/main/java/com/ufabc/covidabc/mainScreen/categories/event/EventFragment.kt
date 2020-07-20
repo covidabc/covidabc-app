@@ -15,9 +15,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
-import com.ufabc.covidabc.model.CalendarEvent
-import com.ufabc.covidabc.model.CalendarEventDAO
-import com.ufabc.covidabc.model.FAQDAO
+import com.ufabc.covidabc.model.event.CalendarEvent
+import com.ufabc.covidabc.model.event.CalendarEventDAO
+import com.ufabc.covidabc.model.faq.FAQDAO
 import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
 import kotlin.collections.ArrayList
 

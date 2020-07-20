@@ -5,14 +5,13 @@ import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
-import com.ufabc.covidabc.model.FAQ
+import com.ufabc.covidabc.model.faq.FAQ
 import io.noties.markwon.Markwon
 
 class FAQAdapter(val faq: ArrayList<FAQ>) : RecyclerView.Adapter<FAQAdapter.ViewHolder>() {

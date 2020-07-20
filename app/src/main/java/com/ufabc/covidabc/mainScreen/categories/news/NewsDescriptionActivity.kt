@@ -5,7 +5,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
-import com.ufabc.covidabc.model.News
+import com.ufabc.covidabc.model.news.News
 
 class NewsDescriptionActivity : AppCompatActivity() {
     private lateinit var newsTitleTextView: TextView

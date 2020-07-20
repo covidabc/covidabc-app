@@ -1,4 +1,4 @@
-package com.ufabc.covidabc.model
+package com.ufabc.covidabc.model.quiz
 
 class Quiz {
     private lateinit var question : String

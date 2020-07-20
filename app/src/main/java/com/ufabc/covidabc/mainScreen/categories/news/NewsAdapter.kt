@@ -10,7 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
-import com.ufabc.covidabc.model.News
+import com.ufabc.covidabc.model.news.News
 
 class NewsAdapter(private val news: ArrayList<News>): RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 

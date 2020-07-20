@@ -1,9 +1,8 @@
-package com.ufabc.covidabc.model
+package com.ufabc.covidabc.model.faq
 
-import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
-import com.google.protobuf.Empty
+import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
 
 object FAQDAO {
 
@@ -12,10 +11,11 @@ object FAQDAO {
     private var faqArray : ArrayList<FAQ> = arrayListOf()
 
     fun refreshFAQ(callback: FirestoreDatabaseOperationListener<Boolean>) {
-        FirebaseFirestore.getInstance().collection(this.FAQ_COLLECTION).get()
+        FirebaseFirestore.getInstance().collection(FAQ_COLLECTION).get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    this.faqArray = documentsToFAQ(task.result!!)
+                    faqArray =
+                        documentsToFAQ(task.result!!)
                 }
 
                 isAlreadyFetched = true
@@ -23,7 +23,7 @@ object FAQDAO {
             }
     }
 
-    fun getFAQArray() = this.faqArray
+    fun getFAQArray() = faqArray
 
     private fun documentsToFAQ(qSnapshot: QuerySnapshot): ArrayList<FAQ> {
         val faqArray = arrayListOf<FAQ>()
@@ -36,5 +36,6 @@ object FAQDAO {
         return faqArray
     }
 
-    fun isAlreadyFetched() : Boolean = this.isAlreadyFetched
+    fun isAlreadyFetched() : Boolean =
+        isAlreadyFetched
 }

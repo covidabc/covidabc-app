@@ -1,7 +1,8 @@
-package com.ufabc.covidabc.model
+package com.ufabc.covidabc.model.quiz
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
+import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
 
 object QuizDAO {
 
@@ -10,18 +11,22 @@ object QuizDAO {
     private var quizArray : ArrayList<Quiz> = arrayListOf()
 
     fun refreshQuiz(callback: FirestoreDatabaseOperationListener<Boolean>) {
-        FirebaseFirestore.getInstance().collection(this.QUIZ_COLLECTION).get()
+        FirebaseFirestore.getInstance().collection(QUIZ_COLLECTION).get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    this.quizArray = documentsToQuiz(task.result!!)
+                    quizArray =
+                        documentsToQuiz(
+                            task.result!!
+                        )
                 }
 
-                this.isAlreadyFetched = true
+                isAlreadyFetched = true
                 callback.onCompleted(task.isSuccessful)
             }
     }
 
-    fun getQuizArray() : ArrayList<Quiz> = this.quizArray
+    fun getQuizArray() : ArrayList<Quiz> =
+        quizArray
 
     private fun documentsToQuiz(qSnapshot: QuerySnapshot): ArrayList<Quiz> {
             val quiz = arrayListOf<Quiz>()
@@ -34,5 +39,6 @@ object QuizDAO {
             return quiz
     }
 
-    fun isAlreadyFetched() : Boolean = this.isAlreadyFetched
+    fun isAlreadyFetched() : Boolean =
+        isAlreadyFetched
 }

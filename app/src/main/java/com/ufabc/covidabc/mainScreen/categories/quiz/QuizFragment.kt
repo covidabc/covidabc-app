@@ -12,10 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
-import com.ufabc.covidabc.model.CalendarEventDAO
 import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
-import com.ufabc.covidabc.model.QuizDAO
-import kotlinx.android.synthetic.main.fragment_quiz.*
+import com.ufabc.covidabc.model.quiz.QuizDAO
 
 class QuizFragment : Fragment() {
 
