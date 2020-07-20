@@ -32,23 +32,12 @@ class QuizQuestionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.quiz_question)
 
-        setQuiz()
+        quizzes = QuizDAO.getQuizArray()
         setViews()
         setListeners()
+        chooseRandomQuiz()
     }
 
-    private fun setQuiz() {
-        QuizDAO.getAllquiz(object: FirestoreDatabaseOperationListener<ArrayList<Quiz>> {
-            override fun onSuccess(result: ArrayList<Quiz>) {
-                quizzes = result
-                chooseRandomQuiz()
-            }
-
-            override fun onFailure() {
-                Toast.makeText(App.appContext, R.string.get_faq_failure, Toast.LENGTH_LONG).show()
-            }
-        })
-    }
 
 
     private fun setViews() {

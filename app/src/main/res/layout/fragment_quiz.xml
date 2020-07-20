@@ -1,11 +1,12 @@
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_gradient"
-    android:weightSum="5">
+    android:weightSum="5"
+    android:id="@+id/swipe_refresh_layout_quiz">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,7 +36,7 @@
             android:textAlignment="center" />
 
         <Button
-            android:id="@+id/quiz_enterButton"
+            android:id="@+id/quiz_enter_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/quiz_introText"
@@ -50,4 +51,4 @@
 
 
     </RelativeLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

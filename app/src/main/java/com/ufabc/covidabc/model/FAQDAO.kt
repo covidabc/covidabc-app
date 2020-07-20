@@ -1,31 +1,40 @@
 package com.ufabc.covidabc.model
 
+import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
+import com.google.protobuf.Empty
 
 object FAQDAO {
 
     private const val FAQ_COLLECTION = "faq"
+    private var isAlreadyFetched = false
+    private var faqArray : ArrayList<FAQ> = arrayListOf()
 
-    fun addFAQ(event: CalendarEvent) {
-        FirebaseFirestore.getInstance().collection(FAQDAO.FAQ_COLLECTION).add(event)
-        // TODO: Add onSuccess and onFailure callback
+    fun refreshFAQ(callback: FirestoreDatabaseOperationListener<Boolean>) {
+        FirebaseFirestore.getInstance().collection(this.FAQ_COLLECTION).get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    this.faqArray = documentsToFAQ(task.result!!)
+                }
+
+                isAlreadyFetched = true
+                callback.onCompleted(task.isSuccessful)
+            }
     }
 
-    fun getAllFAQs(callback: FirestoreDatabaseOperationListener<ArrayList<FAQ>>) {
-        FirebaseFirestore.getInstance().collection(FAQDAO.FAQ_COLLECTION).get()
-            .addOnSuccessListener { result -> callback.onSuccess(documentsToFAQ(result)) }
-            .addOnFailureListener { callback.onFailure() }
-    }
+    fun getFAQArray() = this.faqArray
 
     private fun documentsToFAQ(qSnapshot: QuerySnapshot): ArrayList<FAQ> {
-        val faqs = arrayListOf<FAQ>()
+        val faqArray = arrayListOf<FAQ>()
 
         for (document in qSnapshot.documents) {
             document.toObject(FAQ::class.java)?.apply {
-                faqs.add(this)
+                faqArray.add(this)
             }
         }
-        return faqs
+        return faqArray
     }
+
+    fun isAlreadyFetched() : Boolean = this.isAlreadyFetched
 }

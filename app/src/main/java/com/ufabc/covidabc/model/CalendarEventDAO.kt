@@ -8,17 +8,27 @@ import java.lang.RuntimeException
 object CalendarEventDAO {
 
     private const val EVENT_COLLECTION = "eventos"
+    private var isAlreadyFetched = false
+    private var eventArray : ArrayList<CalendarEvent> = arrayListOf()
 
     fun addEvent(event: CalendarEvent) {
         FirebaseFirestore.getInstance().collection(EVENT_COLLECTION).add(event)
         // TODO: Add onSuccess and onFailure callback
     }
 
-    fun getAllEvents(callback: FirestoreDatabaseOperationListener<ArrayList<CalendarEvent>>) {
-        FirebaseFirestore.getInstance().collection(EVENT_COLLECTION).get()
-            .addOnSuccessListener { result -> callback.onSuccess(documentsToCalendarEvents(result)) }
-            .addOnFailureListener { callback.onFailure() }
+    fun refreshFAQ(callback: FirestoreDatabaseOperationListener<Boolean>) {
+        FirebaseFirestore.getInstance().collection(this.EVENT_COLLECTION).get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    this.eventArray = documentsToCalendarEvents(task.result!!)
+                }
+
+                this.isAlreadyFetched = true
+                callback.onCompleted(task.isSuccessful)
+            }
     }
+
+    fun getEventArray() : ArrayList<CalendarEvent> = this.eventArray
 
     private fun documentsToCalendarEvents(qSnapshot: QuerySnapshot): ArrayList<CalendarEvent> {
         val events = arrayListOf<CalendarEvent>()
@@ -30,4 +40,6 @@ object CalendarEventDAO {
         }
         return events
     }
+
+    fun isAlreadyFetched() : Boolean = this.isAlreadyFetched
 }

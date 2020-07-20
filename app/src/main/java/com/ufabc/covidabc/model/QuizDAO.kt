@@ -5,21 +5,25 @@ import com.google.firebase.firestore.QuerySnapshot
 
 object QuizDAO {
 
-        private const val quiz_COLLECTION = "quiz"
+    private const val QUIZ_COLLECTION = "quiz"
+    private var isAlreadyFetched = false
+    private var quizArray : ArrayList<Quiz> = arrayListOf()
 
-        fun addquiz(question: Quiz) {
-            FirebaseFirestore.getInstance().collection(QuizDAO.quiz_COLLECTION).add(question)
-            // TODO: Add onSuccess and onFailure callback
-        }
+    fun refreshQuiz(callback: FirestoreDatabaseOperationListener<Boolean>) {
+        FirebaseFirestore.getInstance().collection(this.QUIZ_COLLECTION).get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    this.quizArray = documentsToQuiz(task.result!!)
+                }
 
-        fun getAllquiz(callback: FirestoreDatabaseOperationListener<ArrayList<Quiz>>) {
-            FirebaseFirestore.getInstance().collection(QuizDAO.quiz_COLLECTION).get()
-                .addOnSuccessListener { result -> callback.onSuccess(
-                    com.ufabc.covidabc.model.QuizDAO.documentstoquiz(result)) }
-                .addOnFailureListener { callback.onFailure() }
-        }
+                this.isAlreadyFetched = true
+                callback.onCompleted(task.isSuccessful)
+            }
+    }
 
-    private fun documentstoquiz(qSnapshot: QuerySnapshot): ArrayList<Quiz> {
+    fun getQuizArray() : ArrayList<Quiz> = this.quizArray
+
+    private fun documentsToQuiz(qSnapshot: QuerySnapshot): ArrayList<Quiz> {
             val quiz = arrayListOf<Quiz>()
 
             for (document in qSnapshot.documents) {
@@ -30,4 +34,5 @@ object QuizDAO {
             return quiz
     }
 
+    fun isAlreadyFetched() : Boolean = this.isAlreadyFetched
 }
