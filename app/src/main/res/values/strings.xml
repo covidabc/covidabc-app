@@ -71,4 +71,7 @@
     <string name="text_dialog_message">dialog message</string>
     <string name="news_title">News Title</string>
     <string name="news_auxiliary_title">News Auxiliary Title</string>
+    <string name="text_my_account">Espaço do brigadista</string>
+    <string name="text_logout">Sair</string>
+    <string name="sign_out">Voce saiu com sucesso</string>
 </resources>
