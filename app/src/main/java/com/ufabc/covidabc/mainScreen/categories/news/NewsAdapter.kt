@@ -1,13 +1,16 @@
 package com.ufabc.covidabc.mainScreen.categories.news
 
 import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.news.News
@@ -15,7 +18,8 @@ import com.ufabc.covidabc.model.news.News
 class NewsAdapter(private val news: ArrayList<News>): RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        //var newsImage : ImageView = itemView.findViewById(R.id.newsImageView)
+        //var newsImage : Image = itemView.findViewById(R.id.newsImageView)
+        var newsImage : ImageView = itemView.findViewById(R.id.newsImageView)
         var newsTitle : TextView = itemView.findViewById(R.id.textViewNews)
         var newsTitleAux : TextView = itemView.findViewById(R.id.textViewNewsAux)
         var newsBody : LinearLayout = itemView.findViewById(R.id.news_body)
@@ -34,7 +38,8 @@ class NewsAdapter(private val news: ArrayList<News>): RecyclerView.Adapter<NewsA
         news[position].apply {
             holder.newsTitle.text = this.getTitulo()
             holder.newsTitleAux.text = this.getTituloAuxiliar()
-            //holder.newsImage.setImageURI()
+
+            Picasso.get().load(Uri.parse(getImagemURI())).into(holder.newsImage);
 
             holder.newsBody.setOnClickListener {
                 val intent = Intent(it.context, NewsDescriptionActivity::class.java)
