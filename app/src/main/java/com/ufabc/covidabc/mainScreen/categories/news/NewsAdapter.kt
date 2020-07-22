@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -22,7 +23,7 @@ class NewsAdapter(private val news: ArrayList<News>): RecyclerView.Adapter<NewsA
         var newsImage : ImageView = itemView.findViewById(R.id.newsImageView)
         var newsTitle : TextView = itemView.findViewById(R.id.textViewNews)
         var newsTitleAux : TextView = itemView.findViewById(R.id.textViewNewsAux)
-        var newsBody : LinearLayout = itemView.findViewById(R.id.news_body)
+        var newsBody : RelativeLayout = itemView.findViewById(R.id.news_body)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsAdapter.ViewHolder {
@@ -39,7 +40,9 @@ class NewsAdapter(private val news: ArrayList<News>): RecyclerView.Adapter<NewsA
             holder.newsTitle.text = this.getTitulo()
             holder.newsTitleAux.text = this.getTituloAuxiliar()
 
-            Picasso.get().load(Uri.parse(getImagemURI())).into(holder.newsImage);
+            Picasso.get().load(Uri.parse(getImagemURI()))
+                .placeholder(R.drawable.ic_image)
+                .into(holder.newsImage);
 
             holder.newsBody.setOnClickListener {
                 val intent = Intent(it.context, NewsDescriptionActivity::class.java)

@@ -33,11 +33,12 @@ class NewsFragment : Fragment() {
     private fun setNews() {
         newsArray = arrayListOf<News>()
         for (i in 0..10) {
+            val valor = 800 + i
             newsArray.add(
                 News(
                     "titulo $i",
                     "subtitulo $i",
-                    "https://pfarma.com.br/images/noticias/coronavirus-covid-19.jpg"
+                    "https://picsum.photos/1200/$valor"
                 )
             )
         }

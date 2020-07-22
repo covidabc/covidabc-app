@@ -1,41 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <androidx.cardview.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/general_space">
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/general_space"
+    app:cardCornerRadius="10dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/news_body"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textViewNews"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/news_title"
-            android:textSize="28sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textViewNewsAux"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/news_auxiliary_title"
-            android:textSize="20sp" />
-
         <ImageView
             android:id="@+id/newsImageView"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_image"
+            android:adjustViewBounds="true" />
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerInside"
-            app:srcCompat="@drawable/brain" />
-    </LinearLayout>
-    </androidx.cardview.widget.CardView>
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/newsImageView"
+            android:layout_toRightOf="@id/newsImageView"
+            android:layout_toEndOf="@id/newsImageView"
+            android:layout_alignBottom="@id/newsImageView"
+            android:orientation="vertical"
+            android:weightSum="1"
+            android:background="@color/color1_saphire_blue">
+
+            <TextView
+                android:id="@+id/textViewNews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/little_space"
+                android:gravity="center"
+                android:layout_weight="0.3"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@string/lorem_ipsum"
+                app:fontFamily="sans-serif-medium"
+                android:textSize="@dimen/text_default_size"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/white"
+                android:layout_marginLeft="@dimen/little_space"
+                android:layout_marginRight="@dimen/little_space"/>
+
+            <TextView
+                android:id="@+id/textViewNewsAux"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/little_space"
+                android:gravity="center"
+                android:layout_weight="0.7"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="@string/lorem_ipsum"
+                app:fontFamily="sans-serif-medium"
+                android:textSize="@dimen/text_default_size"
+                android:textColor="@android:color/white"/>
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
 

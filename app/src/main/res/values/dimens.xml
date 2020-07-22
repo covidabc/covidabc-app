@@ -16,4 +16,5 @@
     <dimen name="text_big_size">25sp</dimen>
     <dimen name="text_answer_size">17sp</dimen>
     <dimen name="question_question_size">25sp</dimen>
+    <dimen name="very_little_space">4dp</dimen>
 </resources>
