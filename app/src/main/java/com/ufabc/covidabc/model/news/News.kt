@@ -1,26 +1,25 @@
 package com.ufabc.covidabc.model.news
 
 
-import android.widget.ImageView
 import java.io.Serializable
 
 class News: Serializable {
 
-    private lateinit var titulo: String
-    private lateinit var tituloAuxiliar: String
-    private lateinit var imagemURI: String
+    private lateinit var title: String
+    private lateinit var imgageURL: String
+    private lateinit var newsURL: String
+    private lateinit var source: String
 
     constructor()
 
-    constructor(titulo: String, tituloAuxiliar: String, imagemURI: String) {
-        this.titulo = titulo
-        this.tituloAuxiliar = tituloAuxiliar
-        this.imagemURI = imagemURI
+    constructor(title: String, imageURL: String, newsURL: String, source: String) {
+        this.title = title
+        this.imgageURL = imageURL
+        this.newsURL = newsURL
     }
 
-
-    fun getTitulo() = this.titulo
-    fun getTituloAuxiliar() = this.tituloAuxiliar
-    fun getImagemURI() = this.imagemURI
-
+    fun getTitle() = this.title
+    fun getSource() = this.source
+    fun getImgageURL() = this.imgageURL
+    fun getNewsURL() = this.newsURL
 }

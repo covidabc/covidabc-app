@@ -1,29 +1,30 @@
 package com.ufabc.covidabc.model.news
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.QuerySnapshot
+import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
+import com.ufabc.covidabc.model.faq.FAQDAO
 
 object NewsDAO {
-    private const val NEWS_COLLECTION = "eventos"
+    private const val NEWS_COLLECTION = "news"
 
-    fun addNew(new: News) {
-        FirebaseFirestore.getInstance().collection(NEWS_COLLECTION).add(new)
-        // TODO: Add onSuccess and onFailure callback
-    }
-/*
-    fun getAllNews(callback: FirestoreDatabaseOperationListener<ArrayList<News>>) {
+    private var isAlreadyFetched = false
+    private lateinit var newsQuery: Query
+
+    fun getNewsQuery(): Query = this.newsQuery
+
+    fun isAlreadyFetched() : Boolean = this.isAlreadyFetched
+
+    fun refreshNews(callback: FirestoreDatabaseOperationListener<Boolean>) {
         FirebaseFirestore.getInstance().collection(NEWS_COLLECTION).get()
-            .addOnSuccessListener { result -> callback.onSuccess(documentsToCalendarEvents(result)) }
-            .addOnSuccessListener { callback.onFailure() }
-    }
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    this.newsQuery = task.result!!.query
+                }
 
-    private fun documentsToCalendarEvents(qSnapshot: QuerySnapshot): ArrayList<CalendarEvent> {
-        val events = arrayListOf<CalendarEvent>()
-
-        for (document in qSnapshot.documents) {
-            document.toObject(CalendarEvent::class.java)?.apply {
-                events.add(this)
+                isAlreadyFetched = true
+                callback.onCompleted(task.isSuccessful)
             }
-        }
-        return events
-    }*/
+    }
 }

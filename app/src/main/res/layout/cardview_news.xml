@@ -15,59 +15,58 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/newsImageView"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_image"
-            android:adjustViewBounds="true" />
+            android:id="@+id/news_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/news_image_size"
+            android:scaleType="centerCrop"/>
+
+        <ProgressBar
+            android:id="@+id/news_progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminateDrawable="@drawable/progress_shape_xml"
+            android:layout_margin="@dimen/big_space"
+            android:scaleType="centerCrop"
+            android:layout_alignTop="@id/news_image_view"
+            android:layout_alignBottom="@id/news_image_view"
+            android:visibility="visible"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@id/newsImageView"
-            android:layout_toRightOf="@id/newsImageView"
-            android:layout_toEndOf="@id/newsImageView"
-            android:layout_alignBottom="@id/newsImageView"
+            android:layout_below="@id/news_image_view"
             android:orientation="vertical"
             android:weightSum="1"
             android:background="@color/color1_saphire_blue">
 
             <TextView
-                android:id="@+id/textViewNews"
+                android:id="@+id/news_title_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/little_space"
-                android:gravity="center"
+                android:paddingTop="@dimen/general_space"
+                android:paddingLeft="@dimen/general_space"
+                android:paddingRight="@dimen/general_space"
                 android:layout_weight="0.3"
                 android:ellipsize="end"
-                android:maxLines="2"
                 android:text="@string/lorem_ipsum"
-                app:fontFamily="sans-serif-medium"
+                app:fontFamily=""
                 android:textSize="@dimen/text_default_size"
                 android:textStyle="bold"
-                android:textAllCaps="true"
                 android:textColor="@android:color/white"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/white"
-                android:layout_marginLeft="@dimen/little_space"
-                android:layout_marginRight="@dimen/little_space"/>
-
             <TextView
-                android:id="@+id/textViewNewsAux"
+                android:id="@+id/source_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/little_space"
-                android:gravity="center"
+                android:padding="@dimen/general_space"
                 android:layout_weight="0.7"
                 android:ellipsize="end"
                 android:maxLines="3"
-                android:text="@string/lorem_ipsum"
+                android:text="@string/text_source"
                 app:fontFamily="sans-serif-medium"
+                android:textAllCaps="true"
                 android:textSize="@dimen/text_default_size"
+                android:textStyle="bold"
                 android:textColor="@android:color/white"/>
         </LinearLayout>
     </RelativeLayout>
