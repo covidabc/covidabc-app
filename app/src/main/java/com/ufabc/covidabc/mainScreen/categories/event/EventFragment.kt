@@ -3,6 +3,7 @@ package com.ufabc.covidabc.mainScreen.categories.event
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,20 +46,12 @@ class EventFragment : Fragment() {
         setEvents()
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        createEventFAB.visibility = if (isUserLoggedIn()) View.VISIBLE else View.INVISIBLE
-    }
-
-    private fun isUserLoggedIn() : Boolean = mAuth.currentUser != null
-
     private fun setViews(view: View) {
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout_event)
         eventRecyclerView = requireView().findViewById(R.id.recycler_view_calendar)
 
         createEventFAB = view.findViewById(R.id.fab_event_post)
-        createEventFAB.visibility = if (isUserLoggedIn()) View.VISIBLE else View.INVISIBLE
+
     }
 
     private fun setListeners() {
@@ -76,6 +69,13 @@ class EventFragment : Fragment() {
                     swipeRefreshLayout.isRefreshing = false
                 }
             })
+        }
+
+        mAuth.addAuthStateListener {
+
+                val user = mAuth.getCurrentUser();
+                createEventFAB.visibility = if (user != null) View.VISIBLE else View.INVISIBLE
+
         }
     }
 
