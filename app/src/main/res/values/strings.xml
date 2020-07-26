@@ -80,4 +80,5 @@
     <string name="text_event_header">Dê uma olhada nos próximos eventos</string>
     <string name="create_event_sucess">Evento foi criado com sucesso</string>
     <string name="create_event_failure">Falha ao criar evento</string>
+    <string name="API_KEY">AIzaSyDGTF09Gl-XU-BtEhCWoeNv3nKqkYbIEFI</string>
 </resources>
