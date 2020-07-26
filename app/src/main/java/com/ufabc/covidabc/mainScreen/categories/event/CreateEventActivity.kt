@@ -15,7 +15,6 @@ class CreateEventActivity : AppCompatActivity() {
     private lateinit var eventTitleEditText : EditText
     private lateinit var eventPlaceEditText : EditText
     private lateinit var eventDescriptionEditText : EditText
-    private lateinit var eventDateEditText : TextView
     private lateinit var eventTypeSpinner : Spinner
     private lateinit var createEventButton : Button
     private lateinit var pickDateButton : Button
@@ -29,25 +28,28 @@ class CreateEventActivity : AppCompatActivity() {
         setListeners()
     }
 
+
+
     private fun setViews() {
         eventTitleEditText = findViewById(R.id.event_title_edit_text)
         eventPlaceEditText = findViewById(R.id.event_place_edit_text)
         eventDescriptionEditText = findViewById(R.id.event_description_edit_text)
-        eventDateEditText = findViewById(R.id.event_date_edit_text)
         createEventButton = findViewById(R.id.create_event_button)
         pickDateButton = findViewById(R.id.pick_date_button)
         eventTypeSpinner = findViewById(R.id.event_type_spinner)
 
         // Create an ArrayAdapter using the string array and a default spinner layout
-        eventTypeSpinner.adapter = ArrayAdapter(
+        val adapter = ArrayAdapter(
             this,
-            android.R.layout.simple_spinner_item,
+            R.layout.custom_spinner_layout, // Custom spinner layout
             CalendarEvent.EventType.values()
         )
+        adapter.setDropDownViewResource(R.layout.custom_spinner_item_layout)
+        eventTypeSpinner.adapter = adapter
     }
 
     private fun isAnyEditTextEmpty() : Boolean =
-        eventTitleEditText.text.isEmpty() || eventPlaceEditText.text.isEmpty() || eventDescriptionEditText.text.isEmpty() || eventDateEditText.text.isEmpty()
+        eventTitleEditText.text.isEmpty() || eventPlaceEditText.text.isEmpty() || eventDescriptionEditText.text.isEmpty() // || eventDateEditText.text.isEmpty()
 
     private fun setListeners() {
         createEventButton.setOnClickListener {
@@ -77,8 +79,7 @@ class CreateEventActivity : AppCompatActivity() {
 
             val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, day ->
                 eventDate = GregorianCalendar(year, month, day, 0, 0).time
-                eventDateEditText.text = "$day/$month/$year"
-                eventDateEditText.setBackgroundResource(R.drawable.edit_text_normal);
+                pickDateButton.text = "$day/$month/$year"
             }
 
             DatePickerDialog(
@@ -107,11 +108,8 @@ class CreateEventActivity : AppCompatActivity() {
             eventDescriptionEditText.setBackgroundResource(R.drawable.edit_text_error)
         }
 
-        if(eventDateEditText.text.isEmpty()){
-            eventDateEditText.error = getString(R.string.required)
-            eventDateEditText.setBackgroundResource(R.drawable.edit_text_error)
-        }
     }
+
 
     private fun createEvent() {
         val eventType = eventTypeSpinner.selectedItem as CalendarEvent.EventType

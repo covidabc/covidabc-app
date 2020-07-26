@@ -63,6 +63,7 @@
         android:layout_marginBottom="@dimen/default_space"/>
 
     <LinearLayout
+
         android:id="@+id/event_date_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -85,61 +86,50 @@
             android:textColor="@android:color/white"
             android:layout_marginEnd="@dimen/little_space" />
 
-        <TextView
-            android:id="@+id/event_date_edit_text"
-            android:hint="@string/no_event_date_selected"
+        <RelativeLayout
+            android:id="@+id/spinner_layout"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="6"
-            app:fontFamily="sans-serif-light"
-            android:textColor="@color/color1_saphire_blue"
-            android:textSize="@dimen/text_default_size"
-            android:background="@drawable/edit_text_normal"
-            android:padding="@dimen/general_space" />
+            android:layout_marginRight="@dimen/little_space"
+            android:background="@drawable/button_shape"
+            android:orientation="horizontal"
+            android:layout_below="@id/event_date_layout">
+
+            <Spinner
+                android:prompt="@string/text_create_event"
+                android:id="@+id/event_type_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                app:fontFamily="sans-serif-light"
+                android:textSize="@dimen/text_default_size"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown"
+                android:layout_marginStart="5dp">
+            </Spinner>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_down" />
+
+        </RelativeLayout>
+
     </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/spinner_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/little_space"
-        android:background="@drawable/spinner_border"
-        android:orientation="horizontal"
-        android:layout_below="@id/event_date_layout">
-
-        <Spinner
-            android:prompt="@string/text_create_event"
-            android:id="@+id/event_type_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            app:fontFamily="sans-serif-light"
-            android:textColor="@color/color1_saphire_blue"
-            android:textSize="@dimen/text_default_size"
-            android:background="@android:color/transparent"
-            android:gravity="center"
-            android:layout_marginLeft="5dp"
-            android:spinnerMode="dropdown"
-            android:layout_marginStart="5dp">
-        </Spinner>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_down" />
-
-    </RelativeLayout>
 
 
     <Button
         android:id="@+id/create_event_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/spinner_layout"
+        android:layout_below="@id/event_date_layout"
         android:padding="@dimen/general_space"
         android:text="@string/text_create_event_button"
         android:background="@drawable/button_shape"
