@@ -18,4 +18,5 @@
     <dimen name="question_question_size">25sp</dimen>
     <dimen name="very_little_space">4dp</dimen>
     <dimen name="news_image_size">150dp</dimen>
+    <dimen name="quiz_image_size">200dp</dimen>
 </resources>

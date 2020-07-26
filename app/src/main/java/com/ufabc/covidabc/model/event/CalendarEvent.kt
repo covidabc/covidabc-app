@@ -56,9 +56,9 @@ class CalendarEvent : Serializable {
     }
 
     private fun getParsedMonth(date: Calendar) : String {
-        return when (date.get(Calendar.DAY_OF_WEEK)) {
+        return when (date.get(Calendar.MONTH)) {
             Calendar.JANUARY -> "JAN"
-            Calendar.FEBRUARY -> "FEB"
+            Calendar.FEBRUARY -> "FEV"
             Calendar.MARCH -> "MAR"
             Calendar.APRIL -> "ABR"
             Calendar.MAY -> "MAI"

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.*
 import androidx.core.widget.addTextChangedListener
 import com.ufabc.covidabc.R
+import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
 import com.ufabc.covidabc.model.event.CalendarEvent
 import com.ufabc.covidabc.model.event.CalendarEventDAO
 import java.util.*
@@ -73,8 +74,9 @@ class CreateEventActivity : AppCompatActivity() {
 
         pickDateButton.setOnClickListener{
             val cal = Calendar.getInstance()
+
             val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, day ->
-                eventDate = Date(year, month, day)
+                eventDate = GregorianCalendar(year, month, day, 0, 0).time
                 eventDateEditText.text = "$day/$month/$year"
                 eventDateEditText.setBackgroundResource(R.drawable.edit_text_normal);
             }
@@ -120,6 +122,16 @@ class CreateEventActivity : AppCompatActivity() {
             this.eventDate,
             eventPlaceEditText.text.toString()
         )
-        CalendarEventDAO.addEvent(newEvent)
+
+        CalendarEventDAO.addEvent(newEvent, object : FirestoreDatabaseOperationListener<Boolean> {
+            override fun onCompleted(sucess: Boolean) {
+                if (sucess) {
+                    Toast.makeText(applicationContext, R.string.create_event_sucess, Toast.LENGTH_LONG).show()
+                    finish()
+                }
+
+                Toast.makeText(applicationContext, R.string.create_event_failure, Toast.LENGTH_LONG).show()
+            }
+        })
     }
 }

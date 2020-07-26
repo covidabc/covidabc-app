@@ -1,54 +1,44 @@
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_gradient"
-    android:weightSum="5"
-    android:id="@+id/swipe_refresh_layout_quiz">
+    android:id="@+id/linear_layout_quiz"
+    android:orientation="vertical"
+    android:gravity="center">
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/quiz_image"
+        android:layout_width="@dimen/quiz_image_size"
+        android:layout_height="@dimen/quiz_image_size"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center"
+        android:src="@drawable/virus_quiz" />
+
+    <TextView
+        android:id="@+id/quiz_introText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        app:fontFamily="sans-serif-light"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:layout_margin="@dimen/big_space"
+        android:lineSpacingExtra="@dimen/little_space"
+        android:gravity="center_horizontal"
+        android:text="@string/quiz_intro"
+        android:textAlignment="center" />
 
-        <ImageView
-            android:id="@+id/quiz_image"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="170dp"
-            android:src="@drawable/brain"
-            tools:srcCompat="@tools:sample/avatars" />
+    <Button
+        android:id="@+id/quiz_enter_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_shape"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_default_size"
+        android:textStyle="bold"
+        android:text="@string/quiz_enter"/>
 
-        <TextView
-            android:id="@+id/quiz_introText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:fontFamily="sans-serif-light"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_below="@+id/quiz_image"
-            android:layout_marginTop="20dp"
-            android:gravity="center_horizontal"
-            android:text="@string/quiz_intro"
-            android:textAlignment="center" />
-
-        <Button
-            android:id="@+id/quiz_enter_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/quiz_introText"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/button_shape"
-            android:textColor="@android:color/white"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:layout_centerHorizontal="true"
-            android:text="@string/quiz_enter"
-            android:onClick="iniciarQuiz"/>
-
-
-    </RelativeLayout>
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>

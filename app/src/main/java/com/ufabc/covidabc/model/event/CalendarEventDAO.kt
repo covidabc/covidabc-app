@@ -1,8 +1,11 @@
 package com.ufabc.covidabc.model.event
 
+
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
+import java.util.*
+import kotlin.collections.ArrayList
 
 object CalendarEventDAO {
 
@@ -10,13 +13,21 @@ object CalendarEventDAO {
     private var isAlreadyFetched = false
     private var eventArray : ArrayList<CalendarEvent> = arrayListOf()
 
-    fun addEvent(event: CalendarEvent) {
+    fun addEvent(event: CalendarEvent, callback: FirestoreDatabaseOperationListener<Boolean>) {
         FirebaseFirestore.getInstance().collection(EVENT_COLLECTION).add(event)
-        // TODO: Add onSuccess and onFailure callback
+            .addOnCompleteListener { task ->
+                callback.onCompleted(task.isSuccessful)
+            }
     }
 
     fun refreshFAQ(callback: FirestoreDatabaseOperationListener<Boolean>) {
-        FirebaseFirestore.getInstance().collection(EVENT_COLLECTION).get()
+        val yesterday = Calendar.getInstance()
+        yesterday.add(Calendar.DAY_OF_MONTH, -1);
+
+        FirebaseFirestore.getInstance().collection(EVENT_COLLECTION)
+            .orderBy("date")
+            .whereGreaterThanOrEqualTo("date", yesterday.time)
+            .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     eventArray =

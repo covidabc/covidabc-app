@@ -3,7 +3,6 @@ package com.ufabc.covidabc.mainScreen.categories.event
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,6 @@ import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.event.CalendarEvent
 import com.ufabc.covidabc.model.event.CalendarEventDAO
-import com.ufabc.covidabc.model.faq.FAQDAO
 import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
 import kotlin.collections.ArrayList
 
@@ -60,10 +58,10 @@ class EventFragment : Fragment() {
         }
 
         swipeRefreshLayout.setOnRefreshListener {
-            FAQDAO.refreshFAQ(object : FirestoreDatabaseOperationListener<Boolean> {
+            CalendarEventDAO.refreshFAQ(object : FirestoreDatabaseOperationListener<Boolean> {
                 override fun onCompleted(sucess: Boolean) {
                     if (sucess) {
-                        eventRecyclerView.adapter?.notifyDataSetChanged()
+                        populateEvents(CalendarEventDAO.getEventArray())
                     }
 
                     swipeRefreshLayout.isRefreshing = false

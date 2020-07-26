@@ -6,10 +6,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/event_header_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:fontFamily="sans-serif-light"
+        android:textColor="@color/color1_saphire_blue"
+        android:textSize="20sp"
+        android:layout_margin="@dimen/general_space"
+        android:gravity="center_horizontal"
+        android:text="@string/text_event_header"
+        android:textAlignment="center" />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/swipe_refresh_layout_event">
+        android:id="@+id/swipe_refresh_layout_event"
+        android:layout_below="@id/event_header_text_view">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_calendar"
