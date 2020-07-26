@@ -100,4 +100,14 @@
         android:paddingStart="@dimen/little_space"
         tools:ignore="RtlSymmetry">
     </TextView>
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/event_description_map_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/event_description_text_view"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp" />
+
 </RelativeLayout>
