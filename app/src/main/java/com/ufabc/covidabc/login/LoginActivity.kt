@@ -3,17 +3,12 @@ package com.ufabc.covidabc.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.ufabc.covidabc.R
-import com.ufabc.covidabc.mainScreen.MainScreenActivity
 
 class LoginActivity : AppCompatActivity() {
 
