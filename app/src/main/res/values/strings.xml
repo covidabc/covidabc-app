@@ -81,4 +81,5 @@
     <string name="create_event_sucess">Evento foi criado com sucesso</string>
     <string name="create_event_failure">Falha ao criar evento</string>
     <string name="API_KEY">AIzaSyDGTF09Gl-XU-BtEhCWoeNv3nKqkYbIEFI</string>
+    <string name="text_news_header">Fato ou Fake? Atualizamos diariamente notícias de diferentes fontes</string>
 </resources>

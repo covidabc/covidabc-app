@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    <TextView
+        android:id="@+id/news_header_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:fontFamily="sans-serif-light"
+        android:textColor="@color/color1_saphire_blue"
+        android:textSize="20sp"
+        android:layout_margin="@dimen/general_space"
+        android:gravity="center_horizontal"
+        android:text="@string/text_news_header"
+        android:lineSpacingExtra="@dimen/very_little_space"
+        android:textAlignment="center" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_news"
+        android:layout_below="@id/news_header_text_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-</FrameLayout>
+</RelativeLayout>

@@ -45,7 +45,9 @@
             android:paddingLeft="@dimen/general_space"
             android:paddingRight="@dimen/general_space"
             android:layout_toLeftOf="@id/next_icon"
-            android:layout_toStartOf="@id/next_icon"/>
+            android:layout_toStartOf="@id/next_icon"
+            android:singleLine="true"
+            android:clickable="true"/>
 
         <ImageView
             android:id="@+id/next_icon"

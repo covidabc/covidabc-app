@@ -57,7 +57,7 @@ class FAQFragment : Fragment() {
             FAQDAO.refreshFAQ(object : FirestoreDatabaseOperationListener<Boolean> {
                 override fun onCompleted(sucess: Boolean) {
                     if (sucess) {
-                        faqRecyclerView.adapter?.notifyDataSetChanged()
+                        populateFAQ(FAQDAO.getFAQArray())
                     }
 
                     swipeRefreshLayout.isRefreshing = false

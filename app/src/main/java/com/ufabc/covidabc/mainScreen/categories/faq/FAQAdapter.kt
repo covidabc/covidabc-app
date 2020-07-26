@@ -12,11 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.faq.FAQ
-import io.noties.markwon.Markwon
 
 class FAQAdapter(val faq: ArrayList<FAQ>) : RecyclerView.Adapter<FAQAdapter.ViewHolder>() {
-
-    private val markwon: Markwon = Markwon.create(App.appContext)
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val questionText : TextView = itemView.findViewById(R.id.question_text)
@@ -36,7 +33,7 @@ class FAQAdapter(val faq: ArrayList<FAQ>) : RecyclerView.Adapter<FAQAdapter.View
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.questionText.text = faq[position].getQuestion()
         holder.answerText.movementMethod = LinkMovementMethod.getInstance()
-        markwon.setMarkdown(holder.answerText, faq[position].getAnswer())
+        holder.answerText.text = faq[position].getAnswer()
 
         holder.faqCard.setOnClickListener {
             val intent = Intent(it.context, FAQDescriptionActivity::class.java)
