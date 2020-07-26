@@ -4,7 +4,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/color1_saphire_blue</item>
         <item name="colorPrimaryDark">@color/color1_saphire_blue</item>
-        <item name="colorAccent">@color/color3_keppel</item>
+        <item name="colorAccent">@color/color1_saphire_blue</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
