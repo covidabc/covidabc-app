@@ -22,6 +22,7 @@ class EventDescriptionActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var eventDescriptionTextView: TextView
     private lateinit var event : CalendarEvent
     private lateinit var eventDescriptionMapView : MapView
+    private lateinit var latlong : LatLng
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +51,7 @@ class EventDescriptionActivity : AppCompatActivity(), OnMapReadyCallback {
         eventPlaceTextView.text = event.getPlace()
         eventDateTextView.text = event.getFormatedDate()
         eventDescriptionTextView.text = event.getDescription()
+        latlong = LatLng(event.getLatitude(), event.getLongitude())
     }
 
 
@@ -66,21 +68,27 @@ class EventDescriptionActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onResume() {
         eventDescriptionMapView.onResume()
 
+
         eventDescriptionMapView.getMapAsync { it ->
             it?.apply {
-                val ufabc = LatLng(-23.6444901,-46.530369)
+                clear()
                 addMarker(
                     MarkerOptions()
-                        .position(ufabc)
-                        .title("UFABC")
+                        .position(latlong)
+                        .title("Local")
                         .visible(true)
                 )
-                moveCamera(CameraUpdateFactory.newLatLng(ufabc))
-                setMaxZoomPreference(14.0f)
-                setMinZoomPreference(15.0f)
-
+                animateCamera(
+                    CameraUpdateFactory.newLatLngZoom(
+                        LatLng(
+                            latlong.latitude,
+                            latlong.longitude
+                        ), 15f
+                    )
+                )
+            }
         }
-    }
+
         super.onResume()
     }
 
@@ -103,6 +111,7 @@ class EventDescriptionActivity : AppCompatActivity(), OnMapReadyCallback {
         eventDescriptionMapView.onStop()
         super.onStop()
     }
+
 
     override fun onMapReady(googleMap: GoogleMap?) {
         val ufabc = LatLng(37.7750, -122.4183)

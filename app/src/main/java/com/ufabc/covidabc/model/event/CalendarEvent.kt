@@ -17,15 +17,19 @@ class CalendarEvent : Serializable {
     private lateinit var description : String
     private lateinit var place: String
     private lateinit var date: Date
+    private var latitude : Double = 0.0
+    private var longitude : Double = 0.0
 
     constructor()
 
-    constructor(title: String, eventType: EventType, description: String, date: Date, place: String) {
+    constructor(title: String, eventType: EventType, description: String, date: Date, place: String, lat : Double, long : Double) {
         this.title = title
         this.eventType = eventType
         this.description = description
         this.date = date
         this.place = place
+        this.latitude = lat
+        this.longitude = long
     }
 
     fun getTitle() = this.title
@@ -33,6 +37,9 @@ class CalendarEvent : Serializable {
     fun getDescription() = this.description
     fun getPlace() = this.place
     fun getDate() = this.date
+    fun getLongitude() : Double = this.longitude
+    fun getLatitude() : Double = this.latitude
+
 
     fun getFormatedDate() : String {
         val calendar = Calendar.getInstance()

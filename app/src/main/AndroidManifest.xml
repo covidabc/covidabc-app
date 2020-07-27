@@ -8,6 +8,8 @@
     tools:ignore="GradleOverrides"
     tools:targetApi="o">
 
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+
     <uses-sdk
         android:targetSdkVersion="30"
         tools:ignore="GradleOverrides" />
@@ -24,6 +26,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".mainScreen.categories.quiz.QuizResultActivity"></activity>
+        <activity android:name=".mainScreen.categories.event.EventMapsLocationActivity"></activity>
         <activity android:name=".login.MyAccountActivity"></activity>
         <activity android:name=".login.ForgotPasswordActivity" />
         <activity android:name=".login.RegisterActivity" />

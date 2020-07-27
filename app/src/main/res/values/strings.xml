@@ -81,6 +81,8 @@
     <string name="create_event_sucess">Evento foi criado com sucesso</string>
     <string name="create_event_failure">Falha ao criar evento</string>
     <string name="API_KEY">AIzaSyDGTF09Gl-XU-BtEhCWoeNv3nKqkYbIEFI</string>
+    <string name="create_event_escolher_localizacao">Escolher localização no mapa</string>
+    <string name="digite_endereco">Digite o endereço</string>
     <string name="text_news_header">Fato ou Fake? Atualizamos diariamente notícias de diferentes fontes</string>
     <string name="text_progress">Progresso</string>
     <string name="right_answer">Você acertou</string>
