@@ -72,6 +72,7 @@ class CreateEventActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, R.string.fill_in_fields, Toast.LENGTH_SHORT).show()
             }
             else {
+                this.addr_string = placeTextHolder.text.toString()
                 createEvent()
             }
         }
