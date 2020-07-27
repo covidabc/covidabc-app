@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@android:id/text1"
-    style="?android:attr/spinnerDropDownItemStyle"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_marginTop="1dp"
+    app:fontFamily="sans-serif-light"
     android:ellipsize="marquee"
+    android:textAlignment="center"
     android:textColor="#000"
+    android:gravity="center"
+    android:paddingRight="25dp"
     android:singleLine="true" />

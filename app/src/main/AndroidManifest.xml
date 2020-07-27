@@ -6,13 +6,13 @@
     android:versionCode="1"
     android:versionName="1.0"
     tools:ignore="GradleOverrides"
-    tools:targetApi="o" >
-
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    tools:targetApi="o">
 
     <uses-sdk
         android:targetSdkVersion="30"
         tools:ignore="GradleOverrides" />
+
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <application
         android:name=".App"
@@ -22,12 +22,12 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".login.MyAccountActivity" >
-        </activity>
+        android:theme="@style/AppTheme">
+        <activity android:name=".mainScreen.categories.event.EventMapsLocationActivity"></activity>
+        <activity android:name=".login.MyAccountActivity"></activity>
         <activity android:name=".login.ForgotPasswordActivity" />
         <activity android:name=".login.RegisterActivity" />
-        <activity android:name=".mainScreen.MainScreenActivity" >
+        <activity android:name=".mainScreen.MainScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -48,6 +48,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/API_KEY"/>
+            android:value="@string/API_KEY" />
     </application>
+
 </manifest>
