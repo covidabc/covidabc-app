@@ -35,13 +35,28 @@
             android:layout_margin="10dp"
             android:layout_toRightOf="@id/event_map_loc_ic_magnify"
             android:background="#fff"
+            android:imeOptions="actionSearch"
             android:hint="@string/digite_endereco"
             android:inputType="text"/>
     </RelativeLayout>
 
     <com.google.android.gms.maps.MapView
+        xmlns:map="http://schemas.android.com/apk/res-auto"
         android:id="@+id/set_event_g_map"
         android:layout_width="match_parent"
+        map:uiZoomGestures="true"
         android:layout_height="match_parent">
     </com.google.android.gms.maps.MapView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_add_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_add" />
 </androidx.constraintlayout.widget.ConstraintLayout>

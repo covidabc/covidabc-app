@@ -1,17 +1,20 @@
 package com.ufabc.covidabc.mainScreen.categories.event
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
 import com.ufabc.covidabc.model.event.CalendarEvent
 import com.ufabc.covidabc.model.event.CalendarEventDAO
 import java.util.*
+
 
 class CreateEventActivity : AppCompatActivity() {
     private lateinit var eventTitleEditText : EditText
@@ -21,10 +24,13 @@ class CreateEventActivity : AppCompatActivity() {
     private lateinit var createEventButton : Button
     private lateinit var pickDateButton : Button
     private lateinit var eventDate : Date
+    private lateinit var placeTextHolder : EditText
 
-    private var latitude  : Float = 0.0f
-    private var longitude : Float = 0.0f
-    private lateinit var address : String
+    private var latitude  : Double = 0.0
+    private var longitude : Double = 0.0
+    private lateinit var addr_string : String
+
+    private val SECOND_ACTIVITY_REQUEST_CODE = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +49,7 @@ class CreateEventActivity : AppCompatActivity() {
         createEventButton = findViewById(R.id.create_event_button)
         pickDateButton = findViewById(R.id.pick_date_button)
         eventTypeSpinner = findViewById(R.id.event_type_spinner)
+        placeTextHolder = findViewById(R.id.event_location_addr)
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         val adapter = ArrayAdapter(
@@ -118,23 +125,38 @@ class CreateEventActivity : AppCompatActivity() {
     }
 
     /** Called when the user taps the Send button */
-    fun callActivity(view: View) {
+    private fun callActivity(view: View) {
         val intent = Intent(this, EventMapsLocationActivity::class.java)
-        startActivity(intent)
+        startActivityForResult(intent, SECOND_ACTIVITY_REQUEST_CODE)
 
-        //.apply {
-            //putExtra(EXTRA_MESSAGE, message)
-        //}
     }
 
-private fun createEvent() {
+    override fun onActivityResult( requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == SECOND_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                // Get String data from Intent
+                this.addr_string = data?.getStringExtra("addr_string").toString()
+                this.longitude   = data?.getStringExtra("long_value")?.toDouble() ?: 0.0
+                this.latitude    = data?.getStringExtra("lat_value")?.toDouble() ?: 0.0
+                this.placeTextHolder.setText(this.addr_string)
+                this.placeTextHolder.visibility = View.VISIBLE
+
+            }
+        }
+    }
+
+    private fun createEvent() {
         val eventType = eventTypeSpinner.selectedItem as CalendarEvent.EventType
         val newEvent = CalendarEvent(
             eventTitleEditText.text.toString(),
             eventType,
             eventDescriptionEditText.text.toString(),
             this.eventDate,
-            "ashd"
+            this.addr_string,
+            this.latitude,
+            this.longitude
 //            eventPlaceEditText.text.toString()
         )
 
