@@ -1,84 +1,128 @@
 package com.ufabc.covidabc.mainScreen.categories.quiz
 
 import android.app.Dialog
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
-import com.ufabc.covidabc.model.quiz.Quiz
-import com.ufabc.covidabc.model.quiz.QuizDAO
+import com.ufabc.covidabc.model.quiz.QuizGroup
+import kotlinx.android.synthetic.main.activity_quiz_result.*
+import kotlinx.android.synthetic.main.dialog_quit.*
 import kotlinx.android.synthetic.main.dialog_quiz.*
-import kotlin.random.Random
 
 class QuizQuestionActivity : AppCompatActivity() {
 
     private lateinit var questionTextView : TextView
-    private lateinit var yes_button : Button
-    private lateinit var no_button : Button
-    private lateinit var next_question_button : Button
+    private lateinit var trueButton : Button
+    private lateinit var falseButton : Button
+    private lateinit var giveUpFab : FloatingActionButton
+    private lateinit var progressBar : ProgressBar
 
-    private lateinit var quizzes : ArrayList <Quiz>
-    private lateinit var currQuiz : Quiz
+    private lateinit var quizGroup: QuizGroup
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.quiz_question)
 
-        quizzes = QuizDAO.getQuizArray()
+        this.quizGroup = intent.getSerializableExtra(App.QUIZ_EXTRA) as QuizGroup
+
         setViews()
         setListeners()
         chooseRandomQuiz()
     }
 
-
+    override fun onBackPressed() {
+        // do nothing
+    }
 
     private fun setViews() {
         questionTextView = findViewById(R.id.quiz_question_text_view)
-        yes_button = findViewById(R.id.yes_button)
-        no_button = findViewById(R.id.no_button)
-        next_question_button = findViewById(R.id.next_question_button)
+        trueButton = findViewById(R.id.true_button)
+        falseButton = findViewById(R.id.false_button)
+        giveUpFab = findViewById(R.id.give_up_fab)
+        progressBar = findViewById(R.id.quiz_progress_bar)
     }
 
     private fun setListeners() {
-        yes_button.setOnClickListener {
+        trueButton.setOnClickListener {
             checkAnswer(true)
         }
 
-        no_button.setOnClickListener {
+        falseButton.setOnClickListener {
             checkAnswer(false)
         }
 
-        next_question_button.setOnClickListener {
-            chooseRandomQuiz()
+        giveUpFab.setOnClickListener {
+            wannaQuit()
         }
+    }
+
+    private fun wannaQuit() {
+        Dialog(this).apply {
+            setCancelable(false)
+            setContentView(R.layout.dialog_quit)
+
+            quit_quiz_dialog_button.setOnClickListener {
+                finish()
+            }
+
+            continue_quiz_dialog_button.setOnClickListener {
+                dismiss()
+            }
+        }.show()
     }
 
     private fun checkAnswer(userAnswer : Boolean) {
+        val currQuestion = quizGroup.getCurrentQuestion()
 
-        val alertDialog = Dialog(this)
+        questionTextView.text = ""
+        progressBar.progress += 100 / quizGroup.getMaxScore()
 
-        alertDialog.setContentView(R.layout.dialog_quiz)
+        Dialog(this)
+            .apply {
+                setCancelable(false)
+                setContentView(R.layout.dialog_quiz)
 
+                when (quizGroup.provideAnswerAndSkip(userAnswer)) {
+                    true -> dialog_title.text = getString(R.string.right_answer)
+                    false -> dialog_title.text = getString(R.string.wrong_answer)
+                }
 
-        if (userAnswer == currQuiz.getIsRight()) {
-            alertDialog.dialog_title.text = "Você acertou!"
-        }
-        else {
-            alertDialog.dialog_title.text = "Você errou!"
-        }
+                dialog_message.text = currQuestion.getExplanation()
 
-        alertDialog.dialog_message.text = currQuiz.getExplanation()
+                next_question_button.text = if (quizGroup.isFinished()) "Ver resultado" else "Próxima questão"
 
-
-        alertDialog.show()
+                next_question_button.setOnClickListener {
+                    if (quizGroup.isFinished()) {
+                        goToResult()
+                        finish()
+                    }
+                    else {
+                        chooseRandomQuiz()
+                        dismiss()
+                    }
+                }
+            }
+            .show()
     }
 
     private fun chooseRandomQuiz() {
-        val index = Random.nextInt(0, quizzes.size)
-
-        currQuiz = quizzes[index]
+        val currQuiz = this.quizGroup.getCurrentQuestion()
         questionTextView.text = currQuiz.getQuestion()
+    }
+
+    private fun goToResult() {
+        Intent(App.appContext, QuizResultActivity::class.java).apply {
+            this.putExtra(App.QUIZ_EXTRA, quizGroup)
+            startActivity(this)
+        }
     }
 }
 

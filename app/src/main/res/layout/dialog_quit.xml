@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="10dp"
+
+    android:background="@drawable/dialog_background">
+
+    <TextView
+        android:id="@+id/quit_dialog_message"
+        android:text="@string/text_wanna_quit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="@dimen/general_space"
+        app:fontFamily="sans-serif-light"
+        android:textSize="@dimen/text_default_size"
+        android:textColor="@color/color1_saphire_blue"
+        android:textAllCaps="false"
+        android:gravity="center"
+        android:padding="@dimen/general_space">
+    </TextView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/quit_dialog_message">
+
+        <Button
+            android:id="@+id/continue_quiz_dialog_button"
+            android:text="@string/text_continue"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/general_space"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="@dimen/text_default_size"
+            android:gravity="center"
+            tools:ignore="RtlHardcoded" />
+
+        <Button
+            android:id="@+id/quit_quiz_dialog_button"
+            android:text="@string/text_quit"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/general_space"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="@dimen/text_default_size"
+            android:gravity="center"
+            tools:ignore="RtlHardcoded" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -19,4 +19,5 @@
     <dimen name="very_little_space">4dp</dimen>
     <dimen name="news_image_size">150dp</dimen>
     <dimen name="quiz_image_size">200dp</dimen>
+    <dimen name="text_huge_size">40sp</dimen>
 </resources>

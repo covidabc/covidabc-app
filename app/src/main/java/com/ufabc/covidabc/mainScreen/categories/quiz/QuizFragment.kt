@@ -13,9 +13,13 @@ import androidx.fragment.app.Fragment
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
+import com.ufabc.covidabc.model.quiz.Quiz
 import com.ufabc.covidabc.model.quiz.QuizDAO
+import com.ufabc.covidabc.model.quiz.QuizGroup
 
 class QuizFragment : Fragment() {
+
+    private val QUIZ_SIZE = 5
 
     private lateinit var linearLayout: LinearLayout
     private lateinit var quizButton : Button
@@ -35,14 +39,13 @@ class QuizFragment : Fragment() {
         quizButton = view.findViewById(R.id.quiz_enter_button)
 
         quizButton.setOnClickListener {
-            setQuizAndStart()
+            initQuiz()
         }
     }
 
-    private fun setQuizAndStart() {
+    private fun initQuiz() {
         if (QuizDAO.isAlreadyFetched()) {
-            val intent = Intent(App.appContext, QuizQuestionActivity::class.java)
-            startActivity(intent)
+            goToQuizActivity()
         }
         else {
             val dialog = ProgressDialog(this.context).apply {
@@ -57,11 +60,33 @@ class QuizFragment : Fragment() {
                     }
 
                     dialog.cancel()
-                    val intent = Intent(App.appContext, QuizQuestionActivity::class.java)
-                    startActivity(intent)
+                    goToQuizActivity()
                 }
             })
         }
+    }
+
+    private fun goToQuizActivity() {
+        val newQuizGroup = getRandomQuestions()
+
+        Intent(App.appContext, QuizQuestionActivity::class.java).apply {
+            this.putExtra(App.QUIZ_EXTRA, newQuizGroup)
+            startActivity(this)
+        }
+    }
+
+    private fun getRandomQuestions() : QuizGroup {
+        val quizArray = QuizDAO.getQuizArray()
+        val selectedQuestions = arrayListOf<Quiz>()
+        val selectedIndex = hashSetOf<Int>()
+
+        while (selectedIndex.size < QUIZ_SIZE) {
+            val index = (0 until quizArray.size).random()
+            selectedIndex.add(index)
+            selectedQuestions.add(quizArray[index])
+        }
+
+        return QuizGroup(selectedQuestions, QUIZ_SIZE)
     }
 
 

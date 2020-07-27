@@ -6,10 +6,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".mainScreen.categories.quiz.QuizQuestionActivity"
-    android:padding="@dimen/big_space"
+    android:padding="@dimen/default_space"
     android:orientation="vertical"
     android:weightSum="1"
     android:baselineAligned="false">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1">
+        <ProgressBar
+            android:id="@+id/quiz_progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="0"/>
+
+        <TextView
+            android:id="@+id/progress_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/general_space"
+            android:layout_below="@id/quiz_progress_bar"
+            android:text="@string/text_progress"
+            app:fontFamily="sans-serif-light"
+            android:textColor="@color/color1_saphire_blue"
+            android:textSize="@dimen/text_default_size"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:lineSpacingExtra="@dimen/general_space" />
+    </RelativeLayout>
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -31,54 +58,52 @@
             tools:ignore="MissingConstraints" />
     </ScrollView>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.2"
-        android:orientation="vertical"
-        android:baselineAligned="false">
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <Button
-            android:id="@+id/yes_button"
-            android:layout_width="301dp"
-            android:layout_height="43dp"
-            android:layout_gravity="center"
-            android:background="@drawable/button_shape"
+            android:id="@+id/true_button"
             android:text="@string/text_true"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/question_text_size"
-            android:textStyle="bold"
-            android:layout_marginBottom="@dimen/general_space"/>
-
-        <Button
-            android:id="@+id/no_button"
-            android:layout_width="301dp"
-            android:layout_height="43dp"
-            android:layout_gravity="center"
-            android:background="@drawable/button_shape"
-            android:text="@string/text_false"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/question_text_size"
-            android:textStyle="bold"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1">
-        <Button
-            android:id="@+id/next_question_button"
-            android:layout_width="173dp"
-            android:layout_height="42dp"
-            android:layout_gravity="bottom"
-            android:text="@string/next_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/general_space"
             android:background="@drawable/button_shape"
             android:textColor="@android:color/white"
             android:textSize="@dimen/text_default_size"
-            android:textStyle="bold"/>
+            android:layout_marginRight="@dimen/little_space"
+            android:layout_marginEnd="@dimen/little_space" />
+
+        <Button
+            android:id="@+id/false_button"
+            android:text="@string/text_false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/general_space"
+            android:layout_gravity="center"
+            android:background="@drawable/button_shape"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_default_size"
+            android:layout_marginLeft="@dimen/little_space"
+            android:layout_marginStart="@dimen/little_space" />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/give_up_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            app:backgroundTint="@android:color/holo_red_dark"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_close"/>
 
     </LinearLayout>
+
+
 
 
 </LinearLayout>

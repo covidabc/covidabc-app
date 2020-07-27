@@ -82,4 +82,15 @@
     <string name="create_event_failure">Falha ao criar evento</string>
     <string name="API_KEY">AIzaSyDGTF09Gl-XU-BtEhCWoeNv3nKqkYbIEFI</string>
     <string name="text_news_header">Fato ou Fake? Atualizamos diariamente notícias de diferentes fontes</string>
+    <string name="text_progress">Progresso</string>
+    <string name="right_answer">Você acertou</string>
+    <string name="wrong_answer">Você errou</string>
+    <string name="text_give_up">Desistir</string>
+    <string name="text_next_question">Próxima questão</string>
+    <string name="text_quit_quiz">Sair</string>
+    <string name="text_restart_quiz">Reiniciar</string>
+    <string name="text_score">score</string>
+    <string name="text_wanna_quit">Quer mesmo sair?</string>
+    <string name="text_continue">Continuar</string>
+    <string name="text_quit">Sair</string>
 </resources>

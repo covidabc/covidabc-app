@@ -1,6 +1,8 @@
 package com.ufabc.covidabc.model.quiz
 
-class Quiz {
+import java.io.Serializable
+
+class Quiz : Serializable {
     private lateinit var question : String
     private lateinit var explanation : String
     private var isRight : Boolean = true

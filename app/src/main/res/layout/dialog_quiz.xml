@@ -1,19 +1,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:cardCornerRadius="10dp"
+
     android:background="@drawable/dialog_background">
-    <ImageView
-        android:src="@drawable/covid_abc_horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/login_gradient"
-        android:contentDescription="@string/app_name"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-        android:padding="@dimen/general_space"/>
 
     <TextView
         android:id="@+id/dialog_title"
@@ -31,18 +24,29 @@
 
     <TextView
         android:id="@+id/dialog_message"
-        android:text="@string/text_dialog_message"
+        android:text="@string/lorem_ipsum"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:lineSpacingExtra="@dimen/general_space"
         app:fontFamily="sans-serif-light"
         android:textSize="@dimen/text_default_size"
-        android:textStyle="bold"
         android:textColor="@color/color1_saphire_blue"
         android:textAllCaps="false"
         android:gravity="center"
         android:padding="@dimen/general_space">
-
     </TextView>
+
+
+    <Button
+        android:id="@+id/next_question_button"
+        android:text="@string/text_next_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/general_space"
+        android:background="@android:color/transparent"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="@dimen/text_default_size"
+        android:gravity="right"
+        tools:ignore="RtlHardcoded" />
 
 </LinearLayout>
