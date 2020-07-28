@@ -93,4 +93,6 @@
     <string name="text_wanna_quit">Quer mesmo sair?</string>
     <string name="text_continue">Continuar</string>
     <string name="text_quit">Sair</string>
+    <string name="text_datetime">10/05 às 14h50</string>
+    <string name="title_about">Sobre nós</string>
 </resources>

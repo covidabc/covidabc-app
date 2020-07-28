@@ -1,10 +1,8 @@
 package com.ufabc.covidabc.mainScreen.categories.news
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
-import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +10,6 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -33,6 +29,7 @@ class NewsAdapter(private val options: FirestorePagingOptions<News>):
         var newsImage : ImageView = itemView.findViewById(R.id.news_image_view)
         var newsTitle : TextView = itemView.findViewById(R.id.news_title_text_view)
         var newsSourceTextView : TextView = itemView.findViewById(R.id.source_text_view)
+        var datetimeTextView : TextView = itemView.findViewById(R.id.datetime_text_view)
         var newsBody : RelativeLayout = itemView.findViewById(R.id.news_body)
         var newsProgressBar : ProgressBar = itemView.findViewById(R.id.news_progress_bar)
     }
@@ -48,10 +45,11 @@ class NewsAdapter(private val options: FirestorePagingOptions<News>):
     override fun onBindViewHolder(holder: ViewHolder, position: Int, model: News) {
         model.apply {
             holder.newsTitle.text = this.getTitle()
-            holder.newsSourceTextView.text =  "Fonte: " + this.getSource()
+            holder.newsSourceTextView.text =  this.getSource()
+            holder.datetimeTextView.text = this.getFormatedDate()
 
             Glide.with(App.appContext)
-                .load(Uri.parse(this.getImgageURL()))
+                .load(Uri.parse(this.getImageURL()))
                 .listener(object : RequestListener<Drawable> {
                     override fun onLoadFailed(e: GlideException?, model: Any?,
                                               target: Target<Drawable>?, isFirstResource: Boolean): Boolean {

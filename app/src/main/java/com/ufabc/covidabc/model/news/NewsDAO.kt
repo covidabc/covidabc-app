@@ -17,7 +17,8 @@ object NewsDAO {
     fun isAlreadyFetched() : Boolean = this.isAlreadyFetched
 
     fun refreshNews(callback: FirestoreDatabaseOperationListener<Boolean>) {
-        FirebaseFirestore.getInstance().collection(NEWS_COLLECTION).get()
+        FirebaseFirestore.getInstance().collection(NEWS_COLLECTION)
+            .orderBy("date", Query.Direction.DESCENDING).get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     this.newsQuery = task.result!!.query

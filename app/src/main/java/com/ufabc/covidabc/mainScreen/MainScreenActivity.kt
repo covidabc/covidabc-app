@@ -1,6 +1,7 @@
 package com.ufabc.covidabc.mainScreen
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -60,13 +61,22 @@ class MainScreenActivity : AppCompatActivity() {
                     }
 
                     startActivity(intent)
-                    true
                 }
+
+                R.id.action_about -> openNewTabWindow(App.WEBSITE_URL)
 
                 else -> super.onOptionsItemSelected(it)
             }
+
+            true
         }
     }
 
     private fun isUserLoggedIn() : Boolean = mAuth.currentUser != null
+
+    private fun openNewTabWindow(url: String) {
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        App.appContext.startActivity(browserIntent)
+    }
 }

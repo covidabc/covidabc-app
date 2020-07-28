@@ -3,6 +3,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/general_space"
@@ -30,7 +31,7 @@
             android:layout_alignBottom="@id/news_image_view"
             android:visibility="visible"/>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/news_image_view"
@@ -53,21 +54,46 @@
                 android:lineSpacingExtra="@dimen/very_little_space"
                 android:textColor="@android:color/white"/>
 
-            <TextView
-                android:id="@+id/source_text_view"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/general_space"
-                android:layout_weight="0.7"
-                android:ellipsize="end"
-                android:maxLines="3"
-                android:text="@string/text_source"
-                app:fontFamily="sans-serif-medium"
-                android:textAllCaps="true"
-                android:textSize="@dimen/text_default_size"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"/>
-        </LinearLayout>
+                android:layout_below="@id/news_title_text_view"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/datetime_text_view"
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/general_space"
+                    android:maxLines="1"
+                    android:text="@string/text_datetime"
+                    app:fontFamily="sans-serif-medium"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/text_default_size"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:gravity="left"
+                    tools:ignore="RtlHardcoded" />
+
+                <TextView
+                    android:id="@+id/source_text_view"
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/general_space"
+                    android:maxLines="1"
+                    android:text="@string/text_source"
+                    app:fontFamily="sans-serif-medium"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/text_default_size"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:gravity="right"
+                    tools:ignore="RtlHardcoded" />
+            </LinearLayout>
+
+        </RelativeLayout>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
 
