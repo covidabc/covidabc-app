@@ -2,6 +2,7 @@ package com.ufabc.covidabc.mainScreen.categories.event
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -22,19 +23,24 @@ class EventDescriptionActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var eventDescriptionTextView: TextView
     private lateinit var event : CalendarEvent
     private lateinit var eventDescriptionMapView : MapView
+    private var latlong : LatLng = LatLng(0.0, 0.0)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event_description)
 
         setViews()
-
-        eventDescriptionMapView.onCreate(savedInstanceState)
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.event_description_map_view) as? SupportMapFragment
-        mapFragment?.getMapAsync(this)
-
         event = intent.getSerializableExtra(App.EVENT_EXTRA) as CalendarEvent
         populateFAQ()
+
+        eventDescriptionMapView.onCreate(savedInstanceState)
+
+        if (latlong.latitude == 0.0 && latlong.longitude == 0.0) {
+            eventDescriptionMapView.visibility = View.INVISIBLE
+        }
+
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.event_description_map_view) as? SupportMapFragment
+        mapFragment?.getMapAsync(this)
     }
 
     private fun setViews() {
@@ -50,6 +56,7 @@ class EventDescriptionActivity : AppCompatActivity(), OnMapReadyCallback {
         eventPlaceTextView.text = event.getPlace()
         eventDateTextView.text = event.getFormatedDate()
         eventDescriptionTextView.text = event.getDescription()
+        latlong = LatLng(event.getLatitude(), event.getLongitude())
     }
 
 
@@ -66,21 +73,27 @@ class EventDescriptionActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onResume() {
         eventDescriptionMapView.onResume()
 
+
         eventDescriptionMapView.getMapAsync { it ->
             it?.apply {
-                val ufabc = LatLng(-23.6444901,-46.530369)
+                clear()
                 addMarker(
                     MarkerOptions()
-                        .position(ufabc)
-                        .title("UFABC")
+                        .position(latlong)
+                        .title("Local")
                         .visible(true)
                 )
-                moveCamera(CameraUpdateFactory.newLatLng(ufabc))
-                setMaxZoomPreference(14.0f)
-                setMinZoomPreference(15.0f)
-
+                animateCamera(
+                    CameraUpdateFactory.newLatLngZoom(
+                        LatLng(
+                            latlong.latitude,
+                            latlong.longitude
+                        ), 15f
+                    )
+                )
+            }
         }
-    }
+
         super.onResume()
     }
 
@@ -104,17 +117,8 @@ class EventDescriptionActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onStop()
     }
 
+
     override fun onMapReady(googleMap: GoogleMap?) {
-        val ufabc = LatLng(37.7750, -122.4183)
-        googleMap?.apply {
-            addMarker(
-                MarkerOptions()
-                    .position(ufabc)
-                    .title("UFABC")
-                    .visible(true)
-            )
-            moveCamera(CameraUpdateFactory.newLatLng(ufabc))
-        }
     }
 }
 
