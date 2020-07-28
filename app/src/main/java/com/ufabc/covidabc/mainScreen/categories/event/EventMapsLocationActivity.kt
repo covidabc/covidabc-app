@@ -25,7 +25,7 @@ import java.io.IOException
 class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var gmap : MapView
     private lateinit var search_text : EditText
-    private lateinit var latlong : LatLng
+    private var latlong : LatLng = LatLng(0.0, 0.0)
     private lateinit var fabAddAddress : FloatingActionButton
     private var addr_string : String = ""
     private var marker : MarkerOptions = MarkerOptions().position(LatLng(0.0, 0.0))
@@ -76,33 +76,30 @@ class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun geoLocate() {
-        Log.d("Maps", "geoLocate: geolocating")
+        addr_string = search_text.getText().toString()
 
-        val searchString: String = search_text.getText().toString()
         val geocoder = Geocoder(this@EventMapsLocationActivity)
         var list: List<Address> = ArrayList()
+
         try {
-            list = geocoder.getFromLocationName(searchString, 1)
+            list = geocoder.getFromLocationName(addr_string, 1)
         } catch (e: IOException) {
             Log.e("Maps", "geoLocate: IOException: " + e.toString())
         }
+
         if (list.isNotEmpty()) {
             val address = list[0]
+
             if (address.hasLatitude() && address.hasLongitude()) {
                 this.latlong = LatLng(address.latitude, address.longitude)
                 setMapFocus(latlong, 15f)
             }
 
             addr_string = address.getAddressLine(0)
-
-            Log.d(
-                "Maps",
-                "geoLocate: found a location: $address"
-            )
             Toast.makeText(this, addr_string, Toast.LENGTH_SHORT).show();
 
         } else {
-            showAlertDialog("Endereço não encontrado, tente novamente")
+            showAlertDialog("Endereço não encontrado no mapa. Deseja usar assim mesmo?")
         }
     }
 
@@ -172,14 +169,23 @@ class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun showAlertDialog(msg : String = "") {
-        val alertDialog: AlertDialog = AlertDialog.Builder(this@EventMapsLocationActivity).create()
-        alertDialog.setTitle("Cuidado")
-        alertDialog.setMessage(msg)
-        alertDialog.setButton(
-            AlertDialog.BUTTON_NEUTRAL, "OK",
-            DialogInterface.OnClickListener { dialog, which -> dialog.dismiss() })
-        alertDialog.show()
+        val builder = AlertDialog.Builder(this@EventMapsLocationActivity)
+        builder.setTitle("Aviso")
+        builder.setMessage(msg)
+
+        builder.setPositiveButton("Sim"){dialog, which ->
+            returnActivity()
+            dialog.dismiss()
+        }
+
+        builder.setNegativeButton("Não"){dialog, wich ->
+            dialog.dismiss()
+        }
+
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
     }
+
 
     override fun onMapReady(googleMap: GoogleMap?) {
 

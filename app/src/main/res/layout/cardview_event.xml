@@ -93,6 +93,8 @@
                 app:fontFamily="sans-serif-light"
                 android:textColor="@android:color/black"
                 android:layout_width="match_parent"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:padding="@dimen/little_space"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/event_title"
