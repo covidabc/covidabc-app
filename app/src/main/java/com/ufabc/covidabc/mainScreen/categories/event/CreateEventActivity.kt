@@ -2,12 +2,15 @@ package com.ufabc.covidabc.mainScreen.categories.event
 
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
-import android.opengl.Visibility
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isGone
 import androidx.core.widget.addTextChangedListener
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
@@ -51,6 +54,8 @@ class CreateEventActivity : AppCompatActivity() {
         eventTypeSpinner = findViewById(R.id.event_type_spinner)
         placeTextHolder = findViewById(R.id.event_location_addr)
 
+        eventDescriptionEditText.isFocusableInTouchMode = true
+
         // Create an ArrayAdapter using the string array and a default spinner layout
         val adapter = ArrayAdapter(
             this,
@@ -64,6 +69,8 @@ class CreateEventActivity : AppCompatActivity() {
 
     private fun isAnyEditTextEmpty() : Boolean =
         eventTitleEditText.text.isEmpty() || eventDescriptionEditText.text.isEmpty()
+                || placeTextHolder.text.isEmpty() || !(this::eventDate.isInitialized)
+                || placeTextHolder.isGone
 
     private fun setListeners() {
         createEventButton.setOnClickListener {
@@ -83,6 +90,9 @@ class CreateEventActivity : AppCompatActivity() {
 
         eventPlaceBtn.setOnClickListener { it  ->
             callActivity(findViewById<View>(android.R.id.content).getRootView())
+            eventPlaceBtn.setBackgroundResource(R.drawable.button_shape)
+            placeTextHolder.setBackgroundResource(R.drawable.edit_text_normal)
+
         }
 
         eventDescriptionEditText.addTextChangedListener {
@@ -104,6 +114,8 @@ class CreateEventActivity : AppCompatActivity() {
                 cal.get(Calendar.MONTH),
                 cal.get(Calendar.DAY_OF_MONTH)
             ).show()
+
+            pickDateButton.setBackgroundResource(R.drawable.button_shape)
         }
     }
 
@@ -113,19 +125,26 @@ class CreateEventActivity : AppCompatActivity() {
             eventTitleEditText.setBackgroundResource(R.drawable.edit_text_error)
         }
 
-//        if(eventPlaceEditText.text.isEmpty()){
-//            eventPlaceEditText.error = getString(R.string.required)
-//            eventPlaceEditText.setBackgroundResource(R.drawable.edit_text_error)
-//        }
+        if(placeTextHolder.text.isEmpty() && !(placeTextHolder.isGone)){
+            placeTextHolder.error = getString(R.string.required)
+            placeTextHolder.setBackgroundResource(R.drawable.edit_text_error)
+        }
 
-        if(eventDescriptionEditText.text.isEmpty()){
+        if(eventDescriptionEditText.text.isEmpty()) {
             eventDescriptionEditText.error = getString(R.string.required)
             eventDescriptionEditText.setBackgroundResource(R.drawable.edit_text_error)
         }
 
+        if (!this::eventDate.isInitialized) {
+            pickDateButton.setBackgroundResource(R.drawable.error_button_shape)
+        }
+
+        if (placeTextHolder.isGone ) {
+            eventPlaceBtn.setBackgroundResource(R.drawable.error_button_shape)
+        }
+
     }
 
-    /** Called when the user taps the Send button */
     private fun callActivity(view: View) {
         val intent = Intent(this, EventMapsLocationActivity::class.java)
         startActivityForResult(intent, SECOND_ACTIVITY_REQUEST_CODE)
@@ -171,5 +190,29 @@ class CreateEventActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, R.string.create_event_failure, Toast.LENGTH_LONG).show()
             }
         })
+    }
+    // Esta funçao verifica se o foco está fora da região de input de texto. Se tiver, ela remove o teclado
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        val v = currentFocus
+        if (v != null && (ev.action == MotionEvent.ACTION_UP || ev.action == MotionEvent.ACTION_MOVE) &&
+            v is EditText &&
+            !v.javaClass.name.startsWith("android.webkit.")
+        ) {
+            val sourceCoordinates = IntArray(2)
+            v.getLocationOnScreen(sourceCoordinates)
+            val x = ev.rawX + v.getLeft() - sourceCoordinates[0]
+            val y = ev.rawY + v.getTop() - sourceCoordinates[1]
+            if (x < v.getLeft() || x > v.getRight() || y < v.getTop() || y > v.getBottom()) {
+                hideKeyboard(this)
+            }
+        }
+        return super.dispatchTouchEvent(ev)
+    }
+
+    private fun hideKeyboard(activity: Activity?) {
+        if (activity != null && activity.window != null) {
+            activity.window.decorView
+            (activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)?.hideSoftInputFromWindow(activity.window.decorView.windowToken, 0)
+        }
     }
 }

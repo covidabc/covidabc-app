@@ -142,7 +142,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="@dimen/default_space"
             android:background="@drawable/edit_text_normal"
-            android:hint="@string/event_description_hint"
+            android:hint="Descreva onde o evento ocorrerá."
             android:inputType="textMultiLine"
             android:maxLines="8"
             android:padding="@dimen/general_space"
