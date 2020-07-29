@@ -5,22 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/news_header_text_view"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:fontFamily="sans-serif-light"
-        android:textColor="@color/color1_saphire_blue"
-        android:textSize="20sp"
-        android:layout_margin="@dimen/general_space"
-        android:gravity="center_horizontal"
-        android:text="@string/text_news_header"
-        android:lineSpacingExtra="@dimen/very_little_space"
-        android:textAlignment="center" />
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_news"
-        android:layout_below="@id/news_header_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/news_header_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/general_space"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/very_little_space"
+                android:text="@string/text_news_header"
+                android:textAlignment="center"
+                android:textColor="@color/color1_saphire_blue"
+                android:textSize="20sp"
+                app:fontFamily="sans-serif-light" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_news"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/news_header_text_view" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
 </RelativeLayout>
