@@ -100,4 +100,9 @@
     <string name="welcome_name">Bem-vindo, %s!</string>
     <string name="description_secret_phrase">Informação sobre frase secreta</string>
     <string name="secret_phrase_explanation">A frase secreta permite que somente pessoas especificas se cadastem como brigadistas. Interessado? Entre em contato conosco</string>
+    <string name="text_soon_new_features">Novas funcionalidades em breve!</string>
+    <string name="title_delete">Deletar</string>
+    <string name="title_edit">Editar</string>
+    <string name="delete_sucess">Evento deletado com sucesso</string>
+    <string name="delete_failure">Não foi possível deletar o evento</string>
 </resources>

@@ -1,11 +1,14 @@
 package com.ufabc.covidabc.model.event
 
 
+import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.util.CustomClassMapper
 import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 object CalendarEventDAO {
 
@@ -16,6 +19,27 @@ object CalendarEventDAO {
     fun addEvent(event: CalendarEvent, callback: FirestoreDatabaseOperationListener<Boolean>) {
         FirebaseFirestore.getInstance().collection(EVENT_COLLECTION).add(event)
             .addOnCompleteListener { task ->
+                callback.onCompleted(task.isSuccessful)
+            }
+    }
+
+    fun updateEvent(event: CalendarEvent, callback: FirestoreDatabaseOperationListener<Boolean>) {
+        val refPath = event.getRefPath()
+
+        FirebaseFirestore.getInstance().document(refPath)
+            .update(calendarEventToDocument(event))
+            .addOnCompleteListener { task->
+                callback.onCompleted(task.isSuccessful)
+            }
+    }
+
+    fun deleteEvent(event: CalendarEvent, callback: FirestoreDatabaseOperationListener<Boolean>) {
+        val refPath = event.getRefPath()
+
+        FirebaseFirestore.getInstance()
+            .document(refPath)
+            .delete()
+            .addOnCompleteListener { task->
                 callback.onCompleted(task.isSuccessful)
             }
     }
@@ -41,18 +65,30 @@ object CalendarEventDAO {
             }
     }
 
-    fun getEventArray() : ArrayList<CalendarEvent> =
-        eventArray
+    fun getEventArray() : ArrayList<CalendarEvent> = eventArray
 
     private fun documentsToCalendarEvents(qSnapshot: QuerySnapshot): ArrayList<CalendarEvent> {
         val events = arrayListOf<CalendarEvent>()
 
         for (document in qSnapshot.documents) {
             document.toObject(CalendarEvent::class.java)?.apply {
+                this.setRefPath(document.reference.path)
                 events.add(this)
             }
         }
         return events
+    }
+
+    private fun calendarEventToDocument(event: CalendarEvent) : Map<String, Any> {
+        return mapOf(
+            "date" to event.getDate(),
+            "title" to event.getTitle(),
+            "description" to event.getDescription(),
+            "eventType" to event.getEventType(),
+            "latitute" to event.getLatitude(),
+            "longitude" to event.getLongitude(),
+            "place" to event.getPlace()
+        )
     }
 
     fun isAlreadyFetched() : Boolean =

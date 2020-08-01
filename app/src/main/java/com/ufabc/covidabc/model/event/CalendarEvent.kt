@@ -1,5 +1,6 @@
 package com.ufabc.covidabc.model.event
 
+import com.google.firebase.firestore.Exclude
 import java.io.Serializable
 import java.util.*
 
@@ -17,6 +18,7 @@ class CalendarEvent : Serializable {
     private lateinit var description : String
     private lateinit var place: String
     private lateinit var date: Date
+    private lateinit var refPath: String
     private var latitude : Double = 0.0
     private var longitude : Double = 0.0
 
@@ -40,7 +42,14 @@ class CalendarEvent : Serializable {
     fun getLongitude() : Double = this.longitude
     fun getLatitude() : Double = this.latitude
 
+    @Exclude
+    fun getRefPath() : String = this.refPath
 
+    fun setRefPath(refPath: String)  {
+        this.refPath = refPath
+    }
+
+    @Exclude
     fun getFormatedDate() : String {
         val calendar = Calendar.getInstance()
         calendar.time = date
@@ -48,6 +57,7 @@ class CalendarEvent : Serializable {
         return "${getParsedDayOfTheWeek(calendar)}, ${calendar.get(Calendar.DAY_OF_MONTH)}/${calendar.get(Calendar.MONTH)}"
     }
 
+    @Exclude
     fun getDay() : String {
         val calendar = Calendar.getInstance()
         calendar.time = date
@@ -55,6 +65,7 @@ class CalendarEvent : Serializable {
         return calendar.get(Calendar.DAY_OF_MONTH).toString()
     }
 
+    @Exclude
     fun getMonth() : String {
         val calendar = Calendar.getInstance()
         calendar.time = date

@@ -1,18 +1,21 @@
 package com.ufabc.covidabc.mainScreen.categories.event
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.google.android.gms.maps.*
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
+import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
 import com.ufabc.covidabc.model.event.CalendarEvent
+import com.ufabc.covidabc.model.event.CalendarEventDAO
 
 
 class EventDescriptionActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -23,6 +26,7 @@ class EventDescriptionActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var eventDescriptionTextView: TextView
     private lateinit var event : CalendarEvent
     private lateinit var eventDescriptionMapView : MapView
+    private lateinit var eventDescriptionToolbar : Toolbar
     private var latlong : LatLng = LatLng(0.0, 0.0)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,12 +47,51 @@ class EventDescriptionActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment?.getMapAsync(this)
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
     private fun setViews() {
         eventTitleTextView = findViewById(R.id.event_title_text_view)
         eventPlaceTextView = findViewById(R.id.event_place_text_view)
         eventDateTextView = findViewById(R.id.event_date_text_view)
         eventDescriptionTextView = findViewById(R.id.event_description_text_view)
         eventDescriptionMapView = findViewById(R.id.event_description_map_view)
+        eventDescriptionToolbar = findViewById(R.id.event_description_toolbar)
+
+        eventDescriptionToolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.action_delete_event -> deleteEvent()
+                R.id.action_edit_event -> editEvent()
+                else -> super.onOptionsItemSelected(it)
+            }
+
+            true
+        }
+    }
+
+    private fun deleteEvent() {
+        CalendarEventDAO.deleteEvent(this.event, object: FirestoreDatabaseOperationListener<Boolean> {
+            override fun onCompleted(sucess: Boolean) {
+                if (sucess) {
+                    Toast.makeText(App.appContext, R.string.delete_sucess, Toast.LENGTH_LONG).show()
+                    finish()
+                }
+                else {
+                    Toast.makeText(App.appContext, R.string.delete_failure, Toast.LENGTH_LONG).show()
+                }
+            }
+        })
+    }
+
+    private fun editEvent() {
+        Intent(this, CreateEventActivity::class.java).apply {
+            putExtra(App.EVENT_EXTRA, event)
+            startActivity(this)
+        }
+
+        finish()
     }
 
     private fun populateFAQ() {

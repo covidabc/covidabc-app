@@ -1,126 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-
-
-
-    <RelativeLayout
+    android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".mainScreen.categories.event.EventDescriptionActivity"
-    android:padding="@dimen/general_space">
+    android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/event_description_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:menu="@menu/event_description_menu"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/color1_saphire_blue"
+        app:titleTextColor="@android:color/white" />
 
-
-    <TextView
-        android:id="@+id/event_title_text_view"
-        android:text="Title here"
-        app:fontFamily="sans-serif-light"
-        android:textStyle="bold"
-        android:textSize="@dimen/question_question_size"
-        android:textColor="@color/color1_saphire_blue"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/default_space">
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/event_description_toolbar">
 
-    </TextView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".mainScreen.categories.event.EventDescriptionActivity"
+            android:padding="@dimen/general_space">
 
-    <ImageView
-        android:id="@+id/place_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_place"
-        android:paddingLeft="@dimen/little_space"
-        android:layout_alignTop="@id/event_place_text_view"
-        android:layout_alignBottom="@id/event_place_text_view"
-        android:paddingStart="@dimen/little_space"
-        tools:ignore="RtlSymmetry" />
+            <TextView
+                android:id="@+id/event_title_text_view"
+                android:text="Title here"
+                app:fontFamily="sans-serif-light"
+                android:textStyle="bold"
+                android:textSize="@dimen/question_question_size"
+                android:textColor="@color/color1_saphire_blue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/default_space">
 
-    <TextView
-        android:id="@+id/event_place_text_view"
-        android:text="@string/event_place"
-        android:textSize="@dimen/answer_text_size"
-        android:paddingTop="@dimen/general_space"
-        android:paddingBottom="@dimen/general_space"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/event_title_text_view"
-        android:layout_toRightOf="@id/place_icon"
-        android:layout_toEndOf="@id/place_icon"
-        android:paddingLeft="@dimen/little_space"
-        android:paddingStart="@dimen/little_space"
-        tools:ignore="RtlSymmetry">
-    </TextView>
+            </TextView>
 
-    <ImageView
-        android:id="@+id/event_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_event"
-        android:paddingLeft="@dimen/little_space"
-        android:layout_alignTop="@id/event_date_text_view"
-        android:layout_alignBottom="@id/event_date_text_view"
-        android:paddingStart="@dimen/little_space"
-        tools:ignore="RtlSymmetry" />
+            <ImageView
+                android:id="@+id/place_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_place"
+                android:paddingLeft="@dimen/little_space"
+                android:layout_alignTop="@id/event_place_text_view"
+                android:layout_alignBottom="@id/event_place_text_view"
+                android:paddingStart="@dimen/little_space"
+                tools:ignore="RtlSymmetry" />
 
-    <TextView
-        android:id="@+id/event_date_text_view"
-        android:text="@string/event_date"
-        android:textSize="@dimen/answer_text_size"
-        android:paddingTop="@dimen/general_space"
-        android:paddingBottom="@dimen/general_space"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/event_place_text_view"
-        android:layout_toRightOf="@id/event_icon"
-        android:layout_toEndOf="@id/event_icon"
-        android:paddingLeft="@dimen/little_space"
-        android:paddingStart="@dimen/little_space"
-        tools:ignore="RtlSymmetry">
-    </TextView>
+            <TextView
+                android:id="@+id/event_place_text_view"
+                android:text="@string/event_place"
+                android:textSize="@dimen/answer_text_size"
+                android:paddingTop="@dimen/general_space"
+                android:paddingBottom="@dimen/general_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/event_title_text_view"
+                android:layout_toRightOf="@id/place_icon"
+                android:layout_toEndOf="@id/place_icon"
+                android:paddingLeft="@dimen/little_space"
+                android:paddingStart="@dimen/little_space"
+                tools:ignore="RtlSymmetry">
+            </TextView>
 
-    <ImageView
-        android:id="@+id/description_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_description"
-        android:paddingLeft="@dimen/little_space"
-        android:layout_alignTop="@id/event_description_text_view"
-        android:layout_alignBottom="@id/event_description_text_view"
-        android:paddingStart="@dimen/little_space"
-        tools:ignore="RtlSymmetry" />
+            <ImageView
+                android:id="@+id/event_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_event"
+                android:paddingLeft="@dimen/little_space"
+                android:layout_alignTop="@id/event_date_text_view"
+                android:layout_alignBottom="@id/event_date_text_view"
+                android:paddingStart="@dimen/little_space"
+                tools:ignore="RtlSymmetry" />
 
-    <TextView
-        android:id="@+id/event_description_text_view"
-        android:text="@string/event_description"
-        android:textSize="@dimen/answer_text_size"
-        android:paddingTop="@dimen/general_space"
-        android:paddingBottom="@dimen/general_space"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/event_date_text_view"
-        android:layout_toRightOf="@id/description_icon"
-        android:layout_toEndOf="@id/description_icon"
-        android:paddingLeft="@dimen/little_space"
-        android:paddingStart="@dimen/little_space"
-        tools:ignore="RtlSymmetry">
-    </TextView>
+            <TextView
+                android:id="@+id/event_date_text_view"
+                android:text="@string/event_date"
+                android:textSize="@dimen/answer_text_size"
+                android:paddingTop="@dimen/general_space"
+                android:paddingBottom="@dimen/general_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/event_place_text_view"
+                android:layout_toRightOf="@id/event_icon"
+                android:layout_toEndOf="@id/event_icon"
+                android:paddingLeft="@dimen/little_space"
+                android:paddingStart="@dimen/little_space"
+                tools:ignore="RtlSymmetry">
+            </TextView>
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/event_description_map_view"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_below="@+id/event_description_text_view"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp" />
+            <ImageView
+                android:id="@+id/description_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_description"
+                android:paddingLeft="@dimen/little_space"
+                android:layout_alignTop="@id/event_description_text_view"
+                android:layout_alignBottom="@id/event_description_text_view"
+                android:paddingStart="@dimen/little_space"
+                tools:ignore="RtlSymmetry" />
 
-</RelativeLayout>
-</ScrollView>
+            <TextView
+                android:id="@+id/event_description_text_view"
+                android:text="@string/event_description"
+                android:textSize="@dimen/answer_text_size"
+                android:paddingTop="@dimen/general_space"
+                android:paddingBottom="@dimen/general_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/event_date_text_view"
+                android:layout_toRightOf="@id/description_icon"
+                android:layout_toEndOf="@id/description_icon"
+                android:paddingLeft="@dimen/little_space"
+                android:paddingStart="@dimen/little_space"
+                tools:ignore="RtlSymmetry">
+            </TextView>
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/event_description_map_view"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_below="@+id/event_description_text_view"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="0dp" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
