@@ -1,44 +1,51 @@
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linear_layout_quiz"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_gradient"
-    android:id="@+id/linear_layout_quiz"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:background="@drawable/login_gradient">
 
-    <ImageView
-        android:id="@+id/quiz_image"
-        android:layout_width="@dimen/quiz_image_size"
-        android:layout_height="@dimen/quiz_image_size"
-        android:scaleType="centerCrop"
-        android:layout_gravity="center"
-        android:src="@drawable/virus_quiz" />
 
-    <TextView
-        android:id="@+id/quiz_introText"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:fontFamily="sans-serif-light"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:layout_margin="@dimen/big_space"
-        android:lineSpacingExtra="@dimen/little_space"
-        android:gravity="center_horizontal"
-        android:text="@string/quiz_intro"
-        android:textAlignment="center" />
+        android:layout_height="fill_parent"
+        android:weightSum="10"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/quiz_enter_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/button_shape"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/text_default_size"
-        android:textStyle="bold"
-        android:text="@string/quiz_enter"/>
+        <ImageView
+            android:id="@+id/quiz_image"
+            android:layout_width="@dimen/quiz_image_size"
+            android:layout_height="@dimen/quiz_image_size"
+            android:layout_weight="4"
+            android:layout_gravity="center"
+            android:src="@drawable/virus_quiz" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/quiz_introText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="@dimen/little_space"
+            android:layout_weight="1"
+            android:text="@string/quiz_intro"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            app:fontFamily="sans-serif-light" />
+
+        <Button
+            android:id="@+id/quiz_enter_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="@drawable/button_shape"
+            android:text="@string/quiz_enter"
+            android:layout_gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_default_size"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -7,8 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
@@ -21,7 +22,6 @@ class QuizFragment : Fragment() {
 
     private val QUIZ_SIZE = 5
 
-    private lateinit var linearLayout: LinearLayout
     private lateinit var quizButton : Button
 
     override fun onCreateView(
@@ -35,9 +35,7 @@ class QuizFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        linearLayout = view.findViewById(R.id.linear_layout_quiz)
         quizButton = view.findViewById(R.id.quiz_enter_button)
-
         quizButton.setOnClickListener {
             initQuiz()
         }
