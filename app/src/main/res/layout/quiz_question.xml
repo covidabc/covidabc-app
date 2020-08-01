@@ -74,7 +74,7 @@
             android:padding="@dimen/general_space"
             android:background="@drawable/button_shape"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/text_default_size"
+            android:textSize="15dp"
             android:layout_marginRight="@dimen/little_space"
             android:layout_marginEnd="@dimen/little_space" />
 
@@ -87,7 +87,7 @@
             android:layout_gravity="center"
             android:background="@drawable/button_shape"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/text_default_size"
+            android:textSize="15dp"
             android:layout_marginLeft="@dimen/little_space"
             android:layout_marginStart="@dimen/little_space" />
 
