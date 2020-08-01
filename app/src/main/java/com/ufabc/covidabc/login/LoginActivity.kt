@@ -83,11 +83,21 @@ class LoginActivity : AppCompatActivity() {
         val currentUser = mAuth.currentUser!!
 
         if (currentUser.isEmailVerified) {
-            Toast.makeText(this, R.string.welcome, Toast.LENGTH_LONG).show()
+            showLoginSucessToast()
             startActivity(Intent(this, MyAccountActivity::class.java))
             finish()
         } else {
             Toast.makeText(this, R.string.verify_email, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun showLoginSucessToast() {
+        val user = mAuth.currentUser!!
+        if (user.displayName.isNullOrEmpty())
+            Toast.makeText(this, R.string.welcome, Toast.LENGTH_LONG).show()
+        else {
+            val firstName = user.displayName.toString().split(" ").first()
+            Toast.makeText(this, getString(R.string.welcome_name, firstName), Toast.LENGTH_LONG).show()
         }
     }
 

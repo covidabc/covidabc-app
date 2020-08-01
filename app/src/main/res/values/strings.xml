@@ -97,4 +97,7 @@
     <string name="text_quit">Sair</string>
     <string name="text_datetime">10/05 às 14h50</string>
     <string name="title_about">Sobre nós</string>
+    <string name="welcome_name">Bem-vindo, %s!</string>
+    <string name="description_secret_phrase">Informação sobre frase secreta</string>
+    <string name="secret_phrase_explanation">A frase secreta permite que somente pessoas especificas se cadastem como brigadistas. Interessado? Entre em contato conosco</string>
 </resources>

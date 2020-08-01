@@ -13,7 +13,7 @@ class App : Application() {
         const val EVENT_EXTRA = "event_extra"
         const val QUIZ_EXTRA = "quiz_extra"
 
-        const val WEBSITE_URL = "https://github.com/Covid-ABC"
+        const val WEBSITE_URL = "http://ufabc.net.br/covidabc"
     }
 
 

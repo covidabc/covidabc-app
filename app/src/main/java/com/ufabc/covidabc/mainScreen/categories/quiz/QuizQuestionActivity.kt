@@ -100,13 +100,14 @@ class QuizQuestionActivity : AppCompatActivity() {
                 next_question_button.text = if (quizGroup.isFinished()) "Ver resultado" else "Próxima questão"
 
                 next_question_button.setOnClickListener {
+                    dismiss()
+
                     if (quizGroup.isFinished()) {
                         goToResult()
                         finish()
                     }
                     else {
                         chooseRandomQuiz()
-                        dismiss()
                     }
                 }
             }

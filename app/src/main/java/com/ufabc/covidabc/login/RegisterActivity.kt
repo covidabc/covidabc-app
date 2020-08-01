@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.ufabc.covidabc.R
@@ -20,6 +22,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var confirmPasswordEditText: EditText
     private lateinit var pinEditText: EditText
     private lateinit var registerButton: Button
+    private lateinit var secretPhraseImageView: ImageView
 
     private val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
@@ -38,6 +41,7 @@ class RegisterActivity : AppCompatActivity() {
         passwordEditText = findViewById(R.id.password_edit_text)
         confirmPasswordEditText = findViewById(R.id.confirm_password_edit_text)
         pinEditText = findViewById(R.id.pin_edit_text)
+        secretPhraseImageView = findViewById(R.id.secret_phrase_image_view)
     }
 
     private fun setListeners() {
@@ -63,6 +67,10 @@ class RegisterActivity : AppCompatActivity() {
 
         pinEditText.addTextChangedListener {
             pinEditText.setBackgroundResource(R.drawable.edit_text_normal)
+        }
+
+        secretPhraseImageView.setOnClickListener {
+            Toast.makeText(applicationContext, R.string.secret_phrase_explanation, Toast.LENGTH_LONG).show()
         }
     }
 
@@ -110,21 +118,29 @@ class RegisterActivity : AppCompatActivity() {
         val password = passwordEditText.text.toString()
 
         mAuth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    mAuth.currentUser?.sendEmailVerification()?.addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            Toast.makeText(this, R.string.thank_you_register, Toast.LENGTH_LONG).show()
-                            finish()
-                        }
+            .addOnSuccessListener {
+                setUserName()
+
+                mAuth.currentUser?.sendEmailVerification()
+                    ?.addOnSuccessListener {
+                        Toast.makeText(this, R.string.thank_you_register, Toast.LENGTH_LONG).show()
+                        finish()
                     }
-                }
-                else {
-                    Toast.makeText(this, R.string.an_error_occured, android.widget.Toast.LENGTH_LONG).show()
-                }
+                    ?.addOnFailureListener { sendErrorMessage() }
             }
+            .addOnFailureListener { sendErrorMessage() }
     }
 
+    private fun sendErrorMessage() {
+        Toast.makeText(this, R.string.an_error_occured, android.widget.Toast.LENGTH_LONG).show()
+    }
+
+    private fun setUserName() {
+        val profileUpdates = UserProfileChangeRequest.Builder()
+            .setDisplayName(nameEditText.text.toString()).build()
+
+        mAuth.currentUser!!.updateProfile(profileUpdates)
+    }
 
     private fun setEditTextErrors() {
         if (nameEditText.text.isEmpty()){

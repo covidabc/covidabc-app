@@ -83,9 +83,8 @@ class FAQFragment : Fragment() {
                         ContextCompat.getMainExecutor(App.appContext)
                             .execute {
                                 populateFAQ(filterFaq(str))
+                                swipeRefreshLayout.isRefreshing = false
                             }
-
-                        swipeRefreshLayout.isRefreshing = false
                     }
                 }, 600)
 
