@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.auth.FirebaseAuth
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
@@ -28,6 +29,8 @@ class EventDescriptionActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var eventDescriptionMapView : MapView
     private lateinit var eventDescriptionToolbar : Toolbar
     private var latlong : LatLng = LatLng(0.0, 0.0)
+
+    private val mAuth : FirebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,18 +61,26 @@ class EventDescriptionActivity : AppCompatActivity(), OnMapReadyCallback {
         eventDateTextView = findViewById(R.id.event_date_text_view)
         eventDescriptionTextView = findViewById(R.id.event_description_text_view)
         eventDescriptionMapView = findViewById(R.id.event_description_map_view)
+
         eventDescriptionToolbar = findViewById(R.id.event_description_toolbar)
 
-        eventDescriptionToolbar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.action_delete_event -> deleteEvent()
-                R.id.action_edit_event -> editEvent()
-                else -> super.onOptionsItemSelected(it)
-            }
+        if (isUserLoggedIn()) {
+            eventDescriptionToolbar.setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.action_delete_event -> deleteEvent()
+                    R.id.action_edit_event -> editEvent()
+                    else -> super.onOptionsItemSelected(it)
+                }
 
-            true
+                true
+            }
+        }
+        else {
+            eventDescriptionToolbar.visibility = View.GONE
         }
     }
+
+    private fun isUserLoggedIn() : Boolean = mAuth.currentUser != null
 
     private fun deleteEvent() {
         CalendarEventDAO.deleteEvent(this.event, object: FirestoreDatabaseOperationListener<Boolean> {
