@@ -22,7 +22,6 @@ class QuizQuestionActivity : AppCompatActivity() {
     private lateinit var questionTextView : TextView
     private lateinit var trueButton : Button
     private lateinit var falseButton : Button
-    private lateinit var giveUpFab : FloatingActionButton
     private lateinit var progressBar : ProgressBar
 
     private lateinit var quizGroup: QuizGroup
@@ -39,14 +38,13 @@ class QuizQuestionActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        // do nothing
+        wannaQuit()
     }
 
     private fun setViews() {
         questionTextView = findViewById(R.id.quiz_question_text_view)
         trueButton = findViewById(R.id.true_button)
         falseButton = findViewById(R.id.false_button)
-        giveUpFab = findViewById(R.id.give_up_fab)
         progressBar = findViewById(R.id.quiz_progress_bar)
     }
 
@@ -58,10 +56,6 @@ class QuizQuestionActivity : AppCompatActivity() {
         falseButton.setOnClickListener {
             checkAnswer(false)
         }
-
-        giveUpFab.setOnClickListener {
-            wannaQuit()
-        }
     }
 
     private fun wannaQuit() {
@@ -70,6 +64,7 @@ class QuizQuestionActivity : AppCompatActivity() {
             setContentView(R.layout.dialog_quit)
 
             quit_quiz_dialog_button.setOnClickListener {
+                dismiss()
                 finish()
             }
 
