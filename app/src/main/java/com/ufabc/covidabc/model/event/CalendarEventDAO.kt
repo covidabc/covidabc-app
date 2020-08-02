@@ -23,7 +23,7 @@ object CalendarEventDAO {
             }
     }
 
-    fun updateEvent(event: CalendarEvent, callback: FirestoreDatabaseOperationListener<Boolean>) {
+    fun editEvent(event: CalendarEvent, callback: FirestoreDatabaseOperationListener<Boolean>) {
         val refPath = event.getRefPath()
 
         FirebaseFirestore.getInstance().document(refPath)

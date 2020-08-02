@@ -105,4 +105,5 @@
     <string name="title_edit">Editar</string>
     <string name="delete_sucess">Evento deletado com sucesso</string>
     <string name="delete_failure">Não foi possível deletar o evento</string>
+    <string name="text_edit">Editar</string>
 </resources>

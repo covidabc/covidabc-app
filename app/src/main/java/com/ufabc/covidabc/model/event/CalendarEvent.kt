@@ -35,12 +35,46 @@ class CalendarEvent : Serializable {
     }
 
     fun getTitle() = this.title
+
+    fun setTitle(title: String) {
+        this.title = title
+    }
+
     fun getEventType() = this.eventType
+
+    fun setEventType(eventType : EventType) {
+        this.eventType = eventType
+    }
+
     fun getDescription() = this.description
+
+    fun setDescription(description: String) {
+        this.description = description
+    }
+
     fun getPlace() = this.place
+
+    fun setPlace(place : String) {
+        this.place = place
+    }
+
     fun getDate() = this.date
+
+    fun setDate(date : Date) {
+        this.date = date
+    }
+
     fun getLongitude() : Double = this.longitude
+
+    fun setLongitude(longitude : Double) {
+        this.longitude = longitude
+    }
+
     fun getLatitude() : Double = this.latitude
+
+    fun setLatitude(latitude : Double) {
+        this.latitude = latitude
+    }
 
     @Exclude
     fun getRefPath() : String = this.refPath

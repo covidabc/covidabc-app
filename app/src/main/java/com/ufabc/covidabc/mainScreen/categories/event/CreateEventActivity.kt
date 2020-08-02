@@ -12,10 +12,12 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isGone
 import androidx.core.widget.addTextChangedListener
+import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
 import com.ufabc.covidabc.model.event.CalendarEvent
 import com.ufabc.covidabc.model.event.CalendarEventDAO
+import kotlinx.android.synthetic.main.activity_create_event.*
 import java.util.*
 
 
@@ -29,9 +31,9 @@ class CreateEventActivity : AppCompatActivity() {
     private lateinit var eventDate : Date
     private lateinit var placeTextHolder : EditText
 
-    private var latitude  : Double = 0.0
-    private var longitude : Double = 0.0
-    private lateinit var addr_string : String
+    private var event = CalendarEvent()
+
+    private var createMode = true
 
     private val SECOND_ACTIVITY_REQUEST_CODE = 0
 
@@ -41,9 +43,33 @@ class CreateEventActivity : AppCompatActivity() {
 
         setViews()
         setListeners()
+
+        intent?.getSerializableExtra(App.EVENT_EXTRA).apply {
+            val oldEvent = this as CalendarEvent
+            event.setRefPath(oldEvent.getRefPath())
+            setEditEvent(oldEvent)
+        }
     }
 
+    private fun setEditEvent(oldEvent: CalendarEvent) {
+        eventTitleEditText.setText(oldEvent.getTitle())
+        eventDescriptionEditText.setText(oldEvent.getDescription())
+        placeTextHolder.visibility = View.VISIBLE
+        placeTextHolder.setText(oldEvent.getPlace())
 
+        eventDate = oldEvent.getDate()
+        Calendar.getInstance().apply {
+            time = oldEvent.getDate()
+            val year = this.get(Calendar.YEAR)
+            val month = this.get(Calendar.MONTH)
+            val day = this.get(Calendar.DAY_OF_MONTH)
+
+            pickDateButton.text = "$day/$month/$year"
+        }
+
+        createEventButton.setText(getString(R.string.text_edit))
+        createMode = false
+    }
 
     private fun setViews() {
         eventTitleEditText = findViewById(R.id.event_title_edit_text)
@@ -79,8 +105,18 @@ class CreateEventActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, R.string.fill_in_fields, Toast.LENGTH_SHORT).show()
             }
             else {
-                this.addr_string = placeTextHolder.text.toString()
-                createEvent()
+                this.event.apply {
+                    setTitle(eventTitleEditText.text.toString())
+                    setEventType(eventTypeSpinner.selectedItem as CalendarEvent.EventType)
+                    setDescription(eventDescriptionEditText.text.toString())
+                    setPlace(placeTextHolder.text.toString())
+                    setDate(eventDate)
+                }
+
+                when (createMode) {
+                    true -> createEvent()
+                    false -> editEvent()
+                }
             }
         }
 
@@ -157,10 +193,9 @@ class CreateEventActivity : AppCompatActivity() {
         if (requestCode == SECOND_ACTIVITY_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 // Get String data from Intent
-                this.addr_string = data?.getStringExtra("addr_string").toString()
-                this.longitude   = data?.getStringExtra("long_value")?.toDouble() ?: 0.0
-                this.latitude    = data?.getStringExtra("lat_value")?.toDouble() ?: 0.0
-                this.placeTextHolder.setText(this.addr_string)
+                event.setLongitude(data?.getStringExtra("long_value")?.toDouble() ?: 0.0)
+                event.setLatitude(data?.getStringExtra("lat_value")?.toDouble() ?: 0.0)
+                this.placeTextHolder.setText(data?.getStringExtra("addr_string").toString())
                 this.placeTextHolder.visibility = View.VISIBLE
 
             }
@@ -168,19 +203,7 @@ class CreateEventActivity : AppCompatActivity() {
     }
 
     private fun createEvent() {
-        val eventType = eventTypeSpinner.selectedItem as CalendarEvent.EventType
-        val newEvent = CalendarEvent(
-            eventTitleEditText.text.toString(),
-            eventType,
-            eventDescriptionEditText.text.toString(),
-            this.eventDate,
-            this.addr_string,
-            this.latitude,
-            this.longitude
-//            eventPlaceEditText.text.toString()
-        )
-
-        CalendarEventDAO.addEvent(newEvent, object : FirestoreDatabaseOperationListener<Boolean> {
+        CalendarEventDAO.addEvent(this.event, object : FirestoreDatabaseOperationListener<Boolean> {
             override fun onCompleted(sucess: Boolean) {
                 if (sucess) {
                     Toast.makeText(applicationContext, R.string.create_event_sucess, Toast.LENGTH_LONG).show()
@@ -191,6 +214,21 @@ class CreateEventActivity : AppCompatActivity() {
             }
         })
     }
+
+    private fun editEvent() {
+        CalendarEventDAO.editEvent(this.event, object : FirestoreDatabaseOperationListener<Boolean> {
+            override fun onCompleted(sucess: Boolean) {
+                if (sucess) {
+                    Toast.makeText(applicationContext, R.string.create_event_sucess, Toast.LENGTH_LONG).show()
+                    finish()
+                }
+
+                Toast.makeText(applicationContext, R.string.create_event_failure, Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+
+
     // Esta funçao verifica se o foco está fora da região de input de texto. Se tiver, ela remove o teclado
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
         val v = currentFocus
