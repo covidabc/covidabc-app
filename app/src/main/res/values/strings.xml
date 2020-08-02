@@ -108,4 +108,9 @@
     <string name="text_edit">Editar</string>
     <string name="edit_event_sucess">Evento editado com sucesso</string>
     <string name="edit_event_failure">Falha ao editar evento</string>
+    <string name="text_unfilled_map">"Voce nao preencheu a localização "</string>
+    <string name="text_fill">Preencher</string>
+    <string name="text_save">Salvar</string>
+    <string name="the_address_is">O preenchido é: \"%s\"</string>
+    <string name="text_the_selected_address">O endereço selecionado é</string>
 </resources>

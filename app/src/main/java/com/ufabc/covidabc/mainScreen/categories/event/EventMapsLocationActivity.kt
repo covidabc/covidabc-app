@@ -1,6 +1,7 @@
 package com.ufabc.covidabc.mainScreen.categories.event
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
@@ -13,30 +14,33 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doOnTextChanged
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
+import kotlinx.android.synthetic.main.dialog_save_map.*
+import kotlinx.android.synthetic.main.dialog_unfilled_map.*
 import java.io.IOException
 
 
 class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
-    private lateinit var gmap : MapView
-    private lateinit var search_text : EditText
+    private lateinit var mapView : MapView
+    private lateinit var addressSearchText : EditText
     private var latlong : LatLng = LatLng(0.0, 0.0)
-    private lateinit var fabAddAddress : FloatingActionButton
-    private var addressStr : String = ""
+    private lateinit var addAddressFAB : FloatingActionButton
     private var marker : MarkerOptions = MarkerOptions().position(LatLng(0.0, 0.0))
 
+    private var hasPinpoint = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event_maps_location)
 
         setViews()
-        gmap.onCreate(savedInstanceState)
+        mapView.onCreate(savedInstanceState)
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.event_description_map_view) as? SupportMapFragment
         mapFragment?.getMapAsync(this)
@@ -45,15 +49,46 @@ class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
     private fun setListeners() {
-        fabAddAddress.setOnClickListener { it ->
-            if (addressStr.isBlank())
-                showAlertDialog("Endereço inválido")
-            else
-                returnActivity()
+        addAddressFAB.setOnClickListener { it ->
+            if (addressSearchText.text.isBlank()) {
+                Dialog(this).apply {
+                    setCancelable(false)
+                    setContentView(R.layout.dialog_unfilled_map)
+                    fill_maps_button.setOnClickListener {
+                        dismiss()
+                    }
+                }.show()
+            }
+            else {
+                if (!hasPinpoint) {
+                    geoLocate()
+                }
+
+                Dialog(this).apply {
+                    setCancelable(false)
+                    setContentView(R.layout.dialog_save_map)
+
+                    address_dialog_message.text = addressSearchText.text.toString()
+                    found_dialog_message.text = when (hasPinpoint) {
+                        false -> "Infelizmente não encontramos esse endereço no mapa"
+                        true -> "Encontramos seu endereço no mapa"
+                    }
+                    save_dialog_button.setOnClickListener {
+                        dismiss()
+                        returnActivity()
+                    }
+                    edit_dialog_button.setOnClickListener {
+                        dismiss()
+                    }
+                }.show()
+            }
         }
 
+        addressSearchText.doOnTextChanged { _, _, _, _ ->
+            hasPinpoint = false
+        }
 
-        search_text.setOnEditorActionListener { textView, actionId, keyEvent ->
+        addressSearchText.setOnEditorActionListener { _, actionId, keyEvent ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH
                 || actionId == EditorInfo.IME_ACTION_DONE
                 || keyEvent.action == KeyEvent.ACTION_DOWN
@@ -66,23 +101,22 @@ class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun returnActivity() {
-        val intent = Intent()
-        intent.putExtra(App.ADDRESS_EXTRA, addressStr)
-        intent.putExtra(App.LATITUDE_EXTRA, latlong.latitude.toString())
-        intent.putExtra(App.LONGITUDE_EXTRA, latlong.longitude.toString())
-        setResult(Activity.RESULT_OK, intent)
+        Intent().apply {
+            putExtra(App.ADDRESS_EXTRA, addressSearchText.text.toString())
+            putExtra(App.LATITUDE_EXTRA, latlong.latitude.toString())
+            putExtra(App.LONGITUDE_EXTRA, latlong.longitude.toString())
+            setResult(Activity.RESULT_OK, this)
+        }
 
         finish()
     }
 
     private fun geoLocate() {
-        addressStr = search_text.getText().toString()
-
         val geocoder = Geocoder(this@EventMapsLocationActivity)
         var list: List<Address> = ArrayList()
 
         try {
-            list = geocoder.getFromLocationName(addressStr, 1)
+            list = geocoder.getFromLocationName(addressSearchText.text.toString(), 1)
         } catch (e: IOException) {
             Log.e("Maps", "geoLocate: IOException: " + e.toString())
         }
@@ -95,11 +129,8 @@ class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
                 setMapFocus(latlong, 15f)
             }
 
-            addressStr = address.getAddressLine(0)
-            Toast.makeText(this, addressStr, Toast.LENGTH_SHORT).show();
-
-        } else {
-            showAlertDialog("Endereço não encontrado no mapa. Deseja usar assim mesmo?")
+            addressSearchText.setText(address.getAddressLine(0))
+            hasPinpoint = true
         }
     }
 
@@ -108,7 +139,7 @@ class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
         this.marker.position(latlong)
         this.marker.title("Local da ação")
         this.marker.visible(true)
-        gmap.getMapAsync { it ->
+        mapView.getMapAsync { it ->
             it?.apply {
                 clear()
                 addMarker(marker)
@@ -126,45 +157,45 @@ class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
     private fun setViews() {
-        this.gmap = findViewById(R.id.set_event_g_map)
-        this.search_text = findViewById(R.id.event_map_loc_search_text)
-        this.fabAddAddress = findViewById(R.id.floating_add_address)
+        this.mapView = findViewById(R.id.set_event_g_map)
+        this.addressSearchText = findViewById(R.id.event_map_loc_search_text)
+        this.addAddressFAB = findViewById(R.id.floating_add_address)
     }
 
 
     override fun onStart() {
-        gmap.onStart()
+        mapView.onStart()
         super.onStart()
     }
 
     override fun onPause() {
-        gmap.onPause()
+        mapView.onPause()
         super.onPause()
     }
 
     override fun onResume() {
-        gmap.onResume()
+        mapView.onResume()
         setMapFocus(LatLng(-14.235004, -51.92528), 1f)
         super.onResume()
     }
 
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
-        gmap.onSaveInstanceState(outState)
+        mapView.onSaveInstanceState(outState)
         super.onSaveInstanceState(outState, outPersistentState)
     }
 
     override fun onDestroy() {
-        gmap.onDestroy()
+        mapView.onDestroy()
         super.onDestroy()
     }
 
     override fun onLowMemory() {
-        gmap.onLowMemory()
+        mapView.onLowMemory()
         super.onLowMemory()
     }
 
     override fun onStop() {
-        gmap.onStop()
+        mapView.onStop()
         super.onStop()
     }
 
