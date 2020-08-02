@@ -121,17 +121,19 @@
     </RelativeLayout>
 
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/rellay2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
+        android:orientation="horizontal"
         android:layout_marginRight="20dp">
 
         <Button
             android:id="@+id/registerButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:background="@android:color/transparent"
             app:fontFamily="sans-serif"
             android:text="@string/text_register_user"
@@ -142,14 +144,13 @@
             android:id="@+id/forgotPassButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
             android:background="@android:color/transparent"
-            app:fontFamily="sans-serif"
             android:text="@string/text_forgot_password"
+            android:layout_weight="1"
             android:textAllCaps="true"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            app:fontFamily="sans-serif" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

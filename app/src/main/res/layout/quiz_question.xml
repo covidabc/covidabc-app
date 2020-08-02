@@ -10,6 +10,7 @@
     android:orientation="vertical"
     android:weightSum="1"
     android:baselineAligned="false">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -37,7 +38,6 @@
             android:lineSpacingExtra="@dimen/general_space" />
     </RelativeLayout>
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -58,7 +58,6 @@
             tools:ignore="MissingConstraints" />
     </ScrollView>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -74,7 +73,7 @@
             android:padding="@dimen/general_space"
             android:background="@drawable/button_shape"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/text_default_size"
+            android:textSize="15dp"
             android:layout_marginRight="@dimen/little_space"
             android:layout_marginEnd="@dimen/little_space" />
 
@@ -87,23 +86,9 @@
             android:layout_gravity="center"
             android:background="@drawable/button_shape"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/text_default_size"
+            android:textSize="15dp"
             android:layout_marginLeft="@dimen/little_space"
             android:layout_marginStart="@dimen/little_space" />
-
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/give_up_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            app:backgroundTint="@android:color/holo_red_dark"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_close"/>
-
     </LinearLayout>
-
-
-
 
 </LinearLayout>

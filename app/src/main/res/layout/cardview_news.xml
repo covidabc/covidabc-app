@@ -54,7 +54,7 @@
                 android:lineSpacingExtra="@dimen/very_little_space"
                 android:textColor="@android:color/white"/>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/news_title_text_view"
@@ -62,8 +62,7 @@
 
                 <TextView
                     android:id="@+id/datetime_text_view"
-                    android:layout_weight="0.5"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/general_space"
                     android:maxLines="1"
@@ -74,12 +73,12 @@
                     android:textStyle="bold"
                     android:textColor="@android:color/white"
                     android:gravity="left"
+                    android:layout_alignParentLeft="true"
                     tools:ignore="RtlHardcoded" />
 
                 <TextView
                     android:id="@+id/source_text_view"
-                    android:layout_weight="0.5"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/general_space"
                     android:maxLines="1"
@@ -87,11 +86,12 @@
                     app:fontFamily="sans-serif-medium"
                     android:textAllCaps="true"
                     android:textSize="@dimen/text_default_size"
+                    android:layout_alignParentRight="true"
                     android:textStyle="bold"
                     android:textColor="@android:color/white"
                     android:gravity="right"
                     tools:ignore="RtlHardcoded" />
-            </LinearLayout>
+            </RelativeLayout>
 
         </RelativeLayout>
     </RelativeLayout>

@@ -1,3 +1,7 @@
 .idea
 .gradle
 local.properties
+.classpath
+.project
+.settings/
+src/main/res/layout-v21/
