@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.activity_create_event.*
 import java.util.*
 
 
-class CreateEventActivity : AppCompatActivity() {
+class CreateEditEventActivity : AppCompatActivity() {
     private lateinit var eventTitleEditText : EditText
     private lateinit var eventPlaceBtn : Button
     private lateinit var eventDescriptionEditText : EditText
@@ -44,7 +44,7 @@ class CreateEventActivity : AppCompatActivity() {
         setViews()
         setListeners()
 
-        intent?.getSerializableExtra(App.EVENT_EXTRA).apply {
+        intent?.getSerializableExtra(App.EVENT_EXTRA)?.apply {
             val oldEvent = this as CalendarEvent
             event.setRefPath(oldEvent.getRefPath())
             setEditEvent(oldEvent)
@@ -193,9 +193,9 @@ class CreateEventActivity : AppCompatActivity() {
         if (requestCode == SECOND_ACTIVITY_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 // Get String data from Intent
-                event.setLongitude(data?.getStringExtra("long_value")?.toDouble() ?: 0.0)
-                event.setLatitude(data?.getStringExtra("lat_value")?.toDouble() ?: 0.0)
-                this.placeTextHolder.setText(data?.getStringExtra("addr_string").toString())
+                event.setLongitude(data?.getStringExtra(App.LONGITUDE_EXTRA)?.toDouble() ?: 0.0)
+                event.setLatitude(data?.getStringExtra(App.LATITUDE_EXTRA)?.toDouble() ?: 0.0)
+                this.placeTextHolder.setText(data?.getStringExtra(App.ADDRESS_EXTRA).toString())
                 this.placeTextHolder.visibility = View.VISIBLE
 
             }
@@ -208,9 +208,9 @@ class CreateEventActivity : AppCompatActivity() {
                 if (sucess) {
                     Toast.makeText(applicationContext, R.string.create_event_sucess, Toast.LENGTH_LONG).show()
                     finish()
+                } else {
+                    Toast.makeText(applicationContext, R.string.create_event_failure, Toast.LENGTH_LONG).show()
                 }
-
-                Toast.makeText(applicationContext, R.string.create_event_failure, Toast.LENGTH_LONG).show()
             }
         })
     }
@@ -219,11 +219,11 @@ class CreateEventActivity : AppCompatActivity() {
         CalendarEventDAO.editEvent(this.event, object : FirestoreDatabaseOperationListener<Boolean> {
             override fun onCompleted(sucess: Boolean) {
                 if (sucess) {
-                    Toast.makeText(applicationContext, R.string.create_event_sucess, Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext, R.string.edit_event_sucess, Toast.LENGTH_LONG).show()
                     finish()
+                } else {
+                    Toast.makeText(applicationContext, R.string.edit_event_failure, Toast.LENGTH_LONG).show()
                 }
-
-                Toast.makeText(applicationContext, R.string.create_event_failure, Toast.LENGTH_LONG).show()
             }
         })
     }

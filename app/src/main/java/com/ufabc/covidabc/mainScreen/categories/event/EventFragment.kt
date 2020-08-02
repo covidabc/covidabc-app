@@ -26,6 +26,7 @@ class EventFragment : Fragment() {
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var eventRecyclerView : RecyclerView
     private val mAuth : FirebaseAuth = FirebaseAuth.getInstance()
+    private var shouldUpdate: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,6 +45,21 @@ class EventFragment : Fragment() {
         setEvents()
     }
 
+    override fun onPause() {
+        super.onPause()
+
+        shouldUpdate = true
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        if (shouldUpdate) {
+            shouldUpdate = false
+            updateEvents()
+        }
+    }
+
     private fun setViews(view: View) {
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout_event)
         eventRecyclerView = requireView().findViewById(R.id.recycler_view_calendar)
@@ -54,27 +70,29 @@ class EventFragment : Fragment() {
 
     private fun setListeners() {
         createEventFAB.setOnClickListener{
-            startActivity(Intent(App.appContext, CreateEventActivity::class.java))
+            startActivity(Intent(App.appContext, CreateEditEventActivity::class.java))
         }
 
         swipeRefreshLayout.setOnRefreshListener {
-            CalendarEventDAO.refreshFAQ(object : FirestoreDatabaseOperationListener<Boolean> {
-                override fun onCompleted(sucess: Boolean) {
-                    if (sucess) {
-                        populateEvents(CalendarEventDAO.getEventArray())
-                    }
-
-                    swipeRefreshLayout.isRefreshing = false
-                }
-            })
+            updateEvents()
         }
 
         mAuth.addAuthStateListener {
-
-                val user = mAuth.getCurrentUser();
-                createEventFAB.visibility = if (user != null) View.VISIBLE else View.INVISIBLE
-
+            val user = mAuth.getCurrentUser();
+            createEventFAB.visibility = if (user != null) View.VISIBLE else View.INVISIBLE
         }
+    }
+
+    private fun updateEvents() {
+        CalendarEventDAO.refreshFAQ(object : FirestoreDatabaseOperationListener<Boolean> {
+            override fun onCompleted(sucess: Boolean) {
+                if (sucess) {
+                    populateEvents(CalendarEventDAO.getEventArray())
+                }
+
+                swipeRefreshLayout.isRefreshing = false
+            }
+        })
     }
 
     private fun setEvents() {

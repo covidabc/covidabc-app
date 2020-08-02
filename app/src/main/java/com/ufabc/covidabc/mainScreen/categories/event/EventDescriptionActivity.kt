@@ -86,7 +86,7 @@ class EventDescriptionActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun editEvent() {
-        Intent(this, CreateEventActivity::class.java).apply {
+        Intent(this, CreateEditEventActivity::class.java).apply {
             putExtra(App.EVENT_EXTRA, event)
             startActivity(this)
         }

@@ -1,7 +1,6 @@
 package com.ufabc.covidabc.mainScreen.categories.event
 
 import android.app.Activity
-import android.content.DialogInterface
 import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
@@ -18,6 +17,7 @@ import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
 import java.io.IOException
 
@@ -27,7 +27,7 @@ class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var search_text : EditText
     private var latlong : LatLng = LatLng(0.0, 0.0)
     private lateinit var fabAddAddress : FloatingActionButton
-    private var addr_string : String = ""
+    private var addressStr : String = ""
     private var marker : MarkerOptions = MarkerOptions().position(LatLng(0.0, 0.0))
 
 
@@ -46,7 +46,7 @@ class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun setListeners() {
         fabAddAddress.setOnClickListener { it ->
-            if (addr_string.isBlank())
+            if (addressStr.isBlank())
                 showAlertDialog("Endereço inválido")
             else
                 returnActivity()
@@ -67,22 +67,22 @@ class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun returnActivity() {
         val intent = Intent()
-        intent.putExtra("addr_string", addr_string)
-        intent.putExtra("lat_value", latlong.latitude.toString())
-        intent.putExtra("long_value", latlong.longitude.toString())
+        intent.putExtra(App.ADDRESS_EXTRA, addressStr)
+        intent.putExtra(App.LATITUDE_EXTRA, latlong.latitude.toString())
+        intent.putExtra(App.LONGITUDE_EXTRA, latlong.longitude.toString())
         setResult(Activity.RESULT_OK, intent)
 
         finish()
     }
 
     private fun geoLocate() {
-        addr_string = search_text.getText().toString()
+        addressStr = search_text.getText().toString()
 
         val geocoder = Geocoder(this@EventMapsLocationActivity)
         var list: List<Address> = ArrayList()
 
         try {
-            list = geocoder.getFromLocationName(addr_string, 1)
+            list = geocoder.getFromLocationName(addressStr, 1)
         } catch (e: IOException) {
             Log.e("Maps", "geoLocate: IOException: " + e.toString())
         }
@@ -95,8 +95,8 @@ class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
                 setMapFocus(latlong, 15f)
             }
 
-            addr_string = address.getAddressLine(0)
-            Toast.makeText(this, addr_string, Toast.LENGTH_SHORT).show();
+            addressStr = address.getAddressLine(0)
+            Toast.makeText(this, addressStr, Toast.LENGTH_SHORT).show();
 
         } else {
             showAlertDialog("Endereço não encontrado no mapa. Deseja usar assim mesmo?")

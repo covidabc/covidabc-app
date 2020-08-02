@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/big_space"
-        tools:context=".mainScreen.categories.event.CreateEventActivity">
+        tools:context=".mainScreen.categories.event.CreateEditEventActivity">
 
 
         <TextView
