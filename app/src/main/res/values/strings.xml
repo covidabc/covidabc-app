@@ -121,4 +121,6 @@
     <string name="text_send">Enviar</string>
     <string name="send_feedback_failure">Erro ao enviar sugestão</string>
     <string name="send_feedback_sucess">Sugestão enviada com sucesso</string>
+    <string name="weak_pswd_error">A senha precisa ter no mínimo 6 caracteres</string>
+    <string name="collision_email_error">Este email já está em uso</string>
 </resources>

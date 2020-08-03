@@ -87,7 +87,6 @@ class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
         addressSearchText.doOnTextChanged { _, _, _, _ ->
-            latlong = LatLng(0.0, 0.0)
             hasPinpoint = false
         }
 
@@ -106,6 +105,7 @@ class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
                 hideKeyboard(this)
                 if (!geoLocate()) {
                     Toast.makeText(baseContext, getString(R.string.maps_error), Toast.LENGTH_LONG).show()
+                    latlong = LatLng(0.0, 0.0)
                 }
             }
             false

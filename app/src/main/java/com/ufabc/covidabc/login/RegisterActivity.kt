@@ -2,17 +2,22 @@ package com.ufabc.covidabc.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
+import com.google.android.gms.common.internal.StringResourceValueReader
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.ufabc.covidabc.R
+import io.grpc.internal.SharedResourceHolder
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -104,7 +109,8 @@ class RegisterActivity : AppCompatActivity() {
                     }
                 }
                 .addOnFailureListener {
-                    Toast.makeText(this, com.ufabc.covidabc.R.string.an_error_occured, android.widget.Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, R.string.an_error_occured, android.widget.Toast.LENGTH_LONG).show()
+//                    Toast.makeText(this, "Senha muito curta", android.widget.Toast.LENGTH_LONG).show()
                 }
         }
         else {
@@ -126,13 +132,24 @@ class RegisterActivity : AppCompatActivity() {
                         Toast.makeText(this, R.string.thank_you_register, Toast.LENGTH_LONG).show()
                         finish()
                     }
-                    ?.addOnFailureListener { sendErrorMessage() }
+                    ?.addOnFailureListener {  sendErrorMessage(R.string.an_error_occured)
+                    Log.e("LOGIN", it.toString())}
+
             }
-            .addOnFailureListener { sendErrorMessage() }
+            .addOnFailureListener {
+                when (it) {
+                    is FirebaseAuthWeakPasswordException -> sendErrorMessage(R.string.weak_pswd_error)
+                    is FirebaseAuthUserCollisionException -> sendErrorMessage(R.string.collision_email_error)
+                    else -> sendErrorMessage(R.string.an_error_occured)
+                }
+                Log.e("LOGIN", it.toString())
+            }
+
     }
 
-    private fun sendErrorMessage() {
-        Toast.makeText(this, R.string.an_error_occured, android.widget.Toast.LENGTH_LONG).show()
+
+    private fun sendErrorMessage(err:Int) {
+        Toast.makeText(this, err, Toast.LENGTH_LONG).show()
     }
 
     private fun setUserName() {
