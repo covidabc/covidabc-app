@@ -1,62 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="@dimen/big_space"
-    android:gravity="center"
     android:background="@drawable/login_gradient"
     tools:context=".login.ForgotPasswordActivity"
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"
+        android:id="@+id/feedback_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:fontFamily="sans-serif-medium"
+        android:textAlignment="center"
         android:text="@string/text_feedback"
         android:textSize="@dimen/text_big_size"
         android:textStyle="bold"
         android:textColor="@android:color/white"
-        android:layout_gravity="center"/>
+        android:gravity="center_horizontal" />
 
     <TextView
+        android:id="@+id/feedback_desc"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="0.2"
+        android:textAlignment="center"
+        android:paddingTop="@dimen/default_space"
+        android:layout_height="wrap_content"
         app:fontFamily="sans-serif-light"
         android:text="@string/text_feedback_description"
         android:textSize="@dimen/text_default_size"
         android:textStyle="bold"
+        android:layout_below="@id/feedback_header"
         android:textColor="@android:color/white"
-        android:gravity="center"/>
+        android:gravity="center_horizontal" />
 
-    <EditText
-        android:id="@+id/feedback_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.6"
-        android:background="@drawable/edit_text_normal"
-        android:padding="@dimen/default_space"
-        android:gravity="top"
-        app:fontFamily="sans-serif-light"
-        android:textColor="@color/color1_saphire_blue"
-        android:textSize="@dimen/text_default_size"
-        android:inputType="textMultiLine"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2"
-        android:gravity="center">
+        android:layout_height="fill_parent"
+        android:paddingTop="@dimen/default_space"
+        android:layout_below="@id/feedback_desc"
+        android:gravity="center|bottom"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/feedback_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/edit_text_normal"
+            android:layout_marginVertical="@dimen/default_space"
+            android:layout_weight="1"
+            app:fontFamily="sans-serif-light"
+            android:textColor="@color/color1_saphire_blue"
+            android:layout_gravity="fill_vertical"
+            android:textSize="@dimen/text_default_size"
+            android:inputType="textMultiLine"/>
         <Button
             android:id="@+id/send_feedback_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="@dimen/default_space"
+            android:padding="@dimen/default_space"
             android:textColor="@android:color/white"
             android:text="@string/text_send"
+            android:gravity="center_horizontal|center_vertical"
             android:background="@drawable/button_shape"/>
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

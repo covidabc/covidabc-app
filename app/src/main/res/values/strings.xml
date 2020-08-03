@@ -127,4 +127,5 @@
     <string name="text_aviso">Aviso</string>
     <string name="confirm_sim">Sim</string>
     <string name="confirm_não">Não</string>
+    <string name="text_event_header_empty">Sem eventos no momento, mas nossos brigadistas irão atualizar em breve</string>
 </resources>

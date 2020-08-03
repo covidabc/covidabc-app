@@ -3,9 +3,11 @@ package com.ufabc.covidabc.mainScreen.categories.event
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,6 +27,7 @@ class EventFragment : Fragment() {
     private lateinit var createEventFAB : FloatingActionButton
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var eventRecyclerView : RecyclerView
+    private lateinit var eventMessageTV : TextView
     private val mAuth : FirebaseAuth = FirebaseAuth.getInstance()
     private var shouldUpdate: Boolean = false
 
@@ -63,7 +66,7 @@ class EventFragment : Fragment() {
     private fun setViews(view: View) {
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout_event)
         eventRecyclerView = requireView().findViewById(R.id.recycler_view_calendar)
-
+        eventMessageTV = view.findViewById(R.id.event_header_text_view)
         createEventFAB = view.findViewById(R.id.fab_event_post)
 
     }
@@ -120,6 +123,11 @@ class EventFragment : Fragment() {
     }
 
     private fun populateEvents(eventArray : ArrayList<CalendarEvent>) {
+        eventMessageTV.text = when(eventArray.isEmpty()) {
+            false -> getString(R.string.text_event_header)
+            else -> getString(R.string.text_event_header_empty)
+        }
+
         eventRecyclerView.apply {
             val recyclerView = this
             recyclerView!!.layoutManager = LinearLayoutManager(App.appContext)
