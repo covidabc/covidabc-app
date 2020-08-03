@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.setupWithNavController
@@ -44,6 +45,7 @@ class MainScreenActivity : AppCompatActivity() {
             )
         )
         mainToolbar = findViewById(R.id.main_screen_toolbar)
+        mainToolbar.overflowIcon = ContextCompat.getDrawable(this,R.drawable.ic_menu)
         setupWithNavController(mainToolbar, navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
