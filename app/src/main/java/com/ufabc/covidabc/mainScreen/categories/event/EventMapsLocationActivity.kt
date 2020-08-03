@@ -2,6 +2,7 @@ package com.ufabc.covidabc.mainScreen.categories.event
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
@@ -10,6 +11,7 @@ import android.os.PersistableBundle
 import android.util.Log
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -85,7 +87,14 @@ class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
         addressSearchText.doOnTextChanged { _, _, _, _ ->
+            latlong = LatLng(0.0, 0.0)
             hasPinpoint = false
+        }
+
+
+        addressSearchText.setOnKeyListener { view, i, keyEvent ->
+            Log.d("MAPA", "evento")
+            true
         }
 
         addressSearchText.setOnEditorActionListener { _, actionId, keyEvent ->
@@ -94,7 +103,10 @@ class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
                 || keyEvent.action == KeyEvent.ACTION_DOWN
                 || keyEvent.action == KeyEvent.KEYCODE_ENTER) {
 
-                geoLocate()
+                hideKeyboard(this)
+                if (!geoLocate()) {
+                    Toast.makeText(baseContext, getString(R.string.maps_error), Toast.LENGTH_LONG).show()
+                }
             }
             false
         }
@@ -111,7 +123,7 @@ class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
         finish()
     }
 
-    private fun geoLocate() {
+    private fun geoLocate(): Boolean {
         val geocoder = Geocoder(this@EventMapsLocationActivity)
         var list: List<Address> = ArrayList()
 
@@ -131,11 +143,13 @@ class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
 
             addressSearchText.setText(address.getAddressLine(0))
             hasPinpoint = true
+            return true
+        } else {
+            return false
         }
     }
 
     private fun setMapFocus(latlong: LatLng, zoom : Float = 14.0f) {
-
         this.marker.position(latlong)
         this.marker.title("Local da ação")
         this.marker.visible(true)
@@ -217,11 +231,14 @@ class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
         dialog.show()
     }
 
+    private fun hideKeyboard(activity: Activity?) {
+        if (activity != null && activity.window != null) {
+            activity.window.decorView
+            (activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)?.hideSoftInputFromWindow(activity.window.decorView.windowToken, 0)
+        }
+    }
 
     override fun onMapReady(googleMap: GoogleMap?) {
 
     }
-
-
-
 }
