@@ -58,14 +58,9 @@ class CreateEditEventActivity : AppCompatActivity() {
         placeTextHolder.setText(oldEvent.getPlace())
 
         eventDate = oldEvent.getDate()
-        Calendar.getInstance().apply {
-            time = oldEvent.getDate()
-            val year = this.get(Calendar.YEAR)
-            val month = this.get(Calendar.MONTH)
-            val day = this.get(Calendar.DAY_OF_MONTH)
 
-            pickDateButton.text = "$day/$month/$year"
-        }
+        event.setDate(eventDate)
+        pickDateButton.text = event.getFormatedDate()
 
         createEventButton.setText(getString(R.string.text_edit))
         createMode = false
@@ -140,7 +135,8 @@ class CreateEditEventActivity : AppCompatActivity() {
 
             val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, day ->
                 eventDate = GregorianCalendar(year, month, day, 0, 0).time
-                pickDateButton.text = "$day/$month/$year"
+                event.setDate(eventDate)
+                pickDateButton.text = event.getFormatedDateYr()
             }
 
             DatePickerDialog(

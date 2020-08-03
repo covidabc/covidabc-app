@@ -108,7 +108,9 @@ class EventDescriptionActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun populateFAQ() {
         eventTitleTextView.text = event.getTitle()
         eventPlaceTextView.text = event.getPlace()
+
         eventDateTextView.text = event.getFormatedDate()
+
         eventDescriptionTextView.text = event.getDescription()
         latlong = LatLng(event.getLatitude(), event.getLongitude())
     }

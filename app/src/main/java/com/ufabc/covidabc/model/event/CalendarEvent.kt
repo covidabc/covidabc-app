@@ -88,7 +88,15 @@ class CalendarEvent : Serializable {
         val calendar = Calendar.getInstance()
         calendar.time = date
 
-        return "${getParsedDayOfTheWeek(calendar)}, ${calendar.get(Calendar.DAY_OF_MONTH)}/${calendar.get(Calendar.MONTH)}"
+        return "${getParsedDayOfTheWeek(calendar)}, ${calendar.get(Calendar.DAY_OF_MONTH)}/${calendar.get(Calendar.MONTH)+1}"
+    }
+
+    @Exclude
+    fun getFormatedDateYr() : String {
+        val calendar = Calendar.getInstance()
+        calendar.time = date
+
+        return "${calendar.get(Calendar.DAY_OF_MONTH)}/${calendar.get(Calendar.MONTH)+1}/${calendar.get(Calendar.YEAR)}"
     }
 
     @Exclude
