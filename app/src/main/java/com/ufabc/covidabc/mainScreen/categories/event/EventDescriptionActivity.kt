@@ -6,6 +6,7 @@ import android.os.PersistableBundle
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.android.gms.maps.*
@@ -67,7 +68,7 @@ class EventDescriptionActivity : AppCompatActivity(), OnMapReadyCallback {
         if (isUserLoggedIn()) {
             eventDescriptionToolbar.setOnMenuItemClickListener {
                 when (it.itemId) {
-                    R.id.action_delete_event -> deleteEvent()
+                    R.id.action_delete_event -> confirmDeletEventDialog()
                     R.id.action_edit_event -> editEvent()
                     else -> super.onOptionsItemSelected(it)
                 }
@@ -81,6 +82,23 @@ class EventDescriptionActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun isUserLoggedIn() : Boolean = mAuth.currentUser != null
+
+
+    private fun confirmDeletEventDialog() {
+        val builder = AlertDialog.Builder(this@EventDescriptionActivity).apply {
+            setTitle(getString(R.string.text_aviso))
+            setMessage(getString(R.string.confirm_event_delete))
+            setPositiveButton(getString(R.string.confirm_sim) ){ dialog, which ->
+                deleteEvent()
+                dialog.dismiss()
+            }
+            setNegativeButton(getString(R.string.confirm_não)){ dialog, wich ->
+                dialog.dismiss()
+            }
+        }
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
 
     private fun deleteEvent() {
         CalendarEventDAO.deleteEvent(this.event, object: FirestoreDatabaseOperationListener<Boolean> {
