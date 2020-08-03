@@ -113,4 +113,11 @@
     <string name="text_save">Salvar</string>
     <string name="the_address_is">O preenchido é: \"%s\"</string>
     <string name="text_the_selected_address">O endereço selecionado é</string>
+    <string name="title_menu_login">Entrar como brigadista</string>
+    <string name="title_feedback">Sugestões</string>
+    <string name="text_feedback">Sugestões do usuário</string>
+    <string name="text_feedback_description">"Sua opinião é muito valiosa para nós. Ajude-nos a melhorar o aplicativo através de críticas ou sugestões :)"</string>
+    <string name="text_send">Enviar</string>
+    <string name="send_feedback_failure">Erro ao enviar sugestão</string>
+    <string name="send_feedback_sucess">Sugestão enviada com sucesso</string>
 </resources>

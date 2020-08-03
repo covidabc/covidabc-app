@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ufabc.covidabc">
 
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
-
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <application
@@ -15,6 +14,7 @@
         android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".mainScreen.FeedbackActivity"></activity>
         <activity android:name=".mainScreen.categories.quiz.QuizResultActivity" />
         <activity android:name=".mainScreen.categories.event.EventMapsLocationActivity" />
         <activity android:name=".login.MyAccountActivity" />

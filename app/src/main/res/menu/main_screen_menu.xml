@@ -6,13 +6,19 @@
     <item
         android:id="@+id/action_login"
         android:icon="@drawable/ic_account"
-        android:title="@string/title_login"
-        app:showAsAction="ifRoom"/>
+        android:title="@string/title_menu_login"
+        app:showAsAction="never"/>
 
     <item
         android:id="@+id/action_about"
         android:icon="@drawable/ic_info"
         android:title="@string/title_about"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_feedback"
+        android:icon="@drawable/ic_info"
+        android:title="@string/title_feedback"
+        app:showAsAction="never"/>
 
 </menu>

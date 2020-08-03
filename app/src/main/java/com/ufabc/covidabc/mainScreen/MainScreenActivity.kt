@@ -62,6 +62,10 @@ class MainScreenActivity : AppCompatActivity() {
 
                 R.id.action_about -> openNewTabWindow(App.WEBSITE_URL)
 
+                R.id.action_feedback -> {
+                    startActivity(Intent(this, FeedbackActivity::class.java))
+                }
+
                 else -> super.onOptionsItemSelected(it)
             }
 
