@@ -3,6 +3,7 @@ package com.ufabc.covidabc.model.event
 import com.google.firebase.firestore.Exclude
 import java.io.Serializable
 import java.util.*
+import kotlin.properties.Delegates
 
 class CalendarEvent : Serializable {
     enum class EventType(private val value: String) {
@@ -19,12 +20,13 @@ class CalendarEvent : Serializable {
     private lateinit var place: String
     private lateinit var date: Date
     private lateinit var refPath: String
+    private var isLatLongAvailable = false
     private var latitude : Double = 0.0
     private var longitude : Double = 0.0
 
     constructor()
 
-    constructor(title: String, eventType: EventType, description: String, date: Date, place: String, lat : Double, long : Double) {
+    constructor(title: String, eventType: EventType, description: String, date: Date, place: String, lat : Double, long : Double, isLatLongAvailable : Boolean) {
         this.title = title
         this.eventType = eventType
         this.description = description
@@ -32,6 +34,7 @@ class CalendarEvent : Serializable {
         this.place = place
         this.latitude = lat
         this.longitude = long
+        this.isLatLongAvailable = isLatLongAvailable
     }
 
     fun getTitle() = this.title
@@ -75,6 +78,12 @@ class CalendarEvent : Serializable {
     fun setLatitude(latitude : Double) {
         this.latitude = latitude
     }
+
+    fun setIsLatLongAvailable(status : Boolean?) {
+        this.isLatLongAvailable = status ?: false
+    }
+
+    fun getIsLatLongAvailable() : Boolean  = this.isLatLongAvailable
 
     @Exclude
     fun getRefPath() : String = this.refPath

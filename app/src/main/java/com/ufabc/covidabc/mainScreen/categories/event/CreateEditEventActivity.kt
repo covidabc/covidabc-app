@@ -5,6 +5,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -191,9 +192,9 @@ class CreateEditEventActivity : AppCompatActivity() {
                 // Get String data from Intent
                 event.setLongitude(data?.getStringExtra(App.LONGITUDE_EXTRA)?.toDouble() ?: 0.0)
                 event.setLatitude(data?.getStringExtra(App.LATITUDE_EXTRA)?.toDouble() ?: 0.0)
+                event.setIsLatLongAvailable(data?.getBooleanExtra(App.IS_LAT_LONG_AVAILABLE_EXTRA, false))
                 this.placeTextHolder.setText(data?.getStringExtra(App.ADDRESS_EXTRA).toString())
                 this.placeTextHolder.visibility = View.VISIBLE
-
             }
         }
     }
@@ -250,3 +251,4 @@ class CreateEditEventActivity : AppCompatActivity() {
         }
     }
 }
+

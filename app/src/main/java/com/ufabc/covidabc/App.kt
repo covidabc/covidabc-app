@@ -9,6 +9,7 @@ class App : Application() {
         lateinit var appContext: Context
             private set
 
+        const val IS_LAT_LONG_AVAILABLE_EXTRA = "islatlong_extra"
         const val FAQ_EXTRA = "faq_extra"
         const val EVENT_EXTRA = "event_extra"
         const val QUIZ_EXTRA = "quiz_extra"

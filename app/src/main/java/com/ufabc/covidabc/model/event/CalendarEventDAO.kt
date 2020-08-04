@@ -87,7 +87,8 @@ object CalendarEventDAO {
             "eventType" to event.getEventType(),
             "latitute" to event.getLatitude(),
             "longitude" to event.getLongitude(),
-            "place" to event.getPlace()
+            "place" to event.getPlace(),
+            "isLatLongAvailable" to event.getIsLatLongAvailable()
         )
     }
 

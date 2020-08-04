@@ -43,7 +43,7 @@ class EventDescriptionActivity : AppCompatActivity(), OnMapReadyCallback {
 
         eventDescriptionMapView.onCreate(savedInstanceState)
 
-        if (latlong.latitude == 0.0 && latlong.longitude == 0.0) {
+        if (!event.getIsLatLongAvailable()) {
             eventDescriptionMapView.visibility = View.INVISIBLE
         }
 

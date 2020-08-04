@@ -33,6 +33,7 @@ class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var addressSearchText : EditText
     private var latlong : LatLng = LatLng(0.0, 0.0)
     private lateinit var addAddressFAB : FloatingActionButton
+    private var isLatLongAvailable : Boolean = false
     private var marker : MarkerOptions = MarkerOptions().position(LatLng(0.0, 0.0))
 
     private var hasPinpoint = false
@@ -106,6 +107,7 @@ class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
                 if (!geoLocate()) {
                     Toast.makeText(baseContext, getString(R.string.maps_error), Toast.LENGTH_LONG).show()
                     latlong = LatLng(0.0, 0.0)
+                    isLatLongAvailable = false
                 }
             }
             false
@@ -117,6 +119,7 @@ class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
             putExtra(App.ADDRESS_EXTRA, addressSearchText.text.toString())
             putExtra(App.LATITUDE_EXTRA, latlong.latitude.toString())
             putExtra(App.LONGITUDE_EXTRA, latlong.longitude.toString())
+            putExtra(App.IS_LAT_LONG_AVAILABLE_EXTRA, isLatLongAvailable)
             setResult(Activity.RESULT_OK, this)
         }
 
@@ -138,7 +141,10 @@ class EventMapsLocationActivity : AppCompatActivity(), OnMapReadyCallback {
 
             if (address.hasLatitude() && address.hasLongitude()) {
                 this.latlong = LatLng(address.latitude, address.longitude)
+                this.isLatLongAvailable = true
                 setMapFocus(latlong, 15f)
+            } else {
+                this.isLatLongAvailable = false
             }
 
             addressSearchText.setText(address.getAddressLine(0))
