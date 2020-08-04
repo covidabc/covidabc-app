@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
+import com.ufabc.covidabc.model.quiz.Quiz
 import com.ufabc.covidabc.model.quiz.QuizGroup
 import kotlinx.android.synthetic.main.activity_quiz_result.*
 import kotlinx.android.synthetic.main.dialog_quit.*

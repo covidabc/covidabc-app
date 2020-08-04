@@ -128,4 +128,6 @@
     <string name="confirm_sim">Sim</string>
     <string name="confirm_não">Não</string>
     <string name="text_event_header_empty">Sem eventos no momento, mas nossos brigadistas irão atualizar em breve</string>
+    <string name="text_news_version">Uma versão nova está disponível, com novas funcionalidades e correções de erros. Não esqueça de atualizar :) </string>
+    <string name="text_ok">OK</string>
 </resources>
