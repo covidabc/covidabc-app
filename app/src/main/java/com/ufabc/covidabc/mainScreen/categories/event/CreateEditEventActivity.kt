@@ -56,6 +56,7 @@ class CreateEditEventActivity : AppCompatActivity() {
         eventDescriptionEditText.setText(oldEvent.getDescription())
         placeTextHolder.visibility = View.VISIBLE
         placeTextHolder.setText(oldEvent.getPlace())
+        eventTypeSpinner.setSelection(CalendarEvent.EventType.values().indexOf(oldEvent.getEventType()))
 
         eventDate = oldEvent.getDate()
 
