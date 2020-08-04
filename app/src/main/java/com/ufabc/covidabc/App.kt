@@ -17,6 +17,8 @@ class App : Application() {
         const val ADDRESS_EXTRA = "address_extra"
 
         const val WEBSITE_URL = "http://ufabc.net.br/covidabc"
+
+        const val APP_VERSION = "v1"
     }
 
 

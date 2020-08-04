@@ -1,8 +1,10 @@
 package com.ufabc.covidabc.mainScreen
 
+import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -12,10 +14,14 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.login.LoginActivity
 import com.ufabc.covidabc.login.MyAccountActivity
+import kotlinx.android.synthetic.main.dialog_quit.*
+import kotlinx.android.synthetic.main.dialog_version.*
+import java.util.*
 
 class MainScreenActivity : AppCompatActivity() {
 
@@ -29,6 +35,30 @@ class MainScreenActivity : AppCompatActivity() {
 
         setViews()
         setListeners()
+
+        verifyAppVersion()
+    }
+
+    private fun verifyAppVersion() {
+        val currentVersion = App.APP_VERSION.toUpperCase(Locale.ROOT)
+
+        FirebaseFirestore.getInstance().collection("app-info").get()
+            .addOnSuccessListener {
+                val serverVersion: String = it.map { snapshot ->
+                    snapshot["version"].toString()
+                }.first().toUpperCase(Locale.ROOT)
+
+                if (currentVersion != serverVersion) {
+                    Dialog(this).apply {
+                        setCancelable(false)
+                        setContentView(R.layout.dialog_version)
+
+                        ok_version_dialog_button.setOnClickListener {
+                            dismiss()
+                        }
+                    }.show()
+                }
+            }
     }
 
     private fun setViews() {

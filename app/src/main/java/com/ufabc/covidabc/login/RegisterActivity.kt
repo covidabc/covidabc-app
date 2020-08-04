@@ -90,7 +90,7 @@ class RegisterActivity : AppCompatActivity() {
                 && confirmPasswordEditText.text.toString() == passwordEditText.text.toString()
 
     private fun getPin() : Task<QuerySnapshot>
-            = FirebaseFirestore.getInstance().collection("pin").get()
+            = FirebaseFirestore.getInstance().collection("app-info").get()
 
     private fun registerUser() {
 
