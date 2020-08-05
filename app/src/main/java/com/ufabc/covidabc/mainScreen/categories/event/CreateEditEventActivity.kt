@@ -59,9 +59,12 @@ class CreateEditEventActivity : AppCompatActivity() {
         placeTextHolder.setText(oldEvent.getPlace())
         eventTypeSpinner.setSelection(CalendarEvent.EventType.values().indexOf(oldEvent.getEventType()))
 
+        event.setLatitude(oldEvent.getLatitude())
+        event.setLongitude(oldEvent.getLongitude())
+        event.setIsLatLongAvailable(oldEvent.getIsLatLongAvailable())
         eventDate = oldEvent.getDate()
-
         event.setDate(eventDate)
+
         pickDateButton.text = event.getFormatedDate()
 
         createEventButton.setText(getString(R.string.text_edit))

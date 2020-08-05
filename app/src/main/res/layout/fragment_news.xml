@@ -28,11 +28,16 @@
                 android:textSize="20sp"
                 app:fontFamily="sans-serif-light" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view_news"
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_refresh_layout_news"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/news_header_text_view" />
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_news"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

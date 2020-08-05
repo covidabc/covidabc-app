@@ -2,7 +2,6 @@ package com.ufabc.covidabc.mainScreen.categories.news
 
 import android.app.ProgressDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,20 +10,18 @@ import androidx.fragment.app.Fragment
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.firebase.ui.firestore.SnapshotParser
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.firebase.ui.firestore.paging.FirestorePagingOptions
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
-import com.ufabc.covidabc.model.faq.FAQDAO
 import com.ufabc.covidabc.model.news.News
 import com.ufabc.covidabc.model.news.NewsDAO
 
 class NewsFragment : Fragment() {
+
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -34,7 +31,24 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setViewsAndListeners()
         setNews()
+    }
+
+    private fun setViewsAndListeners() {
+        swipeRefreshLayout = requireView().findViewById(R.id.swipe_refresh_layout_news)
+
+        swipeRefreshLayout.setOnRefreshListener {
+            NewsDAO.refreshNews(object : FirestoreDatabaseOperationListener<Boolean> {
+                override fun onCompleted(sucess: Boolean) {
+                    if (sucess) {
+                        configureAdapter(NewsDAO.getNewsQuery())
+                    }
+
+                    swipeRefreshLayout.isRefreshing = false
+                }
+            })
+        }
     }
 
     private fun setNews() {

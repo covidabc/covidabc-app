@@ -14,24 +14,60 @@
         android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mainScreen.FeedbackActivity" />
-        <activity android:name=".mainScreen.categories.quiz.QuizResultActivity" />
-        <activity android:name=".mainScreen.categories.event.EventMapsLocationActivity" />
-        <activity android:name=".login.MyAccountActivity" />
-        <activity android:name=".login.ForgotPasswordActivity" />
-        <activity android:name=".login.RegisterActivity" />
-        <activity android:name=".mainScreen.MainScreenActivity">
+
+        <activity
+            android:name=".mainScreen.FeedbackActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".mainScreen.categories.quiz.QuizResultActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".mainScreen.categories.event.EventMapsLocationActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".login.MyAccountActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".login.ForgotPasswordActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".login.RegisterActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".mainScreen.MainScreenActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mainScreen.categories.event.EventDescriptionActivity" />
-        <activity android:name=".mainScreen.categories.event.CreateEditEventActivity" />
-        <activity android:name=".mainScreen.categories.faq.FAQDescriptionActivity" />
-        <activity android:name=".login.LoginActivity" />
-        <activity android:name=".mainScreen.categories.quiz.QuizQuestionActivity" />
+
+        <activity
+            android:name=".mainScreen.categories.event.EventDescriptionActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".mainScreen.categories.event.CreateEditEventActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".mainScreen.categories.faq.FAQDescriptionActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".login.LoginActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".mainScreen.categories.quiz.QuizQuestionActivity"
+            android:screenOrientation="portrait"/>
 
         <provider
             android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"

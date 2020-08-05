@@ -2,7 +2,6 @@ package com.ufabc.covidabc.mainScreen.categories.faq
 
 import android.app.ProgressDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,17 +12,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.google.android.gms.common.util.concurrent.HandlerExecutor
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.faq.FAQ
 import com.ufabc.covidabc.model.faq.FAQDAO
 import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
-import java.sql.Time
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.collections.HashSet
-
 
 class FAQFragment : Fragment() {
 
