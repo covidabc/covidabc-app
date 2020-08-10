@@ -31,15 +31,15 @@
       android:orientation="vertical"
       android:gravity="center">
 
-    <TextView
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/inventory_management_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAllCaps="true"
-        app:fontFamily="sans-serif-light"
-        android:text="@string/text_soon_new_features"
+        android:padding="@dimen/general_space"
+        android:text="@string/text_inventory_management"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/text_default_size"
-        android:gravity="center"/>
+        android:background="@drawable/button_shape"
+        android:layout_marginTop="@dimen/default_space"/>
 
   </LinearLayout>
 

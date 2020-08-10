@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".features.InventoryActivity"
+    android:padding="@dimen/general_space">
+
+    <TextView
+        android:id="@+id/inventory_location_description_name"
+        android:text="@string/text_default"
+        app:fontFamily="sans-serif-light"
+        android:textColor="@color/color1_saphire_blue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"/>
+
+</LinearLayout>

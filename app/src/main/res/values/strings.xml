@@ -130,4 +130,7 @@
     <string name="text_event_header_empty">Sem eventos no momento, mas nossos brigadistas irão atualizar em breve</string>
     <string name="text_news_version">Uma versão nova está disponível, com novas funcionalidades e correções de erros. Não esqueça de atualizar :) </string>
     <string name="text_ok">OK</string>
+    <string name="text_inventory_management">Gestão de estoque</string>
+    <string name="text_add_inventory_location">Adicionar Local de Estoque</string>
+    <string name="text_default">a simple text</string>
 </resources>
