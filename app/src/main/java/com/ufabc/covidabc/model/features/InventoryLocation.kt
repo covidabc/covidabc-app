@@ -2,10 +2,12 @@ package com.ufabc.covidabc.model.features
 
 import java.io.Serializable
 
-class InventoryLocation : Serializable {
+class InventoryLocation(): Serializable {
+    private lateinit var locationName: String
 
-    lateinit var locationName : String
+    private lateinit var itemCount : HashMap<String, Int>
 
-    // TODO(): counter for all the items
-    var count = 0
+    fun getLocationName() = this.locationName
+
+    fun getItemCount() = this.itemCount
 }

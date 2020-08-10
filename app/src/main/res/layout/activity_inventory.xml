@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".features.InventoryActivity"
-    android:padding="@dimen/general_space">
+    android:padding="@dimen/general_space"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/inventory_location_description_name"
@@ -16,5 +17,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_items"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

@@ -32,7 +32,7 @@ class InventoryManagementAdapter(val inventoryLocationArray: ArrayList<Inventory
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = inventoryLocationArray[position]
 
-        holder.inventoryLocationText.text = item.locationName
+        holder.inventoryLocationText.text = item.getLocationName()
         holder.inventoryCard.setOnClickListener {
             Intent(App.appContext, InventoryActivity::class.java).apply {
                 putExtra(App.INVENTORY_EXTRA, item)

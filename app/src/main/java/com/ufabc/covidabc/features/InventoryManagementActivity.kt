@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
+import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
 import com.ufabc.covidabc.model.features.InventoryLocation
 import com.ufabc.covidabc.model.features.InventoryLocationDAO
 
@@ -18,7 +19,13 @@ class InventoryManagementActivity : AppCompatActivity() {
         setContentView(R.layout.activity_inventory_management)
 
         setViews()
-        populateInventoryLocations(InventoryLocationDAO.getAllInventoryLocation())
+
+        InventoryLocationDAO.refreshInventoryLocation(object : FirestoreDatabaseOperationListener<Boolean> {
+            override fun onCompleted(sucess: Boolean) {
+                val updatedInv = InventoryLocationDAO.getInventoryLocationArray()
+                populateInventoryLocations(updatedInv)
+            }
+        })
     }
 
     private fun setViews() {

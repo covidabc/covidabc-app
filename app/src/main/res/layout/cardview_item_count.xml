@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="@dimen/little_space"
+    app:cardCornerRadius="10dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingPrefix"
+        android:background="@color/color1_saphire_blue">
+
+        <TextView
+            android:id="@+id/item_name_text_view"
+            android:text="@string/text_default"
+            app:fontFamily="sans-serif-light"
+            android:textColor="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/general_space"
+            android:paddingBottom="@dimen/little_space"
+            android:paddingLeft="@dimen/general_space"
+            android:paddingRight="@dimen/general_space"
+            android:layout_toLeftOf="@id/next_icon"
+            android:layout_toStartOf="@id/next_icon"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/item_count_text_view"
+            android:text="@string/text_default"
+            app:fontFamily="sans-serif-light"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_name_text_view"
+            android:paddingTop="@dimen/little_space"
+            android:paddingBottom="@dimen/general_space"
+            android:paddingLeft="@dimen/general_space"
+            android:paddingRight="@dimen/general_space"
+            android:layout_toLeftOf="@id/next_icon"
+            android:layout_toStartOf="@id/next_icon"
+            android:singleLine="true" />
+
+        <ImageView
+            android:id="@+id/next_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_next"
+            android:layout_alignTop="@id/item_name_text_view"
+            android:layout_alignBottom="@id/item_count_text_view"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
+
+        </ImageView>
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
