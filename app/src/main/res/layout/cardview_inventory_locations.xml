@@ -22,13 +22,10 @@
             android:textColor="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/general_space"
-            android:paddingBottom="@dimen/little_space"
-            android:paddingLeft="@dimen/general_space"
-            android:paddingRight="@dimen/general_space"
+            android:padding="@dimen/default_space"
             android:layout_toLeftOf="@id/next_icon"
             android:layout_toStartOf="@id/next_icon"
-            android:textStyle="bold"/>
+            android:textAllCaps="true"/>
 
 
         <ImageView
@@ -36,8 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_next"
-            android:layout_alignTop="@id/question_text"
-            android:layout_alignBottom="@id/answer_text"
+            android:layout_alignTop="@id/inventory_location_name"
+            android:layout_alignBottom="@id/inventory_location_name"
             android:layout_alignParentRight="true">
 
         </ImageView>

@@ -133,4 +133,6 @@
     <string name="text_inventory_management">Gestão de estoque</string>
     <string name="text_add_inventory_location">Adicionar Local de Estoque</string>
     <string name="text_default">a simple text</string>
+    <string name="text_create_location">Digite o nome do novo local</string>
+    <string name="main_text_inventory_management">Locais de armazenamento ja existentes</string>
 </resources>
