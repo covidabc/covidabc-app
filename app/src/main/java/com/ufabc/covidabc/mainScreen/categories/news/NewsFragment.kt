@@ -82,10 +82,11 @@ class NewsFragment : Fragment() {
             .setPageSize(20)
             .build()
 
-        val options : FirestorePagingOptions<News> = FirestorePagingOptions.Builder<News>()
+        var options : FirestorePagingOptions<News> = FirestorePagingOptions.Builder<News>()
             .setLifecycleOwner(this)
             .setQuery(query, config, News::class.java)
             .build()
+
 
         view?.findViewById<RecyclerView>(R.id.recycler_view_news).apply {
             val recyclerView = this
