@@ -33,6 +33,9 @@ object InventoryLocationDAO {
 
     fun getInventoryLocationArray() = this.inventoryLocationArray
 
+    fun getIventoryLocationWithRef(refPath : String) : InventoryLocation =
+        inventoryLocationArray.filter { inventoryLocation -> inventoryLocation.getRefPath() == refPath }.first()
+
     fun updateItemCount(refPath : String, item : String, currVal : Int, change: Int,
                         callback: FirestoreDatabaseOperationListener<Boolean>) {
         FirebaseFirestore.getInstance().document(refPath).get()

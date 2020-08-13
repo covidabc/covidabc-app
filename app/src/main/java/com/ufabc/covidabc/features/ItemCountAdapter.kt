@@ -63,7 +63,7 @@ class ItemCountAdapter(private val itemCount: Map<String, Int>,
 
             item_count_picker.minValue = 0
             item_count_picker.maxValue = (maxValue - minValue)
-            item_count_picker.value = (maxValue + minValue) / 2
+            item_count_picker.value = minValue
             item_count_picker.setFormatter { index -> (index + minValue).toString() }
 
             quit_change_count_button.setOnClickListener {
@@ -71,7 +71,7 @@ class ItemCountAdapter(private val itemCount: Map<String, Int>,
             }
 
             continue_change_count_button.setOnClickListener {
-                val change = item_count_picker.value - minValue
+                val change = item_count_picker.value + minValue
 
                 InventoryLocationDAO.updateItemCount(refPath, item, count, change,
                     object : FirestoreDatabaseOperationListener<Boolean> {
@@ -81,10 +81,15 @@ class ItemCountAdapter(private val itemCount: Map<String, Int>,
                                 false -> R.string.change_failure
                             }, Toast.LENGTH_LONG).show()
 
+                            updateScreen()
                             dismiss()
                         }
                     })
             }
         }.show()
+    }
+
+    private fun updateScreen() {
+        (context as InventoryActivity).refreshInventory()
     }
 }

@@ -6,15 +6,19 @@ import android.widget.SearchView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
+import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
 import com.ufabc.covidabc.model.features.InventoryLocation
+import com.ufabc.covidabc.model.features.InventoryLocationDAO
 
 class InventoryActivity : AppCompatActivity() {
 
     private lateinit var itemRecyclerView: RecyclerView
     private lateinit var locationLocationTextView : TextView
     private lateinit var inventorySearchView: SearchView
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     private lateinit var inventoryLocation : InventoryLocation
 
@@ -46,5 +50,14 @@ class InventoryActivity : AppCompatActivity() {
             recyclerView.adapter = ItemCountAdapter(itemCount,
                 this@InventoryActivity, inventoryLocation.getRefPath())
         }
+    }
+
+    fun refreshInventory() {
+        InventoryLocationDAO.refreshInventoryLocation(object: FirestoreDatabaseOperationListener<Boolean> {
+            override fun onCompleted(sucess: Boolean) {
+                inventoryLocation = InventoryLocationDAO.getIventoryLocationWithRef(inventoryLocation.getRefPath())
+                setInventoryInfo()
+            }
+        })
     }
 }

@@ -26,7 +26,10 @@ class InventoryManagementActivity : AppCompatActivity() {
 
         setViews()
         setListeners()
+        updateData()
+    }
 
+    private fun updateData() {
         InventoryLocationDAO.refreshInventoryLocation(object : FirestoreDatabaseOperationListener<Boolean> {
             override fun onCompleted(sucess: Boolean) {
                 val updatedInv = InventoryLocationDAO.getInventoryLocationArray()
@@ -62,6 +65,7 @@ class InventoryManagementActivity : AppCompatActivity() {
 
                 if (locationName.isNotEmpty()) {
                     InventoryLocationDAO.addNewInventoryLocation(locationName)
+                    updateData()
                     dismiss()
                 }
                 else {
