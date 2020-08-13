@@ -4,10 +4,10 @@ import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 
 object EventLogDAO {
-    private const val USER_LOG_COLLECTION = "event-log"
-    fun addUserLog(uLog : NewsViewsLog) {
-        FirebaseFirestore.getInstance().collection(USER_LOG_COLLECTION).add(uLog).addOnCompleteListener {
-            Log.d("LOG-NEWS-STATUS", it.isSuccessful.toString())
+    private const val USER_LOG_COLLECTION = "eventos-log"
+    fun addEventLog(eLog : EventLog) {
+        FirebaseFirestore.getInstance().collection(USER_LOG_COLLECTION).add(eLog).addOnCompleteListener {
+            Log.d("LOG-Event-STATUS", it.isSuccessful.toString())
         }
     }
 }

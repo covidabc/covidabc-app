@@ -3,9 +3,13 @@ package com.ufabc.covidabc.logger
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.iid.FirebaseInstanceId
+import com.ufabc.covidabc.model.logger.EventLog
+import com.ufabc.covidabc.model.logger.EventLogDAO
 import com.ufabc.covidabc.model.logger.NewsViewsLog
 import com.ufabc.covidabc.model.logger.NewsViewsLogDAO
 import java.security.MessageDigest
+import java.sql.Date
+import java.util.*
 
 
 object Logger {
@@ -20,7 +24,6 @@ object Logger {
             uid = "missing_hash"
         }
 
-
         mAuth.addAuthStateListener {
             updateBrigadistaInfo()
         }
@@ -33,6 +36,11 @@ object Logger {
         NewsViewsLogDAO.addUserLog(nvl)
     }
 
+    fun eventLogInfo(action : String, eventID : String) {
+        Log.d("LOGGER", "EVENT")
+        val ev = EventLog(brigadista_name, brigadista_email, action,  Calendar.getInstance().time, eventID)
+        EventLogDAO.addEventLog(ev)
+    }
 
     private fun updateBrigadistaInfo() {
         val user = mAuth.currentUser
