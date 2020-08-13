@@ -12,11 +12,20 @@
     <TextView
         android:id="@+id/inventory_location_description_name"
         android:text="@string/text_default"
-        app:fontFamily="sans-serif-light"
-        android:textColor="@color/color1_saphire_blue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"/>
+        app:fontFamily="sans-serif-light"
+        android:textColor="@color/color1_saphire_blue"
+        android:textSize="@dimen/text_big_size"
+        android:gravity="center"
+        android:padding="@dimen/general_space" />
+
+    <SearchView
+        android:id="@+id/search_view_inventory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/little_space"
+        android:background="@drawable/search_view_shape"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_items"

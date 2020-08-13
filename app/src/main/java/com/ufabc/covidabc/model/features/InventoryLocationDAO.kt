@@ -33,11 +33,38 @@ object InventoryLocationDAO {
 
     fun getInventoryLocationArray() = this.inventoryLocationArray
 
+    fun updateItemCount(refPath : String, item : String, currVal : Int, change: Int,
+                        callback: FirestoreDatabaseOperationListener<Boolean>) {
+        FirebaseFirestore.getInstance().document(refPath).get()
+            .addOnCompleteListener { getTask ->
+                if (!getTask.isSuccessful) {
+                    callback.onCompleted(false)
+                    return@addOnCompleteListener
+                }
+
+                val querySnapshot = getTask.result!!
+                val map = querySnapshot.toObject(InventoryLocation::class.java)!!.getItemCount()
+
+                if (map[item] != currVal) {
+                    callback.onCompleted(false)
+                    return@addOnCompleteListener
+                }
+
+                map[item] = currVal + change
+                FirebaseFirestore.getInstance().document(refPath)
+                    .update(mapOf("itemCount" to map))
+                    .addOnCompleteListener {
+                            updateTask -> callback.onCompleted(updateTask.isSuccessful)
+                    }
+            }
+    }
+
     private fun documentsToInventoryLocation(qSnapshot: QuerySnapshot): ArrayList<InventoryLocation> {
         val inventoryLocationArray = arrayListOf<InventoryLocation>()
 
         for (document in qSnapshot.documents) {
             document.toObject(InventoryLocation::class.java)?.apply {
+                this.setRefPath(document.reference.path)
                 inventoryLocationArray.add(this)
             }
         }

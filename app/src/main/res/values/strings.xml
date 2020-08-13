@@ -135,4 +135,11 @@
     <string name="text_default">a simple text</string>
     <string name="text_create_location">Digite o nome do novo local</string>
     <string name="main_text_inventory_management">Locais de armazenamento ja existentes</string>
+    <string name="welcome_to">Voce esta vendo estoque do(a) %s</string>
+    <string name="number_default">5</string>
+    <string name="text_change_count">Adicionar ou remover unidades</string>
+    <string name="change_sucess">Mudanças realizadas com sucesso</string>
+    <string name="change_failure">Houve algum erro. Tente novamente</string>
+    <string name="item_is">Item: %s</string>
+    <string name="item_count_is">Quantidade atual : %d</string>
 </resources>
