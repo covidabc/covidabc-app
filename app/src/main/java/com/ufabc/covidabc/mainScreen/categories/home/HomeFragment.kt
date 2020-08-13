@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.ufabc.covidabc.R
+import com.ufabc.covidabc.logger.Logger
 
 class HomeFragment : Fragment() {
 
@@ -15,5 +16,6 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
+
     }
 }

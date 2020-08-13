@@ -17,6 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
+import com.ufabc.covidabc.logger.Logger
 import com.ufabc.covidabc.model.event.CalendarEvent
 import com.ufabc.covidabc.model.event.CalendarEventDAO
 import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
@@ -46,6 +47,7 @@ class EventFragment : Fragment() {
         setListeners()
 
         setEvents()
+
     }
 
     override fun onPause() {

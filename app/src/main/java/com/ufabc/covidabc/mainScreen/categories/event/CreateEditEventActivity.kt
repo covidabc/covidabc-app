@@ -5,7 +5,6 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -18,7 +17,6 @@ import com.ufabc.covidabc.R
 import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
 import com.ufabc.covidabc.model.event.CalendarEvent
 import com.ufabc.covidabc.model.event.CalendarEventDAO
-import kotlinx.android.synthetic.main.activity_create_event.*
 import java.util.*
 
 
@@ -31,7 +29,6 @@ class CreateEditEventActivity : AppCompatActivity() {
     private lateinit var pickDateButton : Button
     private lateinit var eventDate : Date
     private lateinit var placeTextHolder : EditText
-
     private var event = CalendarEvent()
 
     private var createMode = true
