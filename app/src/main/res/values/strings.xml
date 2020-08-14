@@ -142,4 +142,5 @@
     <string name="change_failure">Houve algum erro. Tente novamente</string>
     <string name="item_is">Item: %s</string>
     <string name="item_count_is">Quantidade atual : %d</string>
+    <string name="confirm_location_delete">Tem certeza que deseja apagar este local?</string>
 </resources>

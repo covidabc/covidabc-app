@@ -63,7 +63,7 @@ class ItemCountAdapter(private val itemCount: Map<String, Int>,
 
             item_count_picker.minValue = 0
             item_count_picker.maxValue = (maxValue - minValue)
-            item_count_picker.value = minValue
+            item_count_picker.wrapSelectorWheel = false
             item_count_picker.setFormatter { index -> (index + minValue).toString() }
 
             quit_change_count_button.setOnClickListener {

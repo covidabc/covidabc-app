@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ListView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ufabc.covidabc.App
@@ -17,8 +18,25 @@ import kotlinx.android.synthetic.main.dialog_quit.*
 
 class InventoryManagementActivity : AppCompatActivity() {
 
-    private lateinit var recyclerView : RecyclerView
+    private lateinit var recyclerView : ListView
     private lateinit var createLocationButton : Button
+
+    private var shouldUpdate: Boolean = false
+
+    override fun onPause() {
+        super.onPause()
+
+        shouldUpdate = true
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        if (shouldUpdate) {
+            shouldUpdate = false
+            updateData()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,7 +97,6 @@ class InventoryManagementActivity : AppCompatActivity() {
     private fun populateInventoryLocations(inventoryLocationArray : ArrayList<InventoryLocation>) {
         recyclerView.apply {
             val recyclerView = this
-            recyclerView.layoutManager = LinearLayoutManager(App.appContext)
             recyclerView.adapter = InventoryManagementAdapter(inventoryLocationArray)
         }
     }

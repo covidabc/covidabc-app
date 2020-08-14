@@ -31,6 +31,17 @@ object InventoryLocationDAO {
             }
     }
 
+    fun deleteLocation(location: InventoryLocation, callback: FirestoreDatabaseOperationListener<Boolean>) {
+        val refPath = location.getRefPath()
+
+        FirebaseFirestore.getInstance()
+            .document(refPath)
+            .delete()
+            .addOnCompleteListener { task->
+                callback.onCompleted(task.isSuccessful)
+            }
+    }
+
     fun getInventoryLocationArray() = this.inventoryLocationArray
 
     fun getIventoryLocationWithRef(refPath : String) : InventoryLocation =

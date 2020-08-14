@@ -21,12 +21,14 @@
         android:textSize="@dimen/text_answer_size"
         android:gravity="center" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ListView
         android:id="@+id/recycler_view_inventory_management"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/inventory_management_main_text_view"
-        android:layout_above="@id/inventory_management_buttons"/>
+        android:layout_above="@id/inventory_management_buttons"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0sp"/>
 
     <RelativeLayout
         android:id="@+id/inventory_management_buttons"
