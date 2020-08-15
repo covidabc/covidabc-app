@@ -69,8 +69,7 @@ class NewsAdapter(private val options: FirestorePagingOptions<News>):
                 .into(holder.newsImage)
 
             holder.newsBody.setOnClickListener {
-                // FIXME: fazer o ref path funcionar
-                Logger.newsAnalytics("path_teste", Calendar.getInstance().time)
+                Logger.newsAnalytics(this.getRefPath(), Calendar.getInstance().time)
                 openNewTabWindow(this.getNewsURL())
             }
         }
