@@ -1,16 +1,18 @@
 package com.ufabc.covidabc.model.features
 
+import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
-import com.ufabc.covidabc.model.event.CalendarEvent
-import com.ufabc.covidabc.model.event.CalendarEventDAO
+import kotlin.math.min
 
 object InventoryLocationDAO {
     private const val INVENTORY_COLLECTION = "inventory-locations"
 
     private lateinit var inventoryLocationArray : ArrayList<InventoryLocation>
+    private lateinit var totalCount : HashMap<String, Int>
     private var isAlreadyFetched = false
+    private var kitCount = 0
 
     fun addNewInventoryLocation(locationName: String) {
         val newLocation = InventoryLocation(locationName)
@@ -22,9 +24,11 @@ object InventoryLocationDAO {
         FirebaseFirestore.getInstance().collection(INVENTORY_COLLECTION).get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    this.inventoryLocationArray =
-                        documentsToInventoryLocation(task.result!!)
+                    this.inventoryLocationArray = documentsToInventoryLocation(task.result!!)
                     this.isAlreadyFetched = true
+                    refreshTotalCount()
+
+                    Log.e("kits", kitCount.toString())
                 }
 
                 callback.onCompleted(task.isSuccessful)
@@ -43,6 +47,8 @@ object InventoryLocationDAO {
     }
 
     fun getInventoryLocationArray() = this.inventoryLocationArray
+
+    fun getKitCount() = this.kitCount
 
     fun getIventoryLocationWithRef(refPath : String) : InventoryLocation =
         inventoryLocationArray.filter { inventoryLocation -> inventoryLocation.getRefPath() == refPath }.first()
@@ -84,5 +90,26 @@ object InventoryLocationDAO {
         }
 
         return inventoryLocationArray
+    }
+
+    private fun refreshTotalCount() {
+        totalCount = hashMapOf()
+        var minCount = Int.MAX_VALUE
+
+        for (item in DonationItem.values()) {
+            val itemMinCount = item.getMinCount()
+            val itemName = item.toString()
+
+            for (inventoryLocation in inventoryLocationArray) {
+                val itemCount = inventoryLocation.getItemCount()[itemName] ?: 0
+                totalCount[itemName] = (totalCount[itemName] ?: 0) + itemCount
+
+                if (itemMinCount > 0) {
+                    minCount = min(minCount, itemCount/itemMinCount)
+                }
+            }
+        }
+
+        this.kitCount = minCount
     }
 }

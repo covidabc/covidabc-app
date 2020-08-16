@@ -3,9 +3,11 @@ package com.ufabc.covidabc.features
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ufabc.covidabc.App
@@ -20,6 +22,7 @@ class InventoryManagementActivity : AppCompatActivity() {
 
     private lateinit var recyclerView : ListView
     private lateinit var createLocationButton : Button
+    private lateinit var itemCountTextView : TextView
 
     private var shouldUpdate: Boolean = false
 
@@ -59,6 +62,7 @@ class InventoryManagementActivity : AppCompatActivity() {
     private fun setViews() {
         recyclerView = findViewById(R.id.recycler_view_inventory_management)
         createLocationButton = findViewById(R.id.create_location_button)
+        itemCountTextView = findViewById(R.id.inventory_management_count_text_view)
     }
 
     private fun setListeners() {
@@ -95,6 +99,11 @@ class InventoryManagementActivity : AppCompatActivity() {
 
 
     private fun populateInventoryLocations(inventoryLocationArray : ArrayList<InventoryLocation>) {
+        itemCountTextView.apply {
+            text = getString(R.string.item_kit_count_is, InventoryLocationDAO.getKitCount())
+            visibility = View.VISIBLE
+        }
+
         recyclerView.apply {
             val recyclerView = this
             recyclerView.adapter = InventoryManagementAdapter(inventoryLocationArray)
