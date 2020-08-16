@@ -16,6 +16,7 @@ class App : Application() {
         const val LONGITUDE_EXTRA = "longitude_extra"
         const val LATITUDE_EXTRA = "latitude_extra"
         const val ADDRESS_EXTRA = "address_extra"
+        const val INVENTORY_EXTRA = "inventory_extra"
 
         const val WEBSITE_URL = "http://ufabc.net.br/covidabc"
 

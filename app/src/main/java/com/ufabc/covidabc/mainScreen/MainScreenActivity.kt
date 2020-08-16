@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -19,7 +18,6 @@ import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.login.LoginActivity
 import com.ufabc.covidabc.login.MyAccountActivity
-import kotlinx.android.synthetic.main.dialog_quit.*
 import kotlinx.android.synthetic.main.dialog_version.*
 import java.util.*
 

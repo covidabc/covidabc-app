@@ -130,4 +130,18 @@
     <string name="text_event_header_empty">Sem eventos no momento, mas nossos brigadistas irão atualizar em breve</string>
     <string name="text_news_version">Uma versão nova está disponível, com novas funcionalidades e correções de erros. Não esqueça de atualizar :) </string>
     <string name="text_ok">OK</string>
+    <string name="text_inventory_management">Gestão de estoque</string>
+    <string name="text_add_inventory_location">Adicionar Local de Estoque</string>
+    <string name="text_default">a simple text</string>
+    <string name="text_create_location">Digite o nome do novo local</string>
+    <string name="main_text_inventory_management">Locais de armazenamento ja existentes</string>
+    <string name="welcome_to">Voce esta vendo estoque do(a) %s</string>
+    <string name="number_default">5</string>
+    <string name="text_change_count">Adicionar ou remover unidades</string>
+    <string name="change_sucess">Mudanças realizadas com sucesso</string>
+    <string name="change_failure">Houve algum erro. Tente novamente</string>
+    <string name="item_is">Item: %s</string>
+    <string name="item_count_is">Quantidade atual : %d</string>
+    <string name="confirm_location_delete">Tem certeza que deseja apagar este local?</string>
+    <string name="item_kit_count_is">Temos %d kits disponiveis!!</string>
 </resources>

@@ -1,14 +1,10 @@
 package com.ufabc.covidabc.model.event
 
-
-import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
-import com.google.firebase.firestore.util.CustomClassMapper
 import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
 object CalendarEventDAO {
 

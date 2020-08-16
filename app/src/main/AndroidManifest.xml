@@ -14,31 +14,26 @@
         android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".features.InventoryActivity"></activity>
+        <activity android:name=".features.InventoryManagementActivity" />
         <activity
             android:name=".mainScreen.FeedbackActivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mainScreen.categories.quiz.QuizResultActivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mainScreen.categories.event.EventMapsLocationActivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".login.MyAccountActivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".login.ForgotPasswordActivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".login.RegisterActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".mainScreen.MainScreenActivity"
             android:screenOrientation="portrait">
@@ -48,26 +43,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".mainScreen.categories.event.EventDescriptionActivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mainScreen.categories.event.CreateEditEventActivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mainScreen.categories.faq.FAQDescriptionActivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".login.LoginActivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mainScreen.categories.quiz.QuizQuestionActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
