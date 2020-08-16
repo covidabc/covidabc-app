@@ -1,6 +1,7 @@
 package com.ufabc.covidabc.model.news
 
 
+import com.google.firebase.firestore.Exclude
 import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
@@ -13,7 +14,7 @@ class News: Serializable {
     private lateinit var source: String
     private lateinit var date: Date
     private lateinit var timeStr: String
-
+    private lateinit var refPath : String
     constructor()
 
     constructor(title: String, imageURL: String, newsURL: String, source: String) {
@@ -37,5 +38,12 @@ class News: Serializable {
     fun getFormatedDate(): String {
         val pattern = "dd/MM"
         return SimpleDateFormat(pattern, Locale.getDefault()).format(this.getDate()) + " às " + this.getTimeStr()
+    }
+
+    @Exclude
+    fun getRefPath() : String = this.refPath
+
+    fun setRefPath(refPath: String) {
+        this.refPath = refPath
     }
 }

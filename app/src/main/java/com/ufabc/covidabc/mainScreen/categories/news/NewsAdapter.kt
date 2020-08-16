@@ -3,6 +3,7 @@ package com.ufabc.covidabc.mainScreen.categories.news
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +21,9 @@ import com.firebase.ui.firestore.paging.FirestorePagingAdapter
 import com.firebase.ui.firestore.paging.FirestorePagingOptions
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
+import com.ufabc.covidabc.logger.Logger
 import com.ufabc.covidabc.model.news.News
+import java.util.*
 
 class NewsAdapter(private val options: FirestorePagingOptions<News>):
     FirestorePagingAdapter<News, NewsAdapter.ViewHolder>(options) {
@@ -66,6 +69,7 @@ class NewsAdapter(private val options: FirestorePagingOptions<News>):
                 .into(holder.newsImage)
 
             holder.newsBody.setOnClickListener {
+                Logger.newsAnalytics(this.getRefPath(), Calendar.getInstance().time)
                 openNewTabWindow(this.getNewsURL())
             }
         }

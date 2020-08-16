@@ -2,6 +2,7 @@ package com.ufabc.covidabc
 
 import android.app.Application
 import android.content.Context
+import com.ufabc.covidabc.logger.Logger
 
 class App : Application() {
 
@@ -19,7 +20,6 @@ class App : Application() {
         const val INVENTORY_EXTRA = "inventory_extra"
 
         const val WEBSITE_URL = "http://ufabc.net.br/covidabc"
-
         const val APP_VERSION = "v1"
     }
 
@@ -28,5 +28,6 @@ class App : Application() {
         super.onCreate()
 
         appContext = applicationContext
+        Logger.initLogger()
     }
 }

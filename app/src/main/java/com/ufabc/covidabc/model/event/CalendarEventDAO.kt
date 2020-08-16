@@ -1,7 +1,10 @@
 package com.ufabc.covidabc.model.event
 
+
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
+import com.ufabc.covidabc.logger.Logger
 import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
 import java.util.*
 import kotlin.collections.ArrayList
@@ -16,6 +19,7 @@ object CalendarEventDAO {
         FirebaseFirestore.getInstance().collection(EVENT_COLLECTION).add(event)
             .addOnCompleteListener { task ->
                 callback.onCompleted(task.isSuccessful)
+                Logger.eventLogInfo("ADD", (task.result as DocumentReference).path)
             }
     }
 
@@ -26,6 +30,7 @@ object CalendarEventDAO {
             .update(calendarEventToDocument(event))
             .addOnCompleteListener { task->
                 callback.onCompleted(task.isSuccessful)
+                Logger.eventLogInfo("EDIT", refPath)
             }
     }
 
@@ -37,6 +42,7 @@ object CalendarEventDAO {
             .delete()
             .addOnCompleteListener { task->
                 callback.onCompleted(task.isSuccessful)
+                Logger.eventLogInfo("DELETE", refPath)
             }
     }
 
