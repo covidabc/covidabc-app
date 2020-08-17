@@ -1,7 +1,15 @@
 .idea
 .gradle
-local.properties
 .classpath
 .project
 .settings/
 src/main/res/layout-v21/
+*.iml
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+
