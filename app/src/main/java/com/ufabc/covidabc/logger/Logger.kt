@@ -1,25 +1,30 @@
 package com.ufabc.covidabc.logger
 
+import android.content.Context
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.iid.FirebaseInstanceId
-import com.ufabc.covidabc.model.logger.EventLog
-import com.ufabc.covidabc.model.logger.EventLogDAO
-import com.ufabc.covidabc.model.logger.NewsViewsLog
-import com.ufabc.covidabc.model.logger.NewsViewsLogDAO
+import com.ufabc.covidabc.App
+import com.ufabc.covidabc.model.logger.*
 import java.security.MessageDigest
-import java.sql.Date
 import java.util.*
 
 
 object Logger {
-    private var uid = sha512(FirebaseInstanceId.getInstance().id)
+    private lateinit var uid : String
+    private var sPName = "uid"
+    private var sPDefaultName = "none"
+
     private var brigadista_name : String = "sem_nome"
     private var brigadista_email : String = "sem_email"
     private val mAuth : FirebaseAuth = FirebaseAuth.getInstance()
+    val sharedPref = App.appContext.getSharedPreferences("user-sets", Context.MODE_PRIVATE)
 
     fun initLogger() {
 //        Log.d("LOGGER", uid)
+        setUid()
+
         if (uid.isEmpty()) {
             uid = "missing_hash"
         }
@@ -29,6 +34,20 @@ object Logger {
         }
     }
 
+    fun setUid() {
+        val savedUid = sharedPref.getString(sPName, sPDefaultName).toString()
+        Log.d("LOGSP", savedUid)
+        if (savedUid == sPDefaultName) { // nenhum id já foi salvo
+            uid = sha512(FirebaseInstanceId.getInstance().id)
+            userIDLog(uid, Calendar.getInstance().time)
+            with (sharedPref.edit()) {
+                putString(sPName, uid)
+                commit()
+            }
+        } else { // existe um id salvo
+            uid = savedUid.toString()
+        }
+    }
 
     fun newsAnalytics(newsRefPath: String, tstamp: java.util.Date) {
         Log.d("LOGGER", "NEWS_ANALYTICS")
@@ -40,6 +59,15 @@ object Logger {
         Log.d("LOGGER", "EVENT")
         val ev = EventLog(brigadista_name, brigadista_email, action,  Calendar.getInstance().time, eventID)
         EventLogDAO.addEventLog(ev)
+    }
+
+    fun userIDLog(id: String, date: Date) {
+       Log.d("LOGGER", "USER-ID-CREATION")
+        val uidObject = UserIDLog(id, date, App.APP_VERSION)
+
+        FirebaseFirestore.getInstance().collection("users-id-log").add(uidObject).addOnCompleteListener {
+            Log.d("LOG-USER-ID", it.isSuccessful.toString())
+        }
     }
 
     private fun updateBrigadistaInfo() {
