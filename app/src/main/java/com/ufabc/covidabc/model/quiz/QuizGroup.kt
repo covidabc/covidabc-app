@@ -1,10 +1,12 @@
 package com.ufabc.covidabc.model.quiz
 
 import com.google.firebase.database.Exclude
+import com.ufabc.covidabc.logger.Logger
 import java.io.Serializable
 
 class QuizGroup(private  var quizArray: ArrayList<Quiz>, private var quizSize: Int) : Serializable {
 
+    private var playerID = Logger.getUid()
     private var currQuestion = 0
     private var score = 0
 
@@ -36,4 +38,6 @@ class QuizGroup(private  var quizArray: ArrayList<Quiz>, private var quizSize: I
     fun getRightAnsweredQuestions() = quizArray.filterIndexed { index, _ -> rightAnswered.contains(index) }
 
     fun getWrongAnsweredQuestions() = quizArray.filterIndexed { index, _ -> wrongAnswered.contains(index) }
+
+    fun getPlayerID() = playerID
 }

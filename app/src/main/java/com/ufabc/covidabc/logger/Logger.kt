@@ -77,4 +77,6 @@ object Logger {
 
             return result.toString()
         }
+
+    fun getUid(): String = uid
 }

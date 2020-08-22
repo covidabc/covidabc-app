@@ -37,6 +37,7 @@ class QuizResultActivity : AppCompatActivity() {
     private fun collectUserResult(quizGroup : QuizGroup) {
         FirebaseFirestore.getInstance().collection(QUIZ_RESULT_COLLECTION)
             .add(mapOf(
+                "userID" to quizGroup.getPlayerID(),
                 "date" to Calendar.getInstance().time,
                 "rightAnswered" to quizGroup.getRightAnsweredQuestions(),
                 "wrongAnswered" to quizGroup.getWrongAnsweredQuestions()
