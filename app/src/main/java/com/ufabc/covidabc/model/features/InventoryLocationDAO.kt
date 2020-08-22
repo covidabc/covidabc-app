@@ -100,13 +100,14 @@ object InventoryLocationDAO {
             val itemMinCount = item.getMinCount()
             val itemName = item.toString()
 
-            for (inventoryLocation in inventoryLocationArray) {
-                val itemCount = inventoryLocation.getItemCount()[itemName] ?: 0
-                totalCount[itemName] = (totalCount[itemName] ?: 0) + itemCount
+            val itemCount : Int = inventoryLocationArray.fold (
+                0, { acc, next -> acc + (next.getItemCount()[itemName] ?: 0) }
+            )
 
-                if (itemMinCount > 0) {
-                    minCount = min(minCount, itemCount/itemMinCount)
-                }
+            totalCount[itemName] = (totalCount[itemName] ?: 0) + itemCount
+
+            if (itemMinCount > 0) {
+                minCount = min(minCount, itemCount/itemMinCount)
             }
         }
 
