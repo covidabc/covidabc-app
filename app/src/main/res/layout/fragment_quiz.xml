@@ -48,6 +48,34 @@
             android:textColor="@android:color/white"
             android:textSize="@dimen/text_default_size"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/quiz_formsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="@dimen/little_space"
+            android:paddingLeft="@dimen/general_space"
+            android:paddingRight="@dimen/general_space"
+            android:paddingTop="@dimen/general_space"
+            android:text="@string/forms_intro"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            app:fontFamily="sans-serif-light" />
+
+        <Button
+            android:id="@+id/forms_enter_button"
+            android:layout_width="@dimen/button_huge_size"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="@drawable/button_shape"
+            android:text="@string/forms_enter"
+            android:layout_gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_default_size"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </RelativeLayout>

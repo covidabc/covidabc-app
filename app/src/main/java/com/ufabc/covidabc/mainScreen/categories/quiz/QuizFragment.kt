@@ -23,6 +23,7 @@ class QuizFragment : Fragment() {
     private val QUIZ_SIZE = 5
 
     private lateinit var quizButton : Button
+    private lateinit var formsButton : Button
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,8 +37,12 @@ class QuizFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         quizButton = view.findViewById(R.id.quiz_enter_button)
+        formsButton = view.findViewById(R.id.forms_enter_button)
         quizButton.setOnClickListener {
             initQuiz()
+        }
+        formsButton.setOnClickListener {
+            goToFormsActivity()
         }
     }
 
@@ -86,6 +91,14 @@ class QuizFragment : Fragment() {
 
         return QuizGroup(selectedQuestions, QUIZ_SIZE)
     }
+
+    private fun goToFormsActivity() {
+        Intent(App.appContext, QuizFormsActivity::class.java).apply {
+            //this.putExtra("id", ***colocar a id aqui***)
+            startActivity(this)
+        }
+    }
+
 
 
 

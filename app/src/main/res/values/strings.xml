@@ -144,4 +144,9 @@
     <string name="item_count_is">Quantidade atual : %d</string>
     <string name="confirm_location_delete">Tem certeza que deseja apagar este local?</string>
     <string name="item_kit_count_is">Temos %d kits disponiveis!!</string>
+    <string name="forms_enter">Colaborar</string>
+    <string name="forms_intro">Colabore em um questionário vonluntário e anônimo para um projeto de pesquisa</string>
+    <string name="exit_forms">Sair</string>
+    <string name="forms_url">https://docs.google.com/forms/d/e/1FAIpQLSeytTsPL2QSB0cJqvoLHokb1rXDcUvKeuJVqh6PVVQcP0-Jfg/viewform?usp=sf_link</string>
+
 </resources>
