@@ -14,7 +14,7 @@
         tools:layout_editor_absoluteY="39dp">
 
         <WebView
-            android:id="@+id/webView"
+            android:id="@+id/web_view"
             android:layout_width="match_parent"
             android:layout_height="670dp"
             android:layout_alignParentTop="true"
