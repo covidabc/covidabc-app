@@ -7,12 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.RelativeLayout
+import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
+import com.ufabc.covidabc.logger.Logger
 import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
 import com.ufabc.covidabc.model.quiz.Quiz
 import com.ufabc.covidabc.model.quiz.QuizDAO
@@ -20,10 +20,12 @@ import com.ufabc.covidabc.model.quiz.QuizGroup
 
 class QuizFragment : Fragment() {
 
+    private var userID = Logger.getUid()
     private val QUIZ_SIZE = 5
 
     private lateinit var quizButton : Button
     private lateinit var formsButton : Button
+    private lateinit var researchFormLayout: LinearLayout
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,12 +40,30 @@ class QuizFragment : Fragment() {
 
         quizButton = view.findViewById(R.id.quiz_enter_button)
         formsButton = view.findViewById(R.id.forms_enter_button)
+        researchFormLayout = view.findViewById(R.id.research_forms_relative_layout)
+
         quizButton.setOnClickListener {
             initQuiz()
         }
         formsButton.setOnClickListener {
             goToFormsActivity()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setForms()
+    }
+
+    private fun setForms() {
+        QuizDAO.hasUserAnswered(userID, object: FirestoreDatabaseOperationListener<Boolean> {
+            override fun onCompleted(sucess: Boolean) {
+                researchFormLayout.visibility = when (sucess) {
+                    true -> View.VISIBLE
+                    false -> View.GONE
+                }
+            }
+        })
     }
 
     private fun initQuiz() {
@@ -66,6 +86,14 @@ class QuizFragment : Fragment() {
                     goToQuizActivity()
                 }
             })
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == App.FORMS_REQUEST && requestCode == App.FORMS_SUCCESS) {
+            researchFormLayout.visibility = View.GONE
         }
     }
 
@@ -95,7 +123,7 @@ class QuizFragment : Fragment() {
     private fun goToFormsActivity() {
         Intent(App.appContext, QuizFormsActivity::class.java).apply {
             //this.putExtra("id", ***colocar a id aqui***)
-            startActivity(this)
+            startActivityForResult(this, App.FORMS_REQUEST)
         }
     }
 

@@ -22,7 +22,6 @@ object Logger {
     val sharedPref = App.appContext.getSharedPreferences("user-sets", Context.MODE_PRIVATE)
 
     fun initLogger() {
-//        Log.d("LOGGER", uid)
         setUid()
 
         if (uid.isEmpty()) {

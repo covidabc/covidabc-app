@@ -7,6 +7,8 @@ import com.ufabc.covidabc.model.FirestoreDatabaseOperationListener
 object QuizDAO {
 
     private const val QUIZ_COLLECTION = "quiz"
+    private const val FORMS_COLLECTION = "forms"
+
     private var isAlreadyFetched = false
     private var quizArray : ArrayList<Quiz> = arrayListOf()
 
@@ -22,6 +24,23 @@ object QuizDAO {
 
                 isAlreadyFetched = true
                 callback.onCompleted(task.isSuccessful)
+            }
+    }
+
+    fun setUserAnswer(userId : String, callback: FirestoreDatabaseOperationListener<Boolean>) {
+        FirebaseFirestore.getInstance().collection(FORMS_COLLECTION)
+            .add(mapOf("userId" to userId))
+            .addOnCompleteListener {
+                callback.onCompleted(it.isSuccessful)
+            }
+    }
+
+    fun hasUserAnswered(userId: String, callback: FirestoreDatabaseOperationListener<Boolean>) {
+        FirebaseFirestore.getInstance().collection(FORMS_COLLECTION)
+            .whereEqualTo("userId", userId)
+            .get()
+            .addOnCompleteListener {
+                callback.onCompleted(it.isSuccessful && it.result!!.isEmpty)
             }
     }
 

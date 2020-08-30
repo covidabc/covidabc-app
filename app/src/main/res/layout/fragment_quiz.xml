@@ -11,71 +11,119 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:weightSum="10"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/quiz_image"
-            android:layout_width="@dimen/quiz_image_size"
-            android:layout_height="@dimen/quiz_image_size"
-            android:layout_weight="4"
-            android:layout_gravity="center"
-            android:src="@drawable/virus_quiz" />
-
-        <TextView
-            android:id="@+id/quiz_introText"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:lineSpacingExtra="@dimen/little_space"
-            android:layout_weight="1"
-            android:paddingLeft="@dimen/general_space"
-            android:paddingRight="@dimen/general_space"
-            android:text="@string/quiz_intro"
-            android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            app:fontFamily="sans-serif-light" />
+            android:layout_height="0dp"
+            android:layout_weight="0.5">
 
-        <Button
-            android:id="@+id/quiz_enter_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:background="@drawable/button_shape"
-            android:text="@string/quiz_enter"
-            android:layout_gravity="center"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/text_default_size"
-            android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/quiz_image"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/quiz_image_size"
+                android:layout_gravity="center"
+                android:src="@drawable/virus_quiz" />
 
-        <TextView
-            android:id="@+id/quiz_formsText"
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:lineSpacingExtra="@dimen/little_space"
-            android:paddingLeft="@dimen/general_space"
-            android:paddingRight="@dimen/general_space"
-            android:paddingTop="@dimen/general_space"
-            android:text="@string/forms_intro"
-            android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            app:fontFamily="sans-serif-light" />
+            android:layout_height="0dp"
+            android:layout_weight="0.25"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/forms_enter_button"
-            android:layout_width="@dimen/button_huge_size"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:background="@drawable/button_shape"
-            android:text="@string/forms_enter"
-            android:layout_gravity="center"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/text_default_size"
-            android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/quiz_introText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="@dimen/little_space"
+                    android:paddingLeft="@dimen/general_space"
+                    android:paddingRight="@dimen/general_space"
+                    android:text="@string/quiz_intro"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    app:fontFamily="sans-serif-light" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/quiz_enter_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/general_space"
+                    android:background="@drawable/button_shape"
+                    android:text="@string/quiz_enter"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_default_size"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/research_forms_relative_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.25"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/quiz_formsText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:lineSpacingExtra="@dimen/little_space"
+                    android:paddingLeft="@dimen/general_space"
+                    android:paddingRight="@dimen/general_space"
+                    android:text="@string/forms_intro"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    app:fontFamily="sans-serif-light" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/forms_enter_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_shape"
+                    android:padding="@dimen/general_space"
+                    android:text="@string/forms_enter"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_default_size"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>
