@@ -16,7 +16,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.5">
+            android:layout_weight="0.4">
 
             <ImageView
                 android:id="@+id/quiz_image"
@@ -30,7 +30,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.25"
+            android:layout_weight="0.3"
             android:orientation="vertical">
 
             <LinearLayout
@@ -79,7 +79,7 @@
             android:id="@+id/research_forms_relative_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.25"
+            android:layout_weight="0.3"
             android:orientation="vertical"
             android:visibility="gone">
 

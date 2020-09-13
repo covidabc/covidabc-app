@@ -1,10 +1,8 @@
 package com.ufabc.covidabc.mainScreen.categories.quiz
 
 import android.os.Bundle
-import android.util.Log
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ufabc.covidabc.App
@@ -16,7 +14,6 @@ import com.ufabc.covidabc.model.quiz.QuizDAO
 class QuizFormsActivity : AppCompatActivity() {
 
     private var userID = Logger.getUid()
-    private lateinit var exitFormsButton: Button
     private lateinit var webView: WebView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +24,6 @@ class QuizFormsActivity : AppCompatActivity() {
     }
 
     private fun setViews() {
-        exitFormsButton = findViewById(R.id.exit_forms_btn)
         webView = findViewById(R.id.web_view)
 
         webView.webViewClient = object : WebViewClient() {
