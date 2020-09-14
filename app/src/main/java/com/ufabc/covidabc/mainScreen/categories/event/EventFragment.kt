@@ -47,7 +47,6 @@ class EventFragment : Fragment() {
         setListeners()
 
         setEvents()
-
     }
 
     override fun onPause() {

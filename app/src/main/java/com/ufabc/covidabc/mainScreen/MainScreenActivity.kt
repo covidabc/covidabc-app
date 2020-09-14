@@ -18,6 +18,7 @@ import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.login.LoginActivity
 import com.ufabc.covidabc.login.MyAccountActivity
+import com.ufabc.covidabc.mainScreen.categories.fakeChecker.FakeCheckerActivity
 import kotlinx.android.synthetic.main.dialog_version.*
 import java.util.*
 
@@ -92,9 +93,9 @@ class MainScreenActivity : AppCompatActivity() {
 
                 R.id.action_about -> openNewTabWindow(App.WEBSITE_URL)
 
-                R.id.action_feedback -> {
-                    startActivity(Intent(this, FeedbackActivity::class.java))
-                }
+                R.id.action_feedback -> startActivity(Intent(this, FeedbackActivity::class.java))
+
+                R.id.action_fake_checker -> startActivity(Intent(this, FakeCheckerActivity::class.java))
 
                 else -> super.onOptionsItemSelected(it)
             }

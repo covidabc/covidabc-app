@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ufabc.covidabc">
+    package="com.ufabc.covidabc" >
 
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
@@ -14,8 +14,10 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".features.InventoryActivity"></activity>
+        android:theme="@style/AppTheme" >
+        <activity android:name=".mainScreen.categories.fakeChecker.FakeCheckerActivity" >
+        </activity>
+        <activity android:name=".features.InventoryActivity" />
         <activity android:name=".features.InventoryManagementActivity" />
         <activity
             android:name=".mainScreen.FeedbackActivity"
@@ -40,7 +42,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".mainScreen.MainScreenActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -62,6 +64,7 @@
         <activity
             android:name=".mainScreen.categories.quiz.QuizQuestionActivity"
             android:screenOrientation="portrait" />
+
         <provider
             android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
             android:authorities="com.ufabc.covidabc.lifecycle-process"

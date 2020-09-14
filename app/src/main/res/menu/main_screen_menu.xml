@@ -9,6 +9,12 @@
         app:showAsAction="never"/>
 
     <item
+        android:id="@+id/action_fake_checker"
+        android:icon="@drawable/ic_check"
+        android:title="@string/title_fake_checker"
+        app:showAsAction="never"/>
+
+    <item
         android:id="@+id/action_about"
         android:icon="@drawable/ic_info"
         android:title="@string/title_about"

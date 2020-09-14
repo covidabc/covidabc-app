@@ -150,5 +150,13 @@
     <string name="forms_url">https://docs.google.com/forms/d/e/1FAIpQLSeytTsPL2QSB0cJqvoLHokb1rXDcUvKeuJVqh6PVVQcP0-Jfg/viewform</string>
     <string name="answer_sucess">Obrigado por responder o fomulario</string>
     <string name="answer_error">Aconteceu algum erro :( Por favor tente novamente</string>
-
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_fake_checker">Detector de Fake News</string>
+    <string name="text_fake_checker_description">Copie o texto de uma notícia, cole na caixa abaixo e clique em "Enviar". Classificaremos a notiícia como possivelmente verdadeira ou falsa.</string>
+    <string name="text_fake_checker_source"> Esse classificador foi desenvolvido por alunos e professores da Universidade de São Paulo </string>
+    <string name="text_fake_checker_source_link"> <u> Clique aqui para saber mais! </u></string>
+    <string name="title_fake_checker">Detector de Fake News</string>
+    <string name="small_text_error">Ocorreu um erro. O texto deve ter pelo menos 100 palavras.</string>
+    <string name="text_true_news">Essa notícia parece ser verdadeira! Busque fontes confiáveis antes de divulgá-la.</string>
+    <string name="text_fake_news">Essa notícia pode ser falsa. Busque fontes confiáveis.</string>
 </resources>
