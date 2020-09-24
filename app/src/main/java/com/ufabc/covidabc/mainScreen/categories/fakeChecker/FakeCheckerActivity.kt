@@ -19,7 +19,7 @@ import com.ufabc.covidabc.R
 
 class FakeCheckerActivity : AppCompatActivity() {
 
-    private val API_LINK : String = "http://nilc-fakenews.herokuapp.com/ajax/check/"
+    private val API_LINK : String = "https://nilc-fakenews.herokuapp.com/ajax/check/"
     private val API_MODEL: String = "unigramas"
     private val SOURCE_LINK: String = "https://nilc-fakenews.herokuapp.com/about"
 
@@ -78,9 +78,7 @@ class FakeCheckerActivity : AppCompatActivity() {
         )
 
         Fuel.upload(API_LINK, Method.POST, formData)
-            .responseJson { _, response, _ ->
-
-                println("ta aqui")
+            .response { _, response, _ ->
 
                 when (response.responseMessage) {
                     "OK" -> {
@@ -92,17 +90,11 @@ class FakeCheckerActivity : AppCompatActivity() {
                             "REAL" -> getString(R.string.text_true_news)
                             else -> getString(R.string.text_fake_news)
                         }
-                        this@FakeCheckerActivity.runOnUiThread { showResultDialog(message) }
+                        showResultDialog(message)
                     }
 
-                    else -> {
-                        this@FakeCheckerActivity.runOnUiThread {
-                            Toast.makeText(this, R.string.an_error_occured, Toast.LENGTH_LONG)
-                                .show()
-                        }
-                    }
+                    else ->  Toast.makeText(this, R.string.an_error_occured, Toast.LENGTH_LONG).show()
                 }
-
             }
     }
 

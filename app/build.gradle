@@ -68,7 +68,7 @@ dependencies {
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'
 
-    implementation 'com.github.kittinunf.fuel:fuel:2.2.3'
+    implementation 'com.github.kittinunf.fuel:fuel-android:1.15.0'
     implementation 'com.github.kittinunf.fuel:fuel-json:2.2.3'
     implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.11.+"
 }
