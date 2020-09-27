@@ -23,7 +23,7 @@ class App : Application() {
         const val FORMS_SUCCESS = 501
 
         const val WEBSITE_URL = "http://ufabc.net.br/covidabc"
-        const val APP_VERSION = "v1"
+        const val APP_VERSION = "v1.2"
     }
 
 
