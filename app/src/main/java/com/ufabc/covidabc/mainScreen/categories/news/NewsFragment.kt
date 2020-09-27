@@ -100,6 +100,7 @@ class NewsFragment : Fragment() {
             val recyclerView = this
             recyclerView!!.layoutManager = LinearLayoutManager(App.appContext)
             recyclerView.adapter = NewsAdapter(options)
+
         }
     }
 }

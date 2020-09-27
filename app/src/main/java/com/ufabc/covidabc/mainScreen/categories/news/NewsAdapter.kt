@@ -14,11 +14,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.firebase.ui.firestore.paging.FirestorePagingAdapter
 import com.firebase.ui.firestore.paging.FirestorePagingOptions
+import com.squareup.picasso.Picasso
 import com.ufabc.covidabc.App
 import com.ufabc.covidabc.R
 import com.ufabc.covidabc.logger.Logger
@@ -34,7 +36,6 @@ class NewsAdapter(private val options: FirestorePagingOptions<News>):
         var newsSourceTextView : TextView = itemView.findViewById(R.id.source_text_view)
         var datetimeTextView : TextView = itemView.findViewById(R.id.datetime_text_view)
         var newsBody : RelativeLayout = itemView.findViewById(R.id.news_body)
-        var newsProgressBar : ProgressBar = itemView.findViewById(R.id.news_progress_bar)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsAdapter.ViewHolder {
@@ -53,19 +54,7 @@ class NewsAdapter(private val options: FirestorePagingOptions<News>):
 
             Glide.with(App.appContext)
                 .load(Uri.parse(this.getImageURL()))
-                .listener(object : RequestListener<Drawable> {
-                    override fun onLoadFailed(e: GlideException?, model: Any?,
-                                              target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                        holder.newsProgressBar.visibility = View.GONE
-                        return false
-                    }
-
-                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
-                                                 dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                        holder.newsProgressBar.visibility = View.GONE
-                        return false
-                    }
-                })
+                .centerCrop()
                 .into(holder.newsImage)
 
             holder.newsBody.setOnClickListener {

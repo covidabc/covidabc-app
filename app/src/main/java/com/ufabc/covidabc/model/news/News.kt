@@ -37,7 +37,13 @@ class News: Serializable {
 
     fun getFormatedDate(): String {
         val pattern = "dd/MM"
-        return SimpleDateFormat(pattern, Locale.getDefault()).format(this.getDate()) + " às " + this.getTimeStr()
+        val time = this.getTimeStr()
+        val day = SimpleDateFormat(pattern, Locale.getDefault()).format(this.getDate())
+
+        if (time == "00h00" || time == "-")
+            return day
+
+        return "$day às $time"
     }
 
     @Exclude

@@ -21,16 +21,6 @@
             android:layout_height="@dimen/news_image_size"
             android:scaleType="centerCrop"/>
 
-        <ProgressBar
-            android:id="@+id/news_progress_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/big_space"
-            android:scaleType="centerCrop"
-            android:layout_alignTop="@id/news_image_view"
-            android:layout_alignBottom="@id/news_image_view"
-            android:visibility="visible"/>
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
